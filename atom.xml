@@ -49,38 +49,6 @@
   </entry>
   
   <entry>
-    <title>新增行事曆的事件</title>
-    <link href="http://yuaki.com/2019/05/19/calenderEvent/"/>
-    <id>http://yuaki.com/2019/05/19/calenderEvent/</id>
-    <published>2019-05-19T15:00:00.000Z</published>
-    <updated>2019-10-12T06:56:04.203Z</updated>
-    
-    <content type="html"><![CDATA[<p>Q: 想要加一個事件在行日曆上嗎？ </p><a id="more"></a><h4 id="OBJC"><a href="#OBJC" class="headerlink" title="OBJC"></a>OBJC</h4><pre><code>EKEventStore *eventStore = [[EKEventStore alloc] init];EKEvent *event  = [EKEvent eventWithEventStore:eventStore];event.title     = @&quot;EVENT TITLE&quot;;event.startDate = [[NSDate alloc] init];event.endDate   = [[NSDate alloc] initWithTimeInterval:600 sinceDate:event.startDate];[event setCalendar:[eventStore defaultCalendarForNewEvents]];NSError *err;[eventStore saveEvent:event span:EKSpanThisEvent error:&amp;err];  </code></pre><h4 id="swift"><a href="#swift" class="headerlink" title="swift"></a>swift</h4><pre><code>let store = EKEventStore()store.requestAccessToEntityType(.Event) {(granted, error) in    if !granted { return }    var event = EKEvent(eventStore: store)    event.title = &quot;Event Title&quot;    event.startDate = NSDate() //today    event.endDate = event.startDate.dateByAddingTimeInterval(60*60) //1 hour long meeting    event.calendar = store.defaultCalendarForNewEvents    do {        try store.saveEvent(event, span: .ThisEvent, commit: true)        self.savedEventId = event.eventIdentifier     } catch {        // error     }}      </code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Q: 想要加一個事件在行日曆上嗎？ &lt;/p&gt;
-    
-    </summary>
-    
-      <category term="iOS" scheme="http://yuaki.com/categories/iOS/"/>
-    
-    
-      <category term="iOS" scheme="http://yuaki.com/tags/iOS/"/>
-    
-      <category term="新手村" scheme="http://yuaki.com/tags/%E6%96%B0%E6%89%8B%E6%9D%91/"/>
-    
-      <category term="OBJC" scheme="http://yuaki.com/tags/OBJC/"/>
-    
-      <category term="swift" scheme="http://yuaki.com/tags/swift/"/>
-    
-      <category term="Calendar" scheme="http://yuaki.com/tags/Calendar/"/>
-    
-      <category term="EventKit" scheme="http://yuaki.com/tags/EventKit/"/>
-    
-  </entry>
-  
-  <entry>
     <title>String to Date, Date to String</title>
     <link href="http://yuaki.com/2019/05/19/DateToString/"/>
     <id>http://yuaki.com/2019/05/19/DateToString/</id>
@@ -102,11 +70,43 @@
     
       <category term="新手村" scheme="http://yuaki.com/tags/%E6%96%B0%E6%89%8B%E6%9D%91/"/>
     
+      <category term="swift" scheme="http://yuaki.com/tags/swift/"/>
+    
       <category term="OBJC" scheme="http://yuaki.com/tags/OBJC/"/>
     
       <category term="Date" scheme="http://yuaki.com/tags/Date/"/>
     
+  </entry>
+  
+  <entry>
+    <title>新增行事曆的事件</title>
+    <link href="http://yuaki.com/2019/05/19/calenderEvent/"/>
+    <id>http://yuaki.com/2019/05/19/calenderEvent/</id>
+    <published>2019-05-19T15:00:00.000Z</published>
+    <updated>2019-10-12T06:56:04.203Z</updated>
+    
+    <content type="html"><![CDATA[<p>Q: 想要加一個事件在行日曆上嗎？ </p><a id="more"></a><h4 id="OBJC"><a href="#OBJC" class="headerlink" title="OBJC"></a>OBJC</h4><pre><code>EKEventStore *eventStore = [[EKEventStore alloc] init];EKEvent *event  = [EKEvent eventWithEventStore:eventStore];event.title     = @&quot;EVENT TITLE&quot;;event.startDate = [[NSDate alloc] init];event.endDate   = [[NSDate alloc] initWithTimeInterval:600 sinceDate:event.startDate];[event setCalendar:[eventStore defaultCalendarForNewEvents]];NSError *err;[eventStore saveEvent:event span:EKSpanThisEvent error:&amp;err];  </code></pre><h4 id="swift"><a href="#swift" class="headerlink" title="swift"></a>swift</h4><pre><code>let store = EKEventStore()store.requestAccessToEntityType(.Event) {(granted, error) in    if !granted { return }    var event = EKEvent(eventStore: store)    event.title = &quot;Event Title&quot;    event.startDate = NSDate() //today    event.endDate = event.startDate.dateByAddingTimeInterval(60*60) //1 hour long meeting    event.calendar = store.defaultCalendarForNewEvents    do {        try store.saveEvent(event, span: .ThisEvent, commit: true)        self.savedEventId = event.eventIdentifier     } catch {        // error     }}      </code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Q: 想要加一個事件在行日曆上嗎？ &lt;/p&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://yuaki.com/categories/iOS/"/>
+    
+    
+      <category term="iOS" scheme="http://yuaki.com/tags/iOS/"/>
+    
+      <category term="新手村" scheme="http://yuaki.com/tags/%E6%96%B0%E6%89%8B%E6%9D%91/"/>
+    
       <category term="swift" scheme="http://yuaki.com/tags/swift/"/>
+    
+      <category term="OBJC" scheme="http://yuaki.com/tags/OBJC/"/>
+    
+      <category term="Calendar" scheme="http://yuaki.com/tags/Calendar/"/>
+    
+      <category term="EventKit" scheme="http://yuaki.com/tags/EventKit/"/>
     
   </entry>
   
@@ -132,9 +132,9 @@
     
       <category term="新手村" scheme="http://yuaki.com/tags/%E6%96%B0%E6%89%8B%E6%9D%91/"/>
     
-      <category term="OBJC" scheme="http://yuaki.com/tags/OBJC/"/>
-    
       <category term="swift" scheme="http://yuaki.com/tags/swift/"/>
+    
+      <category term="OBJC" scheme="http://yuaki.com/tags/OBJC/"/>
     
       <category term="TextField" scheme="http://yuaki.com/tags/TextField/"/>
     
@@ -171,6 +171,31 @@
   </entry>
   
   <entry>
+    <title>What is QA</title>
+    <link href="http://yuaki.com/2018/10/14/TestStory06/"/>
+    <id>http://yuaki.com/2018/10/14/TestStory06/</id>
+    <published>2018-10-14T06:10:00.000Z</published>
+    <updated>2018-10-20T03:05:30.400Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="軟體開發故事06-What-is-QA"><a href="#軟體開發故事06-What-is-QA" class="headerlink" title="軟體開發故事06 - What is QA?"></a>軟體開發故事06 - What is QA?</h2><p>從上述的故事之中，你會發現好像有人一直在滑手機或是不講話？<br><br>那只是在這個故事之中特意的呈現。<br></p><p>什麼是QA? <br><br>在專案管理之中，QA是有明確的定義，Quality Assurance-品質保證工程師。<br></p><a id="more"></a><p>為了避免和 QC (Quality Control)搞混，我們把專案執行的生命週期給畫出來，如此一來就知道角色的差異。</p><p><img src="https://github.com/nobodyyu/GraphicsBed/raw/master/ios%40Taipei/project_life_cycle.png" alt="專案生命週期"></p><p>QA在執行的後期，做的工作其實是測試員 Tester 的工作<br><br>如果知道明確的測試方式與工作，那麼由誰來做Tester，似乎就沒有那麼地強迫要非QA不可，有時候PM也跳下來測也不一定。</p><p>QA有多麼苦，我們可以看一下專案規模隨者時間演進的變化</p><p><img src="https://github.com/nobodyyu/GraphicsBed/raw/master/ios%40Taipei/CRsteps.png" alt="專案CR"></p><p>圖表由左到右，藍色的部份代表這一期的功能產出，之後的藍色代表原專案的新功能（Change Requestment）<br></p><p>為了計算方便，假設每個區塊需要1個小時的測試時間，區塊與區塊間相依性的整合測試一樣也是需要一個小時的測試。<br></p><p>那麼，專案在第一期的測試時間為一個小時，專案在第二期的時候是3小時，專案在第三期的時候需要7小時，第四期的時候，要完整的測完，則是需要15小時。(有沒有很可怕？？)</p><p>不自動化，純手動測試，就會出現測試人員根本就來不及測試就上線的情況了。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;軟體開發故事06-What-is-QA&quot;&gt;&lt;a href=&quot;#軟體開發故事06-What-is-QA&quot; class=&quot;headerlink&quot; title=&quot;軟體開發故事06 - What is QA?&quot;&gt;&lt;/a&gt;軟體開發故事06 - What is QA?&lt;/h2&gt;&lt;p&gt;從上述的故事之中，你會發現好像有人一直在滑手機或是不講話？&lt;br&gt;&lt;br&gt;那只是在這個故事之中特意的呈現。&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;什麼是QA? &lt;br&gt;&lt;br&gt;在專案管理之中，QA是有明確的定義，Quality Assurance-品質保證工程師。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Test" scheme="http://yuaki.com/categories/Test/"/>
+    
+    
+      <category term="Test" scheme="http://yuaki.com/tags/Test/"/>
+    
+      <category term="QA" scheme="http://yuaki.com/tags/QA/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Other Tests</title>
     <link href="http://yuaki.com/2018/10/14/TestStory07/"/>
     <id>http://yuaki.com/2018/10/14/TestStory07/</id>
@@ -199,31 +224,6 @@
   </entry>
   
   <entry>
-    <title>What is QA</title>
-    <link href="http://yuaki.com/2018/10/14/TestStory06/"/>
-    <id>http://yuaki.com/2018/10/14/TestStory06/</id>
-    <published>2018-10-14T06:10:00.000Z</published>
-    <updated>2018-10-20T03:05:30.400Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="軟體開發故事06-What-is-QA"><a href="#軟體開發故事06-What-is-QA" class="headerlink" title="軟體開發故事06 - What is QA?"></a>軟體開發故事06 - What is QA?</h2><p>從上述的故事之中，你會發現好像有人一直在滑手機或是不講話？<br><br>那只是在這個故事之中特意的呈現。<br></p><p>什麼是QA? <br><br>在專案管理之中，QA是有明確的定義，Quality Assurance-品質保證工程師。<br></p><a id="more"></a><p>為了避免和 QC (Quality Control)搞混，我們把專案執行的生命週期給畫出來，如此一來就知道角色的差異。</p><p><img src="https://github.com/nobodyyu/GraphicsBed/raw/master/ios%40Taipei/project_life_cycle.png" alt="專案生命週期"></p><p>QA在執行的後期，做的工作其實是測試員 Tester 的工作<br><br>如果知道明確的測試方式與工作，那麼由誰來做Tester，似乎就沒有那麼地強迫要非QA不可，有時候PM也跳下來測也不一定。</p><p>QA有多麼苦，我們可以看一下專案規模隨者時間演進的變化</p><p><img src="https://github.com/nobodyyu/GraphicsBed/raw/master/ios%40Taipei/CRsteps.png" alt="專案CR"></p><p>圖表由左到右，藍色的部份代表這一期的功能產出，之後的藍色代表原專案的新功能（Change Requestment）<br></p><p>為了計算方便，假設每個區塊需要1個小時的測試時間，區塊與區塊間相依性的整合測試一樣也是需要一個小時的測試。<br></p><p>那麼，專案在第一期的測試時間為一個小時，專案在第二期的時候是3小時，專案在第三期的時候需要7小時，第四期的時候，要完整的測完，則是需要15小時。(有沒有很可怕？？)</p><p>不自動化，純手動測試，就會出現測試人員根本就來不及測試就上線的情況了。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;軟體開發故事06-What-is-QA&quot;&gt;&lt;a href=&quot;#軟體開發故事06-What-is-QA&quot; class=&quot;headerlink&quot; title=&quot;軟體開發故事06 - What is QA?&quot;&gt;&lt;/a&gt;軟體開發故事06 - What is QA?&lt;/h2&gt;&lt;p&gt;從上述的故事之中，你會發現好像有人一直在滑手機或是不講話？&lt;br&gt;&lt;br&gt;那只是在這個故事之中特意的呈現。&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;什麼是QA? &lt;br&gt;&lt;br&gt;在專案管理之中，QA是有明確的定義，Quality Assurance-品質保證工程師。&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Test" scheme="http://yuaki.com/categories/Test/"/>
-    
-    
-      <category term="Test" scheme="http://yuaki.com/tags/Test/"/>
-    
-      <category term="QA" scheme="http://yuaki.com/tags/QA/"/>
-    
-  </entry>
-  
-  <entry>
     <title>UI Test, Record and Replay</title>
     <link href="http://yuaki.com/2018/10/13/TestStory04/"/>
     <id>http://yuaki.com/2018/10/13/TestStory04/</id>
@@ -238,30 +238,6 @@
 &lt;p&gt;同時，另一位工程師2也把前端的UI也做好了，兩個前後端串接好後，直接交付由QA進行測試。&lt;/p&gt;
 &lt;p&gt;工程師2說：「前端不用測，QA會幫我們找到問題。」&lt;/p&gt;
 &lt;p&gt;如果你相信工程師2說的，那麼這章可以跳過不看。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Test" scheme="http://yuaki.com/categories/Test/"/>
-    
-    
-      <category term="Test" scheme="http://yuaki.com/tags/Test/"/>
-    
-      <category term="UI Test" scheme="http://yuaki.com/tags/UI-Test/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UI Test, Cucumberish</title>
-    <link href="http://yuaki.com/2018/10/13/TestStory05/"/>
-    <id>http://yuaki.com/2018/10/13/TestStory05/</id>
-    <published>2018-10-13T06:10:00.000Z</published>
-    <updated>2018-10-20T03:05:36.703Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="軟體開發故事05-UI-Test，Cucumberish"><a href="#軟體開發故事05-UI-Test，Cucumberish" class="headerlink" title="軟體開發故事05 - UI Test，Cucumberish"></a>軟體開發故事05 - UI Test，Cucumberish</h2><p>工程師2 想要做 UI Testing, 又不想買機器的話呢？<br><br>那麼就看看測試的資訊時代，用程式測試程式是怎麼做的？<br></p><a id="more"></a><h3 id="工具很多，只不過我選了-Cucumberish"><a href="#工具很多，只不過我選了-Cucumberish" class="headerlink" title="工具很多，只不過我選了 Cucumberish"></a>工具很多，只不過我選了 Cucumberish</h3><p>你也可以選別的，比方說 calabash，appium，macaca,….</p><p>原因有機會再解釋。先來看一下 cucumberish吧</p><ul><li>安裝 cucumberish</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">target &apos;TestMe&apos; do</span><br><span class="line">  use_frameworks!</span><br><span class="line"></span><br><span class="line">  target &apos;TestMeTests&apos; do</span><br><span class="line">    inherit! :search_paths</span><br><span class="line">    pod &apos;Cucumberish&apos;</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  target &apos;TestMeUITests&apos; do</span><br><span class="line">    inherit! :search_paths</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure><p>pod install 完成後開啟 workspace</p><p>設定的部份請參考<br><a href="https://github.com/Ahmed-Ali/Cucumberish" target="_blank" rel="noopener">Github Cucumberish</a></p><p>主要有三個資料夾 Scenario(環境)、Steps(操作步驟)和Features(SPE文件)</p><p>完成後的檔案與資料夾(如圖)<br><img src="https://github.com/nobodyyu/GraphicsBed/raw/master/ios%40Taipei/cucumber01.png" alt="Cucumberish01"></p><p>在實作的一開始，工程師2拿到了一份 SPE 的 Feature 文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Feature: TestMe Cucumberish Login Test Exapmle</span><br><span class="line"></span><br><span class="line">Scenario Outline: Verify Login Process</span><br><span class="line">Given the app is running</span><br><span class="line">When I enter Account &quot;&lt;acc&gt;&quot; and Password &quot;&lt;pass&gt;&quot;</span><br><span class="line">Then I should see &quot;&lt;result&gt;&quot;</span><br><span class="line"></span><br><span class="line">Examples:</span><br><span class="line">|  acc  |  pass   |    result       |</span><br><span class="line">|  aki  |  qaz    |    success      |</span><br><span class="line">|  aki  |  123    |    帳號密碼錯誤   |</span><br></pre></td></tr></table></figure><p>接著到 Scenario 裡加上一個 LoginPage.swift 程式碼如下，大意是把操作的步驟給實作出來</p><p>Scenario 程式碼，以Login為例，Home的也要做</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">import XCTest</span><br><span class="line"></span><br><span class="line">class LoginPage: Page &#123;</span><br><span class="line">    private lazy var account = findElement(.textField)[&quot;textAccount&quot;]</span><br><span class="line">    private lazy var password = findElement(.secureTextField)[&quot;textPassword&quot;]</span><br><span class="line">    private lazy var btnLogin = findElement(.button)[&quot;btnLogin&quot;]</span><br><span class="line">    </span><br><span class="line">    required init() &#123;</span><br><span class="line">        waitFor(element: account)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @discardableResult func checkPage() -&gt; LoginPage&#123;</span><br><span class="line">        XCTAssertTrue(account.exists)</span><br><span class="line">        XCTAssertTrue(password.exists)</span><br><span class="line">        XCTAssertTrue(btnLogin.exists)</span><br><span class="line">        return self</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @discardableResult func inputData(_ acc: String, _ pass:String) -&gt; LoginPage&#123;</span><br><span class="line">        account.tap()</span><br><span class="line">        account.typeText(acc)</span><br><span class="line">        password.tap()</span><br><span class="line">        password.typeText(pass)</span><br><span class="line">        return self</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    @discardableResult func clickLogin() -&gt;LoginPage&#123;</span><br><span class="line">        btnLogin.tap()</span><br><span class="line">        return self</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @discardableResult func clickAlert(_ msg:String) -&gt;LoginPage&#123;</span><br><span class="line">        let msgResult = findElement(.alert).element.staticTexts.element(boundBy: 0).label</span><br><span class="line">        </span><br><span class="line">        XCTAssertEqual(msg,msgResult)</span><br><span class="line">        return self</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>最後，Steps 把 Feature 的文件和 Scenario 裡的操作做結合</p><p>Steps 程式碼</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">import XCTest</span><br><span class="line">import Cucumberish</span><br><span class="line"></span><br><span class="line">class StepDefinetion: NSObject &#123;</span><br><span class="line">    </span><br><span class="line">    var application : XCUIApplication!</span><br><span class="line">    </span><br><span class="line">    func setup(_ application: XCUIApplication)</span><br><span class="line">    &#123;</span><br><span class="line">        self.application = application</span><br><span class="line">        </span><br><span class="line">        Given(&quot;the app is running&quot;) &#123; (args, userInfo) -&gt; Void in</span><br><span class="line">            LoginPage().checkPage()</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        When(&quot;I enter Account \&quot;([^\\\&quot;]*)\&quot; and Password \&quot;([^\\\&quot;]*)\&quot;&quot;)&#123;(args,userInfo)-&gt;Void in</span><br><span class="line">            </span><br><span class="line">            guard let acc = args?[0] , let pass = args?[1]</span><br><span class="line">                else &#123;</span><br><span class="line">                    XCTAssert(false)</span><br><span class="line">                    return</span><br><span class="line">            &#125;</span><br><span class="line">            LoginPage().inputData(acc, pass)</span><br><span class="line">            LoginPage().clickLogin()</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        Then(&quot;I should see \&quot;([^\\\&quot;]*)\&quot;&quot;)&#123;(args,userInfo)-&gt;Void in</span><br><span class="line">            </span><br><span class="line">            guard let expectedResult = args?[0]</span><br><span class="line">                else &#123;</span><br><span class="line">                XCTAssert(false)</span><br><span class="line">                return</span><br><span class="line">            &#125;</span><br><span class="line">            if expectedResult == &quot;success&quot; &#123;</span><br><span class="line">                HomePage().checkPage()</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                LoginPage().clickAlert(expectedResult)</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    class func setup(_ application: XCUIApplication)</span><br><span class="line">    &#123;</span><br><span class="line">        StepDefinetion().setup(application)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>— 此次範例的 <a href="https://github.com/ios-taipei/TestMe" target="_blank" rel="noopener">Github TestMe</a> 在此—</p><p>跑一下 UITest 看看結果</p><p><img src="https://github.com/nobodyyu/GraphicsBed/raw/master/ios%40Taipei/cucumberis-testresult.png" alt="Cucumberish01"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;軟體開發故事05-UI-Test，Cucumberish&quot;&gt;&lt;a href=&quot;#軟體開發故事05-UI-Test，Cucumberish&quot; class=&quot;headerlink&quot; title=&quot;軟體開發故事05 - UI Test，Cucumberish&quot;&gt;&lt;/a&gt;軟體開發故事05 - UI Test，Cucumberish&lt;/h2&gt;&lt;p&gt;工程師2 想要做 UI Testing, 又不想買機器的話呢？&lt;br&gt;&lt;br&gt;那麼就看看測試的資訊時代，用程式測試程式是怎麼做的？&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
@@ -295,6 +271,30 @@
       <category term="Test" scheme="http://yuaki.com/tags/Test/"/>
     
       <category term="Unit Test" scheme="http://yuaki.com/tags/Unit-Test/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UI Test, Cucumberish</title>
+    <link href="http://yuaki.com/2018/10/13/TestStory05/"/>
+    <id>http://yuaki.com/2018/10/13/TestStory05/</id>
+    <published>2018-10-13T06:10:00.000Z</published>
+    <updated>2018-10-20T03:05:36.703Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="軟體開發故事05-UI-Test，Cucumberish"><a href="#軟體開發故事05-UI-Test，Cucumberish" class="headerlink" title="軟體開發故事05 - UI Test，Cucumberish"></a>軟體開發故事05 - UI Test，Cucumberish</h2><p>工程師2 想要做 UI Testing, 又不想買機器的話呢？<br><br>那麼就看看測試的資訊時代，用程式測試程式是怎麼做的？<br></p><a id="more"></a><h3 id="工具很多，只不過我選了-Cucumberish"><a href="#工具很多，只不過我選了-Cucumberish" class="headerlink" title="工具很多，只不過我選了 Cucumberish"></a>工具很多，只不過我選了 Cucumberish</h3><p>你也可以選別的，比方說 calabash，appium，macaca,….</p><p>原因有機會再解釋。先來看一下 cucumberish吧</p><ul><li>安裝 cucumberish</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">target &apos;TestMe&apos; do</span><br><span class="line">  use_frameworks!</span><br><span class="line"></span><br><span class="line">  target &apos;TestMeTests&apos; do</span><br><span class="line">    inherit! :search_paths</span><br><span class="line">    pod &apos;Cucumberish&apos;</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  target &apos;TestMeUITests&apos; do</span><br><span class="line">    inherit! :search_paths</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure><p>pod install 完成後開啟 workspace</p><p>設定的部份請參考<br><a href="https://github.com/Ahmed-Ali/Cucumberish" target="_blank" rel="noopener">Github Cucumberish</a></p><p>主要有三個資料夾 Scenario(環境)、Steps(操作步驟)和Features(SPE文件)</p><p>完成後的檔案與資料夾(如圖)<br><img src="https://github.com/nobodyyu/GraphicsBed/raw/master/ios%40Taipei/cucumber01.png" alt="Cucumberish01"></p><p>在實作的一開始，工程師2拿到了一份 SPE 的 Feature 文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Feature: TestMe Cucumberish Login Test Exapmle</span><br><span class="line"></span><br><span class="line">Scenario Outline: Verify Login Process</span><br><span class="line">Given the app is running</span><br><span class="line">When I enter Account &quot;&lt;acc&gt;&quot; and Password &quot;&lt;pass&gt;&quot;</span><br><span class="line">Then I should see &quot;&lt;result&gt;&quot;</span><br><span class="line"></span><br><span class="line">Examples:</span><br><span class="line">|  acc  |  pass   |    result       |</span><br><span class="line">|  aki  |  qaz    |    success      |</span><br><span class="line">|  aki  |  123    |    帳號密碼錯誤   |</span><br></pre></td></tr></table></figure><p>接著到 Scenario 裡加上一個 LoginPage.swift 程式碼如下，大意是把操作的步驟給實作出來</p><p>Scenario 程式碼，以Login為例，Home的也要做</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">import XCTest</span><br><span class="line"></span><br><span class="line">class LoginPage: Page &#123;</span><br><span class="line">    private lazy var account = findElement(.textField)[&quot;textAccount&quot;]</span><br><span class="line">    private lazy var password = findElement(.secureTextField)[&quot;textPassword&quot;]</span><br><span class="line">    private lazy var btnLogin = findElement(.button)[&quot;btnLogin&quot;]</span><br><span class="line">    </span><br><span class="line">    required init() &#123;</span><br><span class="line">        waitFor(element: account)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @discardableResult func checkPage() -&gt; LoginPage&#123;</span><br><span class="line">        XCTAssertTrue(account.exists)</span><br><span class="line">        XCTAssertTrue(password.exists)</span><br><span class="line">        XCTAssertTrue(btnLogin.exists)</span><br><span class="line">        return self</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @discardableResult func inputData(_ acc: String, _ pass:String) -&gt; LoginPage&#123;</span><br><span class="line">        account.tap()</span><br><span class="line">        account.typeText(acc)</span><br><span class="line">        password.tap()</span><br><span class="line">        password.typeText(pass)</span><br><span class="line">        return self</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    @discardableResult func clickLogin() -&gt;LoginPage&#123;</span><br><span class="line">        btnLogin.tap()</span><br><span class="line">        return self</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @discardableResult func clickAlert(_ msg:String) -&gt;LoginPage&#123;</span><br><span class="line">        let msgResult = findElement(.alert).element.staticTexts.element(boundBy: 0).label</span><br><span class="line">        </span><br><span class="line">        XCTAssertEqual(msg,msgResult)</span><br><span class="line">        return self</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>最後，Steps 把 Feature 的文件和 Scenario 裡的操作做結合</p><p>Steps 程式碼</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">import XCTest</span><br><span class="line">import Cucumberish</span><br><span class="line"></span><br><span class="line">class StepDefinetion: NSObject &#123;</span><br><span class="line">    </span><br><span class="line">    var application : XCUIApplication!</span><br><span class="line">    </span><br><span class="line">    func setup(_ application: XCUIApplication)</span><br><span class="line">    &#123;</span><br><span class="line">        self.application = application</span><br><span class="line">        </span><br><span class="line">        Given(&quot;the app is running&quot;) &#123; (args, userInfo) -&gt; Void in</span><br><span class="line">            LoginPage().checkPage()</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        When(&quot;I enter Account \&quot;([^\\\&quot;]*)\&quot; and Password \&quot;([^\\\&quot;]*)\&quot;&quot;)&#123;(args,userInfo)-&gt;Void in</span><br><span class="line">            </span><br><span class="line">            guard let acc = args?[0] , let pass = args?[1]</span><br><span class="line">                else &#123;</span><br><span class="line">                    XCTAssert(false)</span><br><span class="line">                    return</span><br><span class="line">            &#125;</span><br><span class="line">            LoginPage().inputData(acc, pass)</span><br><span class="line">            LoginPage().clickLogin()</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        Then(&quot;I should see \&quot;([^\\\&quot;]*)\&quot;&quot;)&#123;(args,userInfo)-&gt;Void in</span><br><span class="line">            </span><br><span class="line">            guard let expectedResult = args?[0]</span><br><span class="line">                else &#123;</span><br><span class="line">                XCTAssert(false)</span><br><span class="line">                return</span><br><span class="line">            &#125;</span><br><span class="line">            if expectedResult == &quot;success&quot; &#123;</span><br><span class="line">                HomePage().checkPage()</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                LoginPage().clickAlert(expectedResult)</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    class func setup(_ application: XCUIApplication)</span><br><span class="line">    &#123;</span><br><span class="line">        StepDefinetion().setup(application)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>— 此次範例的 <a href="https://github.com/ios-taipei/TestMe" target="_blank" rel="noopener">Github TestMe</a> 在此—</p><p>跑一下 UITest 看看結果</p><p><img src="https://github.com/nobodyyu/GraphicsBed/raw/master/ios%40Taipei/cucumberis-testresult.png" alt="Cucumberish01"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;軟體開發故事05-UI-Test，Cucumberish&quot;&gt;&lt;a href=&quot;#軟體開發故事05-UI-Test，Cucumberish&quot; class=&quot;headerlink&quot; title=&quot;軟體開發故事05 - UI Test，Cucumberish&quot;&gt;&lt;/a&gt;軟體開發故事05 - UI Test，Cucumberish&lt;/h2&gt;&lt;p&gt;工程師2 想要做 UI Testing, 又不想買機器的話呢？&lt;br&gt;&lt;br&gt;那麼就看看測試的資訊時代，用程式測試程式是怎麼做的？&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Test" scheme="http://yuaki.com/categories/Test/"/>
+    
+    
+      <category term="Test" scheme="http://yuaki.com/tags/Test/"/>
+    
+      <category term="UI Test" scheme="http://yuaki.com/tags/UI-Test/"/>
     
   </entry>
   
@@ -521,9 +521,9 @@
     
       <category term="新手村" scheme="http://yuaki.com/tags/%E6%96%B0%E6%89%8B%E6%9D%91/"/>
     
-      <category term="OBJC" scheme="http://yuaki.com/tags/OBJC/"/>
-    
       <category term="swift" scheme="http://yuaki.com/tags/swift/"/>
+    
+      <category term="OBJC" scheme="http://yuaki.com/tags/OBJC/"/>
     
       <category term="Language" scheme="http://yuaki.com/tags/Language/"/>
     
@@ -551,15 +551,15 @@
     
       <category term="新手村" scheme="http://yuaki.com/tags/%E6%96%B0%E6%89%8B%E6%9D%91/"/>
     
-      <category term="OBJC" scheme="http://yuaki.com/tags/OBJC/"/>
-    
       <category term="swift" scheme="http://yuaki.com/tags/swift/"/>
+    
+      <category term="Extension" scheme="http://yuaki.com/tags/Extension/"/>
+    
+      <category term="OBJC" scheme="http://yuaki.com/tags/OBJC/"/>
     
       <category term="Html" scheme="http://yuaki.com/tags/Html/"/>
     
       <category term="String" scheme="http://yuaki.com/tags/String/"/>
-    
-      <category term="Extension" scheme="http://yuaki.com/tags/Extension/"/>
     
   </entry>
   
