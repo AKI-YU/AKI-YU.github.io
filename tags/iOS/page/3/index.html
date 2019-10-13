@@ -504,64 +504,6 @@ FMResultSet *rs = [db executeQuery:@&quot;select * from foo&quot;];
   <section class="meta">
     
     <h2 class="title">
-      <a href="/2015/08/13/XCode-debug再進化-3/">
-        XCode debug再進化－3
-      </a>
-    </h2>
-    
-    <time>
-      8月 13, 2015
-    </time>
-		
-  </section>
-  <section class="article typo">
-	  <p>在xcode debug時，有些功能可能用不太到，不過既然知道了，就分享出來給大家知道，致於想不想用，什麼時候用，就端看自已的判斷了</p>
-<p><br><br><br>這次是要介紹如何在debug模式下，做到更新 UI 的指令</p>
-<h3 id="先中斷一下吧"><a href="#先中斷一下吧" class="headerlink" title="先中斷一下吧"></a>先中斷一下吧</h3><p>在一個範例的按鈕裡裡先拉一個 IBAction  然後給一個中斷點</p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/debug2-01.png" alt="debug2-01" style="width:310px">
-
-<p>在debug前的 UI 長成這樣</p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/debug2-02.png" alt="debug2-02" style="width:310px">
-
-<p>按下按鈕，被中斷後，在debug navagator的lldb裡下指令</p>
-<pre><code>e id $myView = (id)0x154d0e9d0</code></pre><p>其中</p>
-<pre><code>e 是 expresss 的簡寫
-id 是型別
-$myView 是變數容器
-0x154d0e9d0 是記憶體位址 （需要與左側的變數的記憶體位址一致）</code></pre><p>結果如下圖</p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/debug2-03.png" alt="debug2-03" style="width:310px">
-
-<p>接著 可以輸入想要做的事情</p>
-<pre><code>e (void)[$myView setBackgroundColor:[UIColor redColor]]</code></pre><p>內容就不多解釋了，只是，醬子打完後  手機是不會動的（廢話，因為還卡在中斷點）</p>
-<br>
-所以，要通知 UI 做更新才行
-
-<pre><code>e (void)[CATransaction flush]</code></pre><p>你會發現，還在中斷點的debug模式下，手機的畫面更新了！！！！（如下圖）<br><br></p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/debug2-04.png" alt="debug2-04" style="width:310px">
-
-
-<p>真的太神奇了，傑克</p>
-<p><br><br><br><br></p>
-
-
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/iOS/">iOS</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
       <a href="/2015/08/13/XCode-debug再進化-4/">
         XCode debug再進化－4
       </a>
@@ -645,6 +587,64 @@ Watchpoint 1: addr = 0x16fd25614 size = 4 state = enabled type = w
   <section class="meta">
     
     <h2 class="title">
+      <a href="/2015/08/13/XCode-debug再進化-3/">
+        XCode debug再進化－3
+      </a>
+    </h2>
+    
+    <time>
+      8月 13, 2015
+    </time>
+		
+  </section>
+  <section class="article typo">
+	  <p>在xcode debug時，有些功能可能用不太到，不過既然知道了，就分享出來給大家知道，致於想不想用，什麼時候用，就端看自已的判斷了</p>
+<p><br><br><br>這次是要介紹如何在debug模式下，做到更新 UI 的指令</p>
+<h3 id="先中斷一下吧"><a href="#先中斷一下吧" class="headerlink" title="先中斷一下吧"></a>先中斷一下吧</h3><p>在一個範例的按鈕裡裡先拉一個 IBAction  然後給一個中斷點</p>
+<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/debug2-01.png" alt="debug2-01" style="width:310px">
+
+<p>在debug前的 UI 長成這樣</p>
+<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/debug2-02.png" alt="debug2-02" style="width:310px">
+
+<p>按下按鈕，被中斷後，在debug navagator的lldb裡下指令</p>
+<pre><code>e id $myView = (id)0x154d0e9d0</code></pre><p>其中</p>
+<pre><code>e 是 expresss 的簡寫
+id 是型別
+$myView 是變數容器
+0x154d0e9d0 是記憶體位址 （需要與左側的變數的記憶體位址一致）</code></pre><p>結果如下圖</p>
+<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/debug2-03.png" alt="debug2-03" style="width:310px">
+
+<p>接著 可以輸入想要做的事情</p>
+<pre><code>e (void)[$myView setBackgroundColor:[UIColor redColor]]</code></pre><p>內容就不多解釋了，只是，醬子打完後  手機是不會動的（廢話，因為還卡在中斷點）</p>
+<br>
+所以，要通知 UI 做更新才行
+
+<pre><code>e (void)[CATransaction flush]</code></pre><p>你會發現，還在中斷點的debug模式下，手機的畫面更新了！！！！（如下圖）<br><br></p>
+<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/debug2-04.png" alt="debug2-04" style="width:310px">
+
+
+<p>真的太神奇了，傑克</p>
+<p><br><br><br><br></p>
+
+
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/iOS/">iOS</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
       <a href="/2015/08/13/XCode-debug再進化-2/">
         XCode debug再進化－2
       </a>
@@ -689,66 +689,6 @@ Watchpoint 1: addr = 0x16fd25614 size = 4 state = enabled type = w
 <p>接著重跑一次程式，媽呀～ 太神奇了，同樣的中斷點，程式跑到第49次才停下來！！！！！</p>
 <p>醬子的話  就可以隨心所欲的想中斷就中斷，不用一直按 [Step Over] 了</p>
 <p><br><br><br><br></p>
-
-
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/iOS/">iOS</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2015/08/04/LinkedInSDK-Walk-Through/">
-        LinkedInSDK-Walk-Through
-      </a>
-    </h2>
-    
-    <time>
-      8月 4, 2015
-    </time>
-		
-  </section>
-  <section class="article typo">
-	  <p>千呼萬喚始出來，LinkedIn終於把最後的一個ios sdk給補上了，就是這次要walk through的東西，不過很可惜的是目前只有objc版本，swift根據過往objc sdk的開發進度，我在想可能要等上個好一陣子了。</p>
-<h3 id="下載sdk"><a href="#下載sdk" class="headerlink" title="下載sdk"></a>下載sdk</h3><p><a href="https://developer.linkedin.com/docs/ios-sdk" target="_blank" rel="noopener">SDK載點</a></p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/linkedin01.png" alt="linkedin01" style="width:310px">
-
-<h3 id="準備開發環境"><a href="#準備開發環境" class="headerlink" title="準備開發環境"></a>準備開發環境</h3><img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/linkedin02.png" alt="linkedin02" style="width:310px">
-
-<h3 id="在開發者後台建立一個新旳應用程式"><a href="#在開發者後台建立一個新旳應用程式" class="headerlink" title="在開發者後台建立一個新旳應用程式"></a>在開發者後台建立一個新旳應用程式</h3><img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/linkedin06.png" alt="linkedin06" style="width:310px">
-
-
-<h3 id="在開發者後台＞應用程式＞Mobile裡"><a href="#在開發者後台＞應用程式＞Mobile裡" class="headerlink" title="在開發者後台＞應用程式＞Mobile裡"></a>在開發者後台＞應用程式＞Mobile裡</h3><p>將Application Id 先記下來<br>同時填寫<br>1。iOS Bundle Identifiers<br>2。iOS URL Suffix Schemes: </p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/linkedin08.png" alt="linkedin08" style="width:310px">
-
-
-<h3 id="打開samplesdk的專案"><a href="#打開samplesdk的專案" class="headerlink" title="打開samplesdk的專案"></a>打開samplesdk的專案</h3><img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/linkedin03.png" alt="linkedin03" style="width:310px">
-
-<h3 id="修改info-plist"><a href="#修改info-plist" class="headerlink" title="修改info.plist"></a>修改info.plist</h3><pre><code>key：LIAppId 
-value： [LinkedIn Application Id]</code></pre><h3 id="修改url-scheme"><a href="#修改url-scheme" class="headerlink" title="修改url scheme"></a>修改url scheme</h3><img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/linkedin10.png" alt="linkedin10" style="width:310px">
-
-
-<h3 id="跑跑看"><a href="#跑跑看" class="headerlink" title="跑跑看"></a>跑跑看</h3><img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/linkedin11.png" alt="linkedin11" style="width:310px">
-
-<p>沒裝linkedin native app的話會提醒安裝 （不裝不能用）</p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/linkedin12.png" alt="linkedin12" style="width:310px">
-
-<p>據linkedin的開發者表示，這不會被apple reject，所以，有機會就來試看看會不會被reject吧</p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/linkedin13.png" alt="linkedin13" style="width:310px">
-
-<p>導回成功  但create session失敗（據說so是iOS 8.4的問題）</p>
-<p>不過似乎沒有管道可以REPORT BUG，就只能慢慢等了</p>
 
 
     
@@ -1242,6 +1182,43 @@ For more information on any command, type &apos;help &lt;command-name&gt;&apos;.
 </article>
     </div>
   
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
+      <a href="/2015/06/30/Dungeon Generator/">
+        Dungeon Generator
+      </a>
+    </h2>
+    
+    <time>
+      6月 30, 2015
+    </time>
+		
+  </section>
+  <section class="article typo">
+	  <p>diablo的亂數地圖是怎麼做的？還是直接用swift來寫一次</p>
+<p>###方法：</p>
+<p>將矩形的地圖空間以「切割法」亂數切割房間，在切割的同時留一個出口，</p>
+<p>反覆的切割後  就會得到一個亂數生成的房間了</p>
+<h3 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h3><p>牆壁－寛1  出口－寛1</p>
+<p><a href="https://github.com/nobodyyu/DungeonGenerator/tree/master" target="_blank" rel="noopener">GitHub下載連結</a></p>
+
+
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/iOS/">iOS</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
 </section>
 
 
@@ -1329,7 +1306,7 @@ PMP #1497767 ~04/15/2021<br/>
 <div class="m_widget tagcloud">
     <div class="header">Tags</div>
     <div class='content'>
-        <a href="/tags/APP-Size/" style="font-size: 14px; color: #808080">APP Size</a> <a href="/tags/ATDD/" style="font-size: 14px; color: #808080">ATDD</a> <a href="/tags/Android/" style="font-size: 15.5px; color: #606060">Android</a> <a href="/tags/BDD/" style="font-size: 14px; color: #808080">BDD</a> <a href="/tags/CCLayer/" style="font-size: 15.5px; color: #606060">CCLayer</a> <a href="/tags/Cache/" style="font-size: 14px; color: #808080">Cache</a> <a href="/tags/Calendar/" style="font-size: 14px; color: #808080">Calendar</a> <a href="/tags/Clean-Code/" style="font-size: 16.25px; color: #505050">Clean Code</a> <a href="/tags/Date/" style="font-size: 14px; color: #808080">Date</a> <a href="/tags/Delegate/" style="font-size: 14px; color: #808080">Delegate</a> <a href="/tags/Dependency-Management/" style="font-size: 14px; color: #808080">Dependency Management</a> <a href="/tags/EventKit/" style="font-size: 14px; color: #808080">EventKit</a> <a href="/tags/Extension/" style="font-size: 14.75px; color: #707070">Extension</a> <a href="/tags/GCD/" style="font-size: 14px; color: #808080">GCD</a> <a href="/tags/Html/" style="font-size: 14px; color: #808080">Html</a> <a href="/tags/Language/" style="font-size: 14px; color: #808080">Language</a> <a href="/tags/Memory/" style="font-size: 14px; color: #808080">Memory</a> <a href="/tags/Monkey-Test/" style="font-size: 14px; color: #808080">Monkey Test</a> <a href="/tags/NSZombie/" style="font-size: 14px; color: #808080">NSZombie</a> <a href="/tags/Network/" style="font-size: 14px; color: #808080">Network</a> <a href="/tags/OBJC/" style="font-size: 18.5px; color: #202020">OBJC</a> <a href="/tags/Press-Test/" style="font-size: 14px; color: #808080">Press Test</a> <a href="/tags/QA/" style="font-size: 14px; color: #808080">QA</a> <a href="/tags/SPE/" style="font-size: 14px; color: #808080">SPE</a> <a href="/tags/String/" style="font-size: 14px; color: #808080">String</a> <a href="/tags/Test/" style="font-size: 17px; color: #404040">Test</a> <a href="/tags/TextField/" style="font-size: 14px; color: #808080">TextField</a> <a href="/tags/TextView/" style="font-size: 14px; color: #808080">TextView</a> <a href="/tags/UI-Test/" style="font-size: 14.75px; color: #707070">UI Test</a> <a href="/tags/UIImage/" style="font-size: 14px; color: #808080">UIImage</a> <a href="/tags/Unit-Test/" style="font-size: 14px; color: #808080">Unit Test</a> <a href="/tags/User-Story/" style="font-size: 14px; color: #808080">User Story</a> <a href="/tags/cornerradius/" style="font-size: 14px; color: #808080">cornerradius</a> <a href="/tags/crop/" style="font-size: 14px; color: #808080">crop</a> <a href="/tags/httpDNS/" style="font-size: 14px; color: #808080">httpDNS</a> <a href="/tags/iOS/" style="font-size: 20px; color: #000">iOS</a> <a href="/tags/spotlight/" style="font-size: 14px; color: #808080">spotlight</a> <a href="/tags/swift/" style="font-size: 17.75px; color: #303030">swift</a> <a href="/tags/xCode/" style="font-size: 14px; color: #808080">xCode</a> <a href="/tags/其他/" style="font-size: 15.5px; color: #606060">其他</a> <a href="/tags/字型/" style="font-size: 14px; color: #808080">字型</a> <a href="/tags/教學/" style="font-size: 14.75px; color: #707070">教學</a> <a href="/tags/新手村/" style="font-size: 19.25px; color: #101010">新手村</a> <a href="/tags/網路/" style="font-size: 14px; color: #808080">網路</a> <a href="/tags/資料/" style="font-size: 14px; color: #808080">資料</a> <a href="/tags/遊戲/" style="font-size: 14px; color: #808080">遊戲</a>
+        <a href="/tags/APP-Size/" style="font-size: 14px; color: #808080">APP Size</a> <a href="/tags/ATDD/" style="font-size: 14px; color: #808080">ATDD</a> <a href="/tags/Android/" style="font-size: 15.5px; color: #606060">Android</a> <a href="/tags/BDD/" style="font-size: 14px; color: #808080">BDD</a> <a href="/tags/Beacon/" style="font-size: 14px; color: #808080">Beacon</a> <a href="/tags/CCLayer/" style="font-size: 15.5px; color: #606060">CCLayer</a> <a href="/tags/Cache/" style="font-size: 14px; color: #808080">Cache</a> <a href="/tags/Calendar/" style="font-size: 14px; color: #808080">Calendar</a> <a href="/tags/Clean-Code/" style="font-size: 16.25px; color: #505050">Clean Code</a> <a href="/tags/Date/" style="font-size: 14px; color: #808080">Date</a> <a href="/tags/Delegate/" style="font-size: 14px; color: #808080">Delegate</a> <a href="/tags/Dependency-Management/" style="font-size: 14px; color: #808080">Dependency Management</a> <a href="/tags/EventKit/" style="font-size: 14px; color: #808080">EventKit</a> <a href="/tags/Extension/" style="font-size: 14.75px; color: #707070">Extension</a> <a href="/tags/GCD/" style="font-size: 14px; color: #808080">GCD</a> <a href="/tags/Html/" style="font-size: 14px; color: #808080">Html</a> <a href="/tags/Language/" style="font-size: 14px; color: #808080">Language</a> <a href="/tags/Memory/" style="font-size: 14px; color: #808080">Memory</a> <a href="/tags/Monkey-Test/" style="font-size: 14px; color: #808080">Monkey Test</a> <a href="/tags/NSZombie/" style="font-size: 14px; color: #808080">NSZombie</a> <a href="/tags/Network/" style="font-size: 14px; color: #808080">Network</a> <a href="/tags/OBJC/" style="font-size: 18.5px; color: #202020">OBJC</a> <a href="/tags/Press-Test/" style="font-size: 14px; color: #808080">Press Test</a> <a href="/tags/QA/" style="font-size: 14px; color: #808080">QA</a> <a href="/tags/SPE/" style="font-size: 14px; color: #808080">SPE</a> <a href="/tags/String/" style="font-size: 14px; color: #808080">String</a> <a href="/tags/TDD/" style="font-size: 14px; color: #808080">TDD</a> <a href="/tags/Test/" style="font-size: 17px; color: #404040">Test</a> <a href="/tags/TextField/" style="font-size: 14px; color: #808080">TextField</a> <a href="/tags/TextView/" style="font-size: 14px; color: #808080">TextView</a> <a href="/tags/UI-Test/" style="font-size: 14.75px; color: #707070">UI Test</a> <a href="/tags/UIImage/" style="font-size: 14px; color: #808080">UIImage</a> <a href="/tags/UIRefreshControll/" style="font-size: 14px; color: #808080">UIRefreshControll</a> <a href="/tags/Unit-Test/" style="font-size: 14px; color: #808080">Unit Test</a> <a href="/tags/User-Story/" style="font-size: 14px; color: #808080">User Story</a> <a href="/tags/cornerradius/" style="font-size: 14px; color: #808080">cornerradius</a> <a href="/tags/crop/" style="font-size: 14px; color: #808080">crop</a> <a href="/tags/httpDNS/" style="font-size: 14px; color: #808080">httpDNS</a> <a href="/tags/iOS/" style="font-size: 20px; color: #000">iOS</a> <a href="/tags/spotlight/" style="font-size: 14px; color: #808080">spotlight</a> <a href="/tags/swift/" style="font-size: 17.75px; color: #303030">swift</a> <a href="/tags/xCode/" style="font-size: 14px; color: #808080">xCode</a> <a href="/tags/其他/" style="font-size: 15.5px; color: #606060">其他</a> <a href="/tags/字型/" style="font-size: 14px; color: #808080">字型</a> <a href="/tags/教學/" style="font-size: 14.75px; color: #707070">教學</a> <a href="/tags/新手村/" style="font-size: 19.25px; color: #101010">新手村</a> <a href="/tags/網路/" style="font-size: 14px; color: #808080">網路</a> <a href="/tags/資料/" style="font-size: 14px; color: #808080">資料</a> <a href="/tags/遊戲/" style="font-size: 14px; color: #808080">遊戲</a>
     </div>
 </div>
 
