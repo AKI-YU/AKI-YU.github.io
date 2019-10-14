@@ -20,7 +20,7 @@
 <meta property="og:site_name" content="YU AKI&#39;s territory">
 <meta property="og:description" content="如何在手機上存資料是我常常被問到的問題，因此開一篇文章來討論一下實務上幾個比較常見的到資料存儲方式，不過，這裡不會提到CoreData，原因在於－－－大部份的手機專案都是iOS／Android兩個手機專案在並行，因此大部份的owner會想要兩邊的流程是一致的，因此在選擇資料存儲的方式時，大多選擇兩個手機台平能夠共用的方式，sqlite就是一個比較好說服owner的方式。當然coredata也有他的">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2019-10-13T16:49:13.898Z">
+<meta property="og:updated_time" content="2019-10-14T02:51:57.701Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="漫談手機的存儲方式">
 <meta name="twitter:description" content="如何在手機上存資料是我常常被問到的問題，因此開一篇文章來討論一下實務上幾個比較常見的到資料存儲方式，不過，這裡不會提到CoreData，原因在於－－－大部份的手機專案都是iOS／Android兩個手機專案在並行，因此大部份的owner會想要兩邊的流程是一致的，因此在選擇資料存儲的方式時，大多選擇兩個手機台平能夠共用的方式，sqlite就是一個比較好說服owner的方式。當然coredata也有他的">
@@ -166,7 +166,10 @@
 	
 	<section class="article typo">
   	<div class="article-entry" itemprop="articleBody">
-    	<p>如何在手機上存資料是我常常被問到的問題，因此開一篇文章來討論一下實務上幾個比較常見的到資料存儲方式，不過，這裡不會提到CoreData，原因在於－－－大部份的手機專案都是iOS／Android兩個手機專案在並行，因此大部份的owner會想要兩邊的流程是一致的，因此在選擇資料存儲的方式時，大多選擇兩個手機台平能夠共用的方式，sqlite就是一個比較好說服owner的方式。當然coredata也有他的好處和便捷性，這邊就不多解釋了。<br><br>這裡要介紹的是 NSUserDefault、File與SQLite<br><br>如果有人有更好的存儲方式，也請不吝告知。</p>
+    	<p>如何在手機上存資料是我常常被問到的問題，因此開一篇文章來討論一下實務上幾個比較常見的到資料存儲方式，不過，這裡不會提到CoreData，原因在於－－－大部份的手機專案都是iOS／Android兩個手機專案在並行，因此大部份的owner會想要兩邊的流程是一致的，因此在選擇資料存儲的方式時，大多選擇兩個手機台平能夠共用的方式，sqlite就是一個比較好說服owner的方式。當然coredata也有他的好處和便捷性，這邊就不多解釋了。<br></p>
+<a id="more"></a>
+
+<p>這裡要介紹的是 NSUserDefault、File與SQLite<br><br>如果有人有更好的存儲方式，也請不吝告知。</p>
 <h3 id="NSUserDefault"><a href="#NSUserDefault" class="headerlink" title="NSUserDefault"></a>NSUserDefault</h3><p>有許多型別可以使用，這裡使用比較常用的object當範例，其他類似的就不一一介紹。</p>
 <h4 id="regist-Data"><a href="#regist-Data" class="headerlink" title="regist Data"></a>regist Data</h4><pre><code>[[NSUserDefaults standardUserDefaults] registerDefaults:&lt;#(NSDictionary *)#&gt;]
 [[NSUserDefaults standardUserDefaults] synchronize];</code></pre><h4 id="write-Data"><a href="#write-Data" class="headerlink" title="write Data"></a>write Data</h4><pre><code>[[NSUserDefaults standardUserDefaults] setObject:data forKey:@&quot;key&quot;];

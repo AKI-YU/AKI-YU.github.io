@@ -12,21 +12,21 @@
   <link rel="shortcut icon" href="/">
   <link rel="alternate" href="/atom.xml" title="YU AKI's territory">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="TouchID Walk Through每個人的心中，都有一個secrect box，用來存放一些不為人知的小秘密，然而，在iphone，也可以自已打造一倨屬於自已的secret box，接著，就是要介紹，如果打造一把只有自已能開鎖的這把鑰匙－－Touch ID 1。引用#import &amp;lt;LocalAuthentication/LocalAuthentication.h&amp;gt;2。加入程式-">
+  <meta name="description" content="TouchID Walk Through每個人的心中，都有一個secrect box，用來存放一些不為人知的小秘密，然而，在iphone，也可以自已打造一倨屬於自已的secret box，接著，就是要介紹，如果打造一把只有自已能開鎖的這把鑰匙－－Touch ID">
 <meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TouchID Walk Through">
 <meta property="og:url" content="https://yuaki.com/2015/07/27/TouchID/index.html">
 <meta property="og:site_name" content="YU AKI&#39;s territory">
-<meta property="og:description" content="TouchID Walk Through每個人的心中，都有一個secrect box，用來存放一些不為人知的小秘密，然而，在iphone，也可以自已打造一倨屬於自已的secret box，接著，就是要介紹，如果打造一把只有自已能開鎖的這把鑰匙－－Touch ID 1。引用#import &amp;lt;LocalAuthentication/LocalAuthentication.h&amp;gt;2。加入程式-">
+<meta property="og:description" content="TouchID Walk Through每個人的心中，都有一個secrect box，用來存放一些不為人知的小秘密，然而，在iphone，也可以自已打造一倨屬於自已的secret box，接著，就是要介紹，如果打造一把只有自已能開鎖的這把鑰匙－－Touch ID">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/touchid01.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/touchid02.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/touchid03.png">
-<meta property="og:updated_time" content="2019-10-13T16:45:26.146Z">
+<meta property="og:updated_time" content="2019-10-14T02:51:29.861Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TouchID Walk Through">
-<meta name="twitter:description" content="TouchID Walk Through每個人的心中，都有一個secrect box，用來存放一些不為人知的小秘密，然而，在iphone，也可以自已打造一倨屬於自已的secret box，接著，就是要介紹，如果打造一把只有自已能開鎖的這把鑰匙－－Touch ID 1。引用#import &amp;lt;LocalAuthentication/LocalAuthentication.h&amp;gt;2。加入程式-">
+<meta name="twitter:description" content="TouchID Walk Through每個人的心中，都有一個secrect box，用來存放一些不為人知的小秘密，然而，在iphone，也可以自已打造一倨屬於自已的secret box，接著，就是要介紹，如果打造一把只有自已能開鎖的這把鑰匙－－Touch ID">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/touchid01.png">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
@@ -171,6 +171,8 @@
 	<section class="article typo">
   	<div class="article-entry" itemprop="articleBody">
     	<h2 id="TouchID-Walk-Through"><a href="#TouchID-Walk-Through" class="headerlink" title="TouchID Walk Through"></a>TouchID Walk Through</h2><p>每個人的心中，都有一個secrect box，用來存放一些不為人知的小秘密，然而，在iphone，也可以自已打造一倨屬於自已的secret box，接著，就是要介紹，如果打造一把只有自已能開鎖的這把鑰匙－－Touch ID</p>
+<a id="more"></a>
+
 <h3 id="1。引用"><a href="#1。引用" class="headerlink" title="1。引用"></a>1。引用</h3><pre><code>#import &lt;LocalAuthentication/LocalAuthentication.h&gt;</code></pre><h3 id="2。加入程式"><a href="#2。加入程式" class="headerlink" title="2。加入程式"></a>2。加入程式</h3><pre><code>- (IBAction)btnAuth:(id)sender {
     LAContext *context = [[LAContext alloc] init];
 

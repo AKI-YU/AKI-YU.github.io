@@ -170,142 +170,12 @@
 
   </section>
   <section class="article typo">
-	  <p>如何在手機上存資料是我常常被問到的問題，因此開一篇文章來討論一下實務上幾個比較常見的到資料存儲方式，不過，這裡不會提到CoreData，原因在於－－－大部份的手機專案都是iOS／Android兩個手機專案在並行，因此大部份的owner會想要兩邊的流程是一致的，因此在選擇資料存儲的方式時，大多選擇兩個手機台平能夠共用的方式，sqlite就是一個比較好說服owner的方式。當然coredata也有他的好處和便捷性，這邊就不多解釋了。<br><br>這裡要介紹的是 NSUserDefault、File與SQLite<br><br>如果有人有更好的存儲方式，也請不吝告知。</p>
-<h3 id="NSUserDefault"><a href="#NSUserDefault" class="headerlink" title="NSUserDefault"></a>NSUserDefault</h3><p>有許多型別可以使用，這裡使用比較常用的object當範例，其他類似的就不一一介紹。</p>
-<h4 id="regist-Data"><a href="#regist-Data" class="headerlink" title="regist Data"></a>regist Data</h4><pre><code>[[NSUserDefaults standardUserDefaults] registerDefaults:&lt;#(NSDictionary *)#&gt;]
-[[NSUserDefaults standardUserDefaults] synchronize];</code></pre><h4 id="write-Data"><a href="#write-Data" class="headerlink" title="write Data"></a>write Data</h4><pre><code>[[NSUserDefaults standardUserDefaults] setObject:data forKey:@&quot;key&quot;];
-[[NSUserDefaults standardUserDefaults] synchronize];</code></pre><h4 id="remove-Data"><a href="#remove-Data" class="headerlink" title="remove Data"></a>remove Data</h4><pre><code>[[NSUserDefaults standardUserDefaults] removeObjectForKey:@&quot;key&quot;]    
-[[NSUserDefaults standardUserDefaults] synchronize];</code></pre><p>或是</p>
-<pre><code>[[NSUserDefaults standardUserDefaults] setObject:nil forKey:@&quot;key&quot;];
-[[NSUserDefaults standardUserDefaults] synchronize];</code></pre><h4 id="read-Data"><a href="#read-Data" class="headerlink" title="read Data"></a>read Data</h4><pre><code>[[NSUserDefaults standardUserDefaults] objectForKey:@&quot;key&quot;];
-[[NSUserDefaults standardUserDefaults] synchronize];</code></pre><h3 id="實體檔案存取-NSFileManager"><a href="#實體檔案存取-NSFileManager" class="headerlink" title="實體檔案存取(NSFileManager)"></a>實體檔案存取(NSFileManager)</h3><h4 id="Create-File"><a href="#Create-File" class="headerlink" title="Create File"></a>Create File</h4><pre><code>- (void)createFileWithName:(NSString *)fileName
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:fileName];
+	  <p>如何在手機上存資料是我常常被問到的問題，因此開一篇文章來討論一下實務上幾個比較常見的到資料存儲方式，不過，這裡不會提到CoreData，原因在於－－－大部份的手機專案都是iOS／Android兩個手機專案在並行，因此大部份的owner會想要兩邊的流程是一致的，因此在選擇資料存儲的方式時，大多選擇兩個手機台平能夠共用的方式，sqlite就是一個比較好說服owner的方式。當然coredata也有他的好處和便捷性，這邊就不多解釋了。<br></p>
 
-    NSFileManager *manager = [NSFileManager defaultManager];
-
-    if ([manager createFileAtPath:filePath contents:nil attributes:nil]) {
-        NSLog(@&quot;Created the File Successfully.&quot;);
-    } else {
-        NSLog(@&quot;Failed to Create the File&quot;);
-    }
-}</code></pre><h4 id="Read-File"><a href="#Read-File" class="headerlink" title="Read File"></a>Read File</h4><pre><code>- (void)readFileWithName:(NSString *)fileName
-{
-
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:fileName];
-
-    NSFileManager *manager = [NSFileManager defaultManager];
-    if ([manager fileExistsAtPath:filePath]) {
-        NSError *error = nil;
-        NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSStringEncodingConversionAllowLossy error:&amp;error];
-        NSLog(@&quot;File Content: %@&quot;, content);
-
-        if (error) {
-            NSLog(@&quot;There is an Error: %@&quot;, error);
-        }
-    } else {
-        NSLog(@&quot;File %@ doesn&apos;t exists&quot;, fileName);
-    }
-}</code></pre><h4 id="Write-File"><a href="#Write-File" class="headerlink" title="Write File"></a>Write File</h4><pre><code>- (void)writeString:(NSString *)content toFile:(NSString *)fileName
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:fileName];
-    NSFileManager *manager = [NSFileManager defaultManager];
-    if ([manager fileExistsAtPath:filePath]) {
-        NSError *error = nil;
-        [content writeToFile:filePath atomically:YES encoding:NSStringEncodingConversionAllowLossy error:&amp;error];
-        if (error) {
-            NSLog(@&quot;There is an Error: %@&quot;, error);
-        }
-    } else {
-        NSLog(@&quot;File %@ doesn&apos;t exists&quot;, fileName);
-    }
-
-}</code></pre><h4 id="delete-File"><a href="#delete-File" class="headerlink" title="delete File"></a>delete File</h4><pre><code>- (void)deleteFileWithName:(NSString *)fileName
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:fileName];
-
-    NSFileManager *manager = [NSFileManager defaultManager];
-    // Need to check if the to be deleted file exists.
-    if ([manager fileExistsAtPath:filePath]) {
-        NSError *error = nil;
-       [manager removeItemAtPath:filePath error:&amp;error];
-        if (error) {
-            NSLog(@&quot;There is an Error: %@&quot;, error);
-        }
-    } else {
-        NSLog(@&quot;File %@ doesn&apos;t exists&quot;, fileName);
-    }
-}</code></pre><h3 id="SQLite"><a href="#SQLite" class="headerlink" title="SQLite"></a>SQLite</h3><p>這裡我使用最常用的FMDB來當做範例<br><a href="https://github.com/ccgus/fmdb" target="_blank" rel="noopener">FMDB on GitHub</a></p>
-<h4 id="首先你要先把-libsqlite3-dylib-加進library"><a href="#首先你要先把-libsqlite3-dylib-加進library" class="headerlink" title="首先你要先把 libsqlite3.dylib 加進library"></a>首先你要先把 libsqlite3.dylib 加進library</h4><p>不解釋</p>
-<h4 id="OpenDB"><a href="#OpenDB" class="headerlink" title="OpenDB"></a>OpenDB</h4><pre><code>NSURL *appUrl = [[[NSFileManager defaultManager] 
-     URLsForDirectory:NSDocumentDirectory 
-            inDomains:NSUserDomainMask] lastObject];
-NSString *dbPath = [[appUrl path] stringByAppendingPathComponent:@&quot;MyDatabase.db&quot;];   
-FMDatabase* db = [FMDatabase databaseWithPath:dbPath];
-
-if (![db open]) {       
- NSLog(@&quot;Could not open db&quot;);     
- return;  
-}</code></pre><h4 id="insertData"><a href="#insertData" class="headerlink" title="insertData"></a>insertData</h4><pre><code>if(![db executeUpdate:@&quot;INSERT INTO user (name, description) VALUES (?,?)&quot;, name, description])
-{
- NSLog(@&quot;Could not insert data: %@&quot;, [db lastErrorMessage]);
-}</code></pre><p>這裡的代數是用？</p>
-<h4 id="readData"><a href="#readData" class="headerlink" title="readData"></a>readData</h4><pre><code>NSMutableArray* items = [NSMutableArray arrayWithCapacity:0];
-FMResultSet *rs = [db executeQuery:@&quot;SELECT uid, name, description from user&quot;];
-
-while ([rs next]) {       
- int uid = [rs intForColumn:@&quot;uid&quot;];
- NSString *name = [rs stringForColumn:@&quot;name&quot;];       
- NSString *description = [rs stringForColumn:@&quot;description&quot;];       
-
- [items addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-       [NSNumber numberWithInt:uid], @&quot;uid&quot;,
-       name, @&quot;name&quot;,
-       description, @&quot;description&quot;,
-       nil]];
-}
-
-[rs close];   </code></pre><h4 id="updateData"><a href="#updateData" class="headerlink" title="updateData"></a>updateData</h4><pre><code>[db beginTransaction];
-if(![db executeUpdate:@&quot;UPDATE user set name=?, description＝? where name=&apos;?&apos;“,@&quot;1&quot;,@&quot;2&quot;,@&quot;1&quot;]);
-    {
-     NSLog(@&quot;Could not update data: %@&quot;, [db lastErrorMessage]);
-    }
-[db commit];</code></pre><h4 id="deleteData"><a href="#deleteData" class="headerlink" title="deleteData"></a>deleteData</h4><pre><code>if(![_db executeUpdate:@&quot;DELETE FROM user WHERE uid = ?&quot;, [NSNumber numberWithInt:uid]])
-{
- NSLog(@&quot;Could not delete data: %@&quot;, [db lastErrorMessage]);
-}</code></pre><h4 id="CloseDB"><a href="#CloseDB" class="headerlink" title="CloseDB"></a>CloseDB</h4><pre><code>[db close]</code></pre><p>執行FMDB的指令有她的生命週期，都是<br><br><br>1.open db<br><br><br>2.執行<br><br><br>3.close db</p>
-<p>如果沒有確實的open與close的話  是很容易造成exception而crash的<br><br><br><br><br>最後，因為sqlite是以一個檔案型態存在的，因此在multi－thread讀寫資料時很容易出現錯誤，官方說明與建議的方法如下：<br><br><br></p>
-<pre><code>Using a single instance of FMDatabase from multiple threads at once is a bad idea. It has always been OK to make a FMDatabase object per thread. Just don&apos;t share a single instance across threads, and definitely not across multiple threads at the same time. Bad things will eventually happen and you&apos;ll eventually get something to crash, or maybe get an exception, or maybe meteorites will fall out of the sky and hit your Mac Pro. This would suck.
-
-So don&apos;t instantiate a single FMDatabase object and use it across multiple threads.
-
-Instead, use FMDatabaseQueue. It&apos;s your friend and it&apos;s here to help. Here&apos;s how to use it:
-
-First, make your queue.</code></pre><p>用FMDatabaseQueue來解決，<br><br>範例：</p>
-<pre><code>FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:aPath];
-
-[queue inDatabase:^(FMDatabase *db) {
-    [db executeUpdate:@&quot;INSERT INTO myTable VALUES (?)&quot;, [NSNumber numberWithInt:1]];
-    [db executeUpdate:@&quot;INSERT INTO myTable VALUES (?)&quot;, [NSNumber numberWithInt:2]];
-    [db executeUpdate:@&quot;INSERT INTO myTable VALUES (?)&quot;, [NSNumber numberWithInt:3]];
-
-FMResultSet *rs = [db executeQuery:@&quot;select * from foo&quot;];
-    while ([rs next]) {
-        …
-    }
-}];</code></pre><br>
-就醬，其實不難～
-<br><br><br><br>
-<br>
-
+    
+	  <div class="readmore">
+      <a href="/2015/08/17/漫談手機的存儲方式/">Read More</a>
+    </div>
     
     
     
@@ -341,59 +211,11 @@ FMResultSet *rs = [db executeQuery:@&quot;select * from foo&quot;];
   </section>
   <section class="article typo">
 	  <p>在xcode debug時，有些功能可能用不太到，不過既然知道了，就分享出來給大家知道，致於想不想用，什麼時候用，就端看自已的判斷了</p>
-<p><br><br><br>這次是要介紹如何在debug模式下，新增watchpoint(監看點or監看式)</p>
-<h3 id="一樣先中斷一下吧"><a href="#一樣先中斷一下吧" class="headerlink" title="一樣先中斷一下吧"></a>一樣先中斷一下吧</h3><p>在一個範例的按鈕裡裡先拉一個 IBAction  然後給一個中斷點</p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/debug2-01.png" alt="debug2-01" style="width:310px">
 
-
-<p>按下按鈕，被中斷後，在debug navagator的lldb裡下指令</p>
-<pre><code>watchpoint set variable i</code></pre><p>其中</p>
-<pre><code>watchpoint 是指令  可以簡寫為 watch
-variable 可以簡寫為 var
-i 就是你想要監看的東西</code></pre><p>然後就會出現如下的結果    </p>
-<pre><code>Watchpoint created: Watchpoint 1: addr = 0x16fd25614 size = 4 state = enabled type = w
-    declare @ &apos;/Users/minghongyu/Documents/work/iphone/test3/test3/ViewController.m:28&apos;
-    watchpoint spec = &apos;i&apos;
-    new value: 0
-2015-08-13 20:02:38.367 test3[4700:525425] 0</code></pre><p>代表監看點新增成功</p>
-<p><br><br><br>接著如果拿掉中斷點再繼續執行的話，會發現，每次都會自動停下來，結果如下</p>
-<pre><code>Watchpoint 1 hit:
-old value: 0
-new value: 1
-2015-08-13 20:02:42.329 test3[4700:525425] 1
-
-Watchpoint 1 hit:
-old value: 1
-new value: 2
-2015-08-13 20:02:45.380 test3[4700:525425] 2
-
-Watchpoint 1 hit:
-old value: 2
-new value: 3
-2015-08-13 20:02:48.603 test3[4700:525425] 3
-
-Watchpoint 1 hit:
-old value: 3
-new value: 4</code></pre><p>就可以好好的觀察變數的變化了</p>
-<p>如果想看到所有的監看點列表，指令為</p>
-<pre><code>watchpoint list  
-
-也可以簡寫為 watch l  （小寫L）</code></pre><p>執行的結果如下</p>
-<pre><code>Number of supported hardware watchpoints: 4
-Current watchpoints:
-Watchpoint 1: addr = 0x16fd25614 size = 4 state = enabled type = w
-    declare @ &apos;/Users/minghongyu/Documents/work/iphone/test3/test3/ViewController.m:28&apos;
-    watchpoint spec = &apos;i&apos;
-    old value: 3
-    new value: 4</code></pre><p><br><br><br>如果想要刪除監看點，指令為</p>
-<pre><code>watchpoint delete 1
-也可以簡寫為 watch del 1</code></pre><p>其中</p>
-<pre><code>1 是列表中的順序數</code></pre><p>執行結果如下</p>
-<pre><code>1 watchpoints deleted.</code></pre><p>再繼續跑程式就不會停下來了！！</p>
-<p>無䭾無䭾無䭾無䭾無䭾無䭾無䭾無䭾無䭾無䭾無䭾無䭾無䭾！！！</p>
-<p><br><br><br><br></p>
-
-
+    
+	  <div class="readmore">
+      <a href="/2015/08/13/XCode-debug再進化-4/">Read More</a>
+    </div>
     
     
     
@@ -429,34 +251,11 @@ Watchpoint 1: addr = 0x16fd25614 size = 4 state = enabled type = w
   </section>
   <section class="article typo">
 	  <p>在xcode debug時，有些功能可能用不太到，不過既然知道了，就分享出來給大家知道，致於想不想用，什麼時候用，就端看自已的判斷了</p>
-<p><br><br><br>這次是要介紹如何在debug模式下，做到更新 UI 的指令</p>
-<h3 id="先中斷一下吧"><a href="#先中斷一下吧" class="headerlink" title="先中斷一下吧"></a>先中斷一下吧</h3><p>在一個範例的按鈕裡裡先拉一個 IBAction  然後給一個中斷點</p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/debug2-01.png" alt="debug2-01" style="width:310px">
 
-<p>在debug前的 UI 長成這樣</p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/debug2-02.png" alt="debug2-02" style="width:310px">
-
-<p>按下按鈕，被中斷後，在debug navagator的lldb裡下指令</p>
-<pre><code>e id $myView = (id)0x154d0e9d0</code></pre><p>其中</p>
-<pre><code>e 是 expresss 的簡寫
-id 是型別
-$myView 是變數容器
-0x154d0e9d0 是記憶體位址 （需要與左側的變數的記憶體位址一致）</code></pre><p>結果如下圖</p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/debug2-03.png" alt="debug2-03" style="width:310px">
-
-<p>接著 可以輸入想要做的事情</p>
-<pre><code>e (void)[$myView setBackgroundColor:[UIColor redColor]]</code></pre><p>內容就不多解釋了，只是，醬子打完後  手機是不會動的（廢話，因為還卡在中斷點）</p>
-<br>
-所以，要通知 UI 做更新才行
-
-<pre><code>e (void)[CATransaction flush]</code></pre><p>你會發現，還在中斷點的debug模式下，手機的畫面更新了！！！！（如下圖）<br><br></p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/debug2-04.png" alt="debug2-04" style="width:310px">
-
-
-<p>真的太神奇了，傑克</p>
-<p><br><br><br><br></p>
-
-
+    
+	  <div class="readmore">
+      <a href="/2015/08/13/XCode-debug再進化-3/">Read More</a>
+    </div>
     
     
     
@@ -492,40 +291,11 @@ $myView 是變數容器
   </section>
   <section class="article typo">
 	  <p>學海無涯，唯勤是岸，今天又要教一些xcode debug好用的小技巧了。<br><br><br><br>這次是要介紹中斷點(BreakPoint)的使用</p>
-<h3 id="為你的程式加入中斷點"><a href="#為你的程式加入中斷點" class="headerlink" title="為你的程式加入中斷點"></a>為你的程式加入中斷點</h3><p>先來一段小程式</p>
-<pre><code>for(int i=0;i&lt;100;i++){
-   NSLog(@&quot;%d&quot;,i);
-}</code></pre><p>接著  在旁邊的行數的區域用滑鼠點一下，就會看到中斷點的藍標跑出來<br>想要移除中斷點可以用拖曳該中斷點  到中間的編輯區時會出現X，放掉就刪除了（有點像丟垃圾桶）。</p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/debug1-01.png" alt="debug1-01" style="width:310px">
 
-<p>接著，運行程式，會發現程式在一觸碰到中斷點時就會停下來等你debug</p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/debug1-02.png" alt="debug1-02" style="width:310px">
-
-<p>此時下方的[Debug Navigator]會自已彈出來<br>會有一些基本的變數訊息在左邊  告訴我們此時 </p>
-<pre><code>i=0;</code></pre><br>
-當然，因為一碰到中斷點時馬上就停下來，所以i＝0時就停了
-
-<p>那…….我想要在 i=49 時，來做一個debug的動作呢？</p>
-<br>
-=============== Of Course YES =================<br>
-=============== Of Course YES =================<br>
-=============== Of Course YES =================
-
-<p>在breakpoint上滑鼠右鍵，並且選擇[Edit BreakPoint]<br><br><br><img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/debug1-03.png" alt="debug1-03" style="width:310px"></p>
-<p>此時，會有幾個參數可以使用<br><img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/debug1-04.png" alt="debug1-04" style="width:310px"></p>
-<pre><code>1. Condition
-2. Ignore
-3. Action
-4. Options - Automatically continue after evaluating actions</code></pre><p>在上述的情境中我們可以做的是</p>
-<pre><code>1. 在Condition 裡輸入 [ i == 49 ]
-或
-2. Ignore 48 </code></pre><img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/debug1-05.png" alt="debug1-05" style="width:310px">
-
-<p>接著重跑一次程式，媽呀～ 太神奇了，同樣的中斷點，程式跑到第49次才停下來！！！！！</p>
-<p>醬子的話  就可以隨心所欲的想中斷就中斷，不用一直按 [Step Over] 了</p>
-<p><br><br><br><br></p>
-
-
+    
+	  <div class="readmore">
+      <a href="/2015/08/13/XCode-debug再進化-2/">Read More</a>
+    </div>
     
     
     

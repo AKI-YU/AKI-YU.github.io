@@ -2,6 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://yuaki.com/2015/08/13/XCode-debug%E5%86%8D%E9%80%B2%E5%8C%96-2/</loc>
+    
+    <lastmod>2019-10-14T03:52:33.867Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuaki.com/2015/08/13/XCode-debug%E5%86%8D%E9%80%B2%E5%8C%96-3/</loc>
+    
+    <lastmod>2019-10-14T03:52:31.003Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuaki.com/2015/08/13/XCode-debug%E5%86%8D%E9%80%B2%E5%8C%96-4/</loc>
+    
+    <lastmod>2019-10-14T03:52:28.195Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuaki.com/2015/07/02/XCode-debug%E5%86%8D%E9%80%B2%E5%8C%96/</loc>
+    
+    <lastmod>2019-10-14T03:52:24.525Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuaki.com/2015/08/17/%E6%BC%AB%E8%AB%87%E6%89%8B%E6%A9%9F%E7%9A%84%E5%AD%98%E5%84%B2%E6%96%B9%E5%BC%8F/</loc>
+    
+    <lastmod>2019-10-14T02:51:57.701Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuaki.com/2015/07/27/TouchID/</loc>
+    
+    <lastmod>2019-10-14T02:51:29.861Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuaki.com/2015/11/10/AutoLayout_Programmatically/</loc>
+    
+    <lastmod>2019-10-14T02:50:58.420Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuaki.com/2015/10/15/XCode7-ResourceOnDemand/</loc>
+    
+    <lastmod>2019-10-14T02:50:28.077Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://yuaki.com/2019/05/24/LA/</loc>
     
     <lastmod>2019-10-14T01:58:00.117Z</lastmod>
@@ -65,13 +121,6 @@
   </url>
   
   <url>
-    <loc>https://yuaki.com/2015/08/17/%E6%BC%AB%E8%AB%87%E6%89%8B%E6%A9%9F%E7%9A%84%E5%AD%98%E5%84%B2%E6%96%B9%E5%BC%8F/</loc>
-    
-    <lastmod>2019-10-13T16:49:13.898Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://yuaki.com/2015/05/05/add-MotionEffect-for-your-UIView/</loc>
     
     <lastmod>2019-10-13T16:49:08.586Z</lastmod>
@@ -96,13 +145,6 @@
     <loc>https://yuaki.com/2015/04/08/Android-Thread-Save-Singleton/</loc>
     
     <lastmod>2019-10-13T16:48:59.393Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yuaki.com/2015/11/10/AutoLayout_Programmatically/</loc>
-    
-    <lastmod>2019-10-13T16:48:50.633Z</lastmod>
     
   </url>
   
@@ -282,51 +324,9 @@
   </url>
   
   <url>
-    <loc>https://yuaki.com/2015/07/27/TouchID/</loc>
-    
-    <lastmod>2019-10-13T16:45:26.146Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yuaki.com/2015/08/13/XCode-debug%E5%86%8D%E9%80%B2%E5%8C%96-2/</loc>
-    
-    <lastmod>2019-10-13T16:45:15.363Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yuaki.com/2015/08/13/XCode-debug%E5%86%8D%E9%80%B2%E5%8C%96-3/</loc>
-    
-    <lastmod>2019-10-13T16:45:09.624Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yuaki.com/2015/08/13/XCode-debug%E5%86%8D%E9%80%B2%E5%8C%96-4/</loc>
-    
-    <lastmod>2019-10-13T16:45:02.287Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yuaki.com/2015/07/02/XCode-debug%E5%86%8D%E9%80%B2%E5%8C%96/</loc>
-    
-    <lastmod>2019-10-13T16:44:55.948Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://yuaki.com/2015/04/21/xcode6-%E6%89%93%E5%8C%85%E8%87%AA%E5%B7%B2%E5%81%9A%E7%9A%84framework/</loc>
     
     <lastmod>2019-10-13T16:44:48.451Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yuaki.com/2015/10/15/XCode7-ResourceOnDemand/</loc>
-    
-    <lastmod>2019-10-13T16:44:40.098Z</lastmod>
     
   </url>
   
