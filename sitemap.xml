@@ -2,6 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://yuaki.com/2015/05/04/make-HUD-by-your-self/</loc>
+    
+    <lastmod>2019-10-14T04:34:41.277Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuaki.com/2015/05/05/make-UIRefreshControll-by-your-self/</loc>
+    
+    <lastmod>2019-10-14T04:34:27.445Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuaki.com/2015/05/21/%E5%9C%A8%E5%AD%97%E4%B8%B2%E8%A3%A1%E5%8A%A0%E4%B8%8Aicon/</loc>
+    
+    <lastmod>2019-10-14T04:34:00.958Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuaki.com/2015/05/27/swift-shuffle/</loc>
+    
+    <lastmod>2019-10-14T04:33:33.597Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuaki.com/2015/05/26/swift-spritekit-walk-through/</loc>
+    
+    <lastmod>2019-10-14T04:33:29.573Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuaki.com/2015/04/07/swift-xmlParser%E4%B9%8B%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2019-10-14T04:33:26.054Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuaki.com/2015/05/12/inApp-Purchase-walkthrough/</loc>
+    
+    <lastmod>2019-10-14T04:33:03.495Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuaki.com/2015/06/09/Google-Service-2015-Walk-Through/</loc>
+    
+    <lastmod>2019-10-14T04:32:47.323Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://yuaki.com/2015/08/04/LinkedInSDKWalkThrough/</loc>
     
     <lastmod>2019-10-14T04:24:17.365Z</lastmod>
@@ -114,13 +170,6 @@
   </url>
   
   <url>
-    <loc>https://yuaki.com/2015/05/21/%E5%9C%A8%E5%AD%97%E4%B8%B2%E8%A3%A1%E5%8A%A0%E4%B8%8Aicon/</loc>
-    
-    <lastmod>2019-10-13T16:49:26.790Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://yuaki.com/2015/04/23/%E5%8F%96%E5%BE%97MKMapView%E7%9A%84Zoom-Level/</loc>
     
     <lastmod>2019-10-13T16:49:21.106Z</lastmod>
@@ -212,13 +261,6 @@
   </url>
   
   <url>
-    <loc>https://yuaki.com/2015/06/09/Google-Service-2015-Walk-Through/</loc>
-    
-    <lastmod>2019-10-13T16:47:50.808Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://yuaki.com/2015/04/07/How-to-Hexo/</loc>
     
     <lastmod>2019-10-13T16:47:47.154Z</lastmod>
@@ -233,30 +275,9 @@
   </url>
   
   <url>
-    <loc>https://yuaki.com/2015/05/12/inApp-Purchase-walkthrough/</loc>
-    
-    <lastmod>2019-10-13T16:47:35.754Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://yuaki.com/2015/05/15/iOS-Language-ID/</loc>
     
     <lastmod>2019-10-13T16:47:29.738Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yuaki.com/2015/05/04/make-HUD-by-your-self/</loc>
-    
-    <lastmod>2019-10-13T16:47:19.666Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yuaki.com/2015/05/05/make-UIRefreshControll-by-your-self/</loc>
-    
-    <lastmod>2019-10-13T16:47:14.738Z</lastmod>
     
   </url>
   
@@ -292,27 +313,6 @@
     <loc>https://yuaki.com/2015/04/07/objc-WaterMonitor/</loc>
     
     <lastmod>2019-10-13T16:46:38.369Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yuaki.com/2015/05/27/swift-shuffle/</loc>
-    
-    <lastmod>2019-10-13T16:46:31.650Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yuaki.com/2015/05/26/swift-spritekit-walk-through/</loc>
-    
-    <lastmod>2019-10-13T16:46:24.400Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yuaki.com/2015/04/07/swift-xmlParser%E4%B9%8B%E4%BD%BF%E7%94%A8/</loc>
-    
-    <lastmod>2019-10-13T16:45:48.211Z</lastmod>
     
   </url>
   

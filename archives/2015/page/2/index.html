@@ -255,72 +255,11 @@
 	  <p>2015 Google I/O  之後  很多東西都改了，所以來做一次walk through吧</p>
 <p>比較特別的是 gcm也可以發ios了</p>
 <p><a href>https://developers.google.com/cloud-messaging/</a></p>
-<h3 id="try-it-on-iOS"><a href="#try-it-on-iOS" class="headerlink" title="try it on iOS"></a>try it on iOS</h3><img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/gcm01.png" alt="gcm01" style="width:310px">
 
-<h3 id="選擇語言-objc／swift"><a href="#選擇語言-objc／swift" class="headerlink" title="選擇語言 objc／swift"></a>選擇語言 objc／swift</h3><img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/gcm02.png" alt="gcm02" style="width:310px">
-
-<h3 id="使用cocoapods安裝-gcm／analytics"><a href="#使用cocoapods安裝-gcm／analytics" class="headerlink" title="使用cocoapods安裝 gcm／analytics"></a>使用cocoapods安裝 gcm／analytics</h3><p>Podfile</p>
-<pre><code>pod &apos;Google/Analytics&apos;
-pod &apos;Google/CloudMessaging&apos;</code></pre><p>在所在目錄安裝</p>
-<pre><code>pod install</code></pre><h4 id="pod-要確認是否為最新版本，不然安裝後會有錯誤"><a href="#pod-要確認是否為最新版本，不然安裝後會有錯誤" class="headerlink" title="pod 要確認是否為最新版本，不然安裝後會有錯誤"></a>pod 要確認是否為最新版本，不然安裝後會有錯誤</h4><p>完成之後打開workspace會看到一堆framework</p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/gcm03.png" alt="gcm03" style="width:310px">
-
-<h3 id="GCM的一些code"><a href="#GCM的一些code" class="headerlink" title="GCM的一些code"></a>GCM的一些code</h3><pre><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-    // Register for remote notifications
-    UIUserNotificationType allNotificationTypes =
-    (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
-    UIUserNotificationSettings *settings =
-    [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
-
-
-    return YES;
-}
-
-
--(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
-
-    NSLog(@&quot;%@&quot;,deviceToken);
-
-    [[GGLInstanceID sharedInstance] startWithConfig:[GGLInstanceIDConfig defaultConfig]];
-    _registrationOptions = @{kGGLInstanceIDRegisterAPNSOption:deviceToken,
-                             kGGLInstanceIDAPNSServerTypeSandboxOption:@YES};
-    [[GGLInstanceID sharedInstance] tokenWithAuthorizedEntity:@&quot;gswt-ea275&quot;
-                                                        scope:kGGLInstanceIDScopeGCM
-                                                      options:_registrationOptions
-                                                      handler:nil];
-
-
-}
-
-
--(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
-    NSLog(@&quot;%@&quot;,error);
-}</code></pre><h3 id="GA的一些code"><a href="#GA的一些code" class="headerlink" title="GA的一些code"></a>GA的一些code</h3><pre><code>-(void)GAScreen:(NSString *)name{
-    dispatch_queue_t myQueue = dispatch_queue_create(&quot;GAQueue&quot;,NULL);
-    dispatch_async(myQueue, ^{
-        id&lt;GAITracker&gt; tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker set:kGAIScreenName value:name];
-        [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
-    });
-
-}
-
-
--(void)GAEvent:(NSString *)CATEGORY :(NSString *)ACTION :(NSString *)LABEL :(NSNumber *)Value{
-
-    dispatch_queue_t myQueue = dispatch_queue_create(&quot;GAQueue&quot;,NULL);
-    dispatch_async(myQueue, ^{
-        id&lt;GAITracker&gt; tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:CATEGORY action:ACTION label:LABEL value:Value] build]];
-    });
-
-
-}</code></pre><p>希望對大家有幫助</p>
-
-
+    
+	  <div class="readmore">
+      <a href="/2015/06/09/Google-Service-2015-Walk-Through/">Read More</a>
+    </div>
     
     
     
@@ -355,32 +294,12 @@ pod &apos;Google/CloudMessaging&apos;</code></pre><p>在所在目錄安裝</p>
 
   </section>
   <section class="article typo">
-	  <h3 id="為程式注入靈魂的小技巧-shuffle"><a href="#為程式注入靈魂的小技巧-shuffle" class="headerlink" title="為程式注入靈魂的小技巧 shuffle"></a>為程式注入靈魂的小技巧 shuffle</h3><pre><code>func shuffle&lt;C: MutableCollectionType where C.Index == Int&gt;(var list: C) -&gt; C {
-    let c = count(list)
-    for i in 0..&lt;(c - 1) {
-        let j = Int(arc4random_uniform(UInt32(c - i))) + i
-        swap(&amp;list[i], &amp;list[j])
-    }
-    return list
-}
+	  <h3 id="為程式注入靈魂的小技巧-shuffle"><a href="#為程式注入靈魂的小技巧-shuffle" class="headerlink" title="為程式注入靈魂的小技巧 shuffle"></a>為程式注入靈魂的小技巧 shuffle</h3>
 
-
-
-huffle([1, 2, 3, 4, 5, 6, 7, 8])        
-// e.g., [6, 1, 8, 3, 2, 4, 7, 5]
-shuffle([&quot;hello&quot;, &quot;goodbye&quot;, &quot;ciao&quot;])    
-// e.g., [&quot;ciao&quot;, &quot;goodbye&quot;, &quot;hello&quot;]</code></pre><h3 id="extension"><a href="#extension" class="headerlink" title="extension"></a>extension</h3><pre><code>extension Array {
-    mutating func shuffle() {
-        for i in 0..&lt;(count - 1) {
-            let j = Int(arc4random_uniform(UInt32(count - i))) + i
-            swap(&amp;self[i], &amp;self[j])
-        }
-    }
-}
-
-var numbers = [1, 2, 3, 4, 5, 6, 7, 8]
-numbers.shuffle()     </code></pre>
-
+    
+	  <div class="readmore">
+      <a href="/2015/05/27/swift-shuffle/">Read More</a>
+    </div>
     
     
     
@@ -419,15 +338,11 @@ numbers.shuffle()     </code></pre>
 
 
 <p>並且設定語言為swift</p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/spritekit02.png" alt="spritekit02" style="width:310px">
 
-
-<p>此時，可以先砍掉一些沒有必要的檔案（iOS很貼心放了一個太空船在程式的template裡）</p>
-<h3 id="加入一些遊戲需要用到的圖檔"><a href="#加入一些遊戲需要用到的圖檔" class="headerlink" title="加入一些遊戲需要用到的圖檔"></a>加入一些遊戲需要用到的圖檔</h3><img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/spritekit03.png" alt="spritekit03" style="width:310px">
-
-<p>你可以放在images.asset或是直接拉到專案裡</p>
-<h3 id="設一下GameViewController裡的-scene-size"><a href="#設一下GameViewController裡的-scene-size" class="headerlink" title="設一下GameViewController裡的 scene.size"></a>設一下GameViewController裡的 scene.size</h3><pre><code>scene.size = skView.bounds.size</code></pre><h3 id="了解scene的生命週期、座標系統、基本屬性"><a href="#了解scene的生命週期、座標系統、基本屬性" class="headerlink" title="了解scene的生命週期、座標系統、基本屬性"></a>了解scene的生命週期、座標系統、基本屬性</h3><h3 id="了解sprite基本屬性"><a href="#了解sprite基本屬性" class="headerlink" title="了解sprite基本屬性"></a>了解sprite基本屬性</h3><h3 id="了解texture基本屬性、打包textureAtlas-zip-file-with-altas"><a href="#了解texture基本屬性、打包textureAtlas-zip-file-with-altas" class="headerlink" title="了解texture基本屬性、打包textureAtlas(zip file with .altas)"></a>了解texture基本屬性、打包textureAtlas(zip file with .altas)</h3><h3 id="了解Action基本屬性"><a href="#了解Action基本屬性" class="headerlink" title="了解Action基本屬性"></a>了解Action基本屬性</h3><h3 id="了解Animation基本屬性"><a href="#了解Animation基本屬性" class="headerlink" title="了解Animation基本屬性"></a>了解Animation基本屬性</h3><h3 id="了解Physics"><a href="#了解Physics" class="headerlink" title="了解Physics"></a>了解Physics</h3><h3 id="game-loop？？"><a href="#game-loop？？" class="headerlink" title="game loop？？"></a>game loop？？</h3>
-
+    
+	  <div class="readmore">
+      <a href="/2015/05/26/swift-spritekit-walk-through/">Read More</a>
+    </div>
     
     
     
@@ -465,17 +380,11 @@ numbers.shuffle()     </code></pre>
   </section>
   <section class="article typo">
 	  <h1 id="在UILabel裡要怎麼做到呢？"><a href="#在UILabel裡要怎麼做到呢？" class="headerlink" title="在UILabel裡要怎麼做到呢？"></a>在UILabel裡要怎麼做到呢？</h1><p>ABC <img class="img-shadow" src="http://c360232.r32.cf2.rackcdn.com/blog/wp-content/uploads/2008/06/new.jpg" width="30"> CDE</p>
-<pre><code>NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
-attachment.image = [UIImage imageNamed:@&quot;MyIcon.png&quot;];
 
-NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
-
-NSMutableAttributedString *myString= [[NSMutableAttributedString alloc] initWithString:@&quot;My label text&quot;];
-[myString appendAttributedString:attachmentString];
-
-myLabel.attributedText = myString;</code></pre><p>不難懂～</p>
-
-
+    
+	  <div class="readmore">
+      <a href="/2015/05/21/在字串裡加上icon/">Read More</a>
+    </div>
     
     
     
@@ -769,346 +678,11 @@ myLabel.attributedText = myString;</code></pre><p>不難懂～</p>
   </section>
   <section class="article typo">
 	  <h3 id="前言-2015-05"><a href="#前言-2015-05" class="headerlink" title="前言 2015-05"></a>前言 2015-05</h3><p>別人的walk through都有點年代了，而且關鍵的幾個點都沒有特別註明，所以只好自已來寫一個walk through</p>
-<h1 id="unique-App-ID"><a href="#unique-App-ID" class="headerlink" title="unique App ID"></a>unique App ID</h1><p>意思是不可以使用Wildcard App ID來做APP的綁定（如果出現*是不允許的）</p>
-<h3 id="member-center-Certificates-Identifiers-amp-Profiles-App-IDs"><a href="#member-center-Certificates-Identifiers-amp-Profiles-App-IDs" class="headerlink" title="[member center] - [Certificates, Identifiers &amp; Profiles] - [App IDs]"></a>[member center] - [Certificates, Identifiers &amp; Profiles] - [App IDs]</h3><h1 id="Provisioning-Profile"><a href="#Provisioning-Profile" class="headerlink" title="Provisioning Profile"></a>Provisioning Profile</h1><p>provision profile要與App ID匹配</p>
-<h1 id="ItunesConnect-設定APP"><a href="#ItunesConnect-設定APP" class="headerlink" title="ItunesConnect 設定APP"></a>ItunesConnect 設定APP</h1><p>新增一個app，該填的填</p>
-<h1 id="新增-inAPP-Product"><a href="#新增-inAPP-Product" class="headerlink" title="新增 inAPP Product"></a>新增 inAPP Product</h1><p>[APP] - [App 內購買項目] - [Create New] - [非消耗性項目]</p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/inapp01.png" alt="inapp01" style="width:310px">
 
-<p>非消耗性項目 把讓填的填一填後[儲存]</p>
-<h1 id="ProductID-一定要是-appid-name"><a href="#ProductID-一定要是-appid-name" class="headerlink" title="ProductID 一定要是 appid.name"></a>ProductID 一定要是 appid.name</h1><p>在這裡卡關很久，很多walk through說ProdoctID只要unique，但是程式寫好，按下去就是 [StoreStateInvalidProduct]，要記得全部都要帶</p>
-<p>(範例為) com.yuaki.No5.Remove_AD  </p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/inapp02.png" alt="inapp02" style="width:310px">
-
-
-<h1 id="檢查xcode裡iap的設定是否開啟"><a href="#檢查xcode裡iap的設定是否開啟" class="headerlink" title="檢查xcode裡iap的設定是否開啟"></a>檢查xcode裡iap的設定是否開啟</h1><img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/inapp03.png" alt="inapp03" style="width:310px">
-
-
-<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><h2 id="加入-StoreKit-Framework"><a href="#加入-StoreKit-Framework" class="headerlink" title="加入 StoreKit.Framework"></a>加入 StoreKit.Framework</h2><img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/inapp04.png" alt="inapp04" style="width:310px">
-
-
-<h2 id="加入三支程式-Store-h、Store-m和一支放在server的iap-php"><a href="#加入三支程式-Store-h、Store-m和一支放在server的iap-php" class="headerlink" title="加入三支程式 Store.h、Store.m和一支放在server的iap.php"></a>加入三支程式 Store.h、Store.m和一支放在server的iap.php</h2><h3 id="感謝-Paul-Wu-大大的無私分享"><a href="#感謝-Paul-Wu-大大的無私分享" class="headerlink" title="感謝 Paul Wu 大大的無私分享"></a>感謝 Paul Wu 大大的無私分享</h3><p>store.h</p>
-<pre><code>//
-//  Store.h
-//  DemoIAP
-//
-//  Created by Paul Wu on 2014/11/23.
-//  Copyright (c) 2014年 Prodisky. All rights reserved.
-//
-
-#import &lt;Foundation/Foundation.h&gt;
-
-enum {
-    StoreStatePurchasing,
-    StoreStatePurchased,
-    StoreStateRestored,
-    StoreStateDeferred,
-    StoreStateVerifyReceipt,
-    StoreStateMakePaymentsFail,
-    StoreStateInvalidProduct,
-    StoreStateFailedClientInvalid,
-    StoreStateFailedPaymentCancelled,
-    StoreStateFailedPaymentInvalid,
-    StoreStateFailedPaymentNotAllowed,
-    StoreStateFailedUnknown
-};
-typedef NSUInteger StoreState;
-
-#import &lt;Foundation/Foundation.h&gt;
-#import &lt;StoreKit/StoreKit.h&gt;
-
-@interface Store : NSObject &lt;SKPaymentTransactionObserver, SKProductsRequestDelegate&gt;
-@property (nonatomic, copy) void (^updatedState) (StoreState state, NSString *productIdentifier);
-@property (nonatomic, copy) void (^verifyPass) (NSString *productIdentifier);
-@property (nonatomic, copy) void (^verifyFail) (NSString *productIdentifier);
-
-+ (Store*)shared;
-- (void)purchase:(NSString *)productIdentifier;
-- (void)restore;
-@end</code></pre><p>store.m<br>    //<br>    //  Store.m<br>    //  DemoIAP<br>    //<br>    //  Created by Paul Wu on 2014/11/23.<br>    //  Copyright (c) 2014年 Prodisky. All rights reserved.<br>    //</p>
-<pre><code>#import &quot;Store.h&quot;
-#define verifyServerURL        @&quot;http://XXX/iap.php&quot;
-
-#pragma mark
-@interface URLRequest : NSMutableURLRequest
-@property (nonatomic, copy) void (^didFinish) (NSData* response);
-@property (nonatomic, copy) void (^didError) (NSError *error);
-- (void) startAsynchronous;
-@end
-
-@interface URLRequest () {
-    NSMutableData *responseData;
-    NSURLConnection *urlconnection;
-}@end
-
-@implementation URLRequest
-- (id)init {
-    if (self = [super init]) {
-        self.timeoutInterval = 3.14;
-        self.HTTPShouldUsePipelining = YES;
-    }
-    return self;
-}
-- (void)startAsynchronous {
-    urlconnection = [[NSURLConnection alloc] initWithRequest:self delegate:self];
-}
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    responseData = [NSMutableData new];
-}
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [responseData appendData:data];
-}
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    [urlconnection cancel];
-    responseData = [NSMutableData new];
-    if (_didError) _didError(error);
-}
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    [urlconnection cancel];
-    urlconnection = nil;
-    if (_didFinish) _didFinish(responseData);
-}
-@end
-#pragma mark
-
-@implementation Store
-static Store *_shared = nil;
-+ (Store*)shared {
-    if (_shared == nil) _shared = [self new];
-    return _shared;
-}
-- (void)verifyReceipt:(SKPaymentTransaction *)transaction {
-    NSString *parameterString = [NSString stringWithFormat:@&quot;receipt=%@&quot;, [[NSBundle mainBundle] appStoreReceiptURL]];
-
-    URLRequest *request = [URLRequest new];
-    request.URL = [NSURL URLWithString:verifyServerURL];
-    request.cachePolicy = NSURLRequestReloadIgnoringLocalAndRemoteCacheData;
-    request.HTTPBody = [parameterString dataUsingEncoding:NSUTF8StringEncoding];
-    request.HTTPMethod = @&quot;POST&quot;;
-    [request setValue:@&quot;application/x-www-form-urlencoded&quot; forHTTPHeaderField:@&quot;Content-Type&quot;];
-
-    request.didFinish = ^(NSData* response) {
-        NSError* error;
-        NSDictionary* json = [NSJSONSerialization
-                              JSONObjectWithData:response
-                              options:kNilOptions
-                              error:&amp;error];
-
-        if ([[json objectForKey:@&quot;result&quot;] integerValue] &gt; 0) {
-            if (_verifyPass) _verifyPass(transaction.payment.productIdentifier);
-        } else {
-            if (_verifyFail) _verifyFail(transaction.payment.productIdentifier);
-        }
-    };
-
-    request.didError = ^(NSError *error){
-        if (_verifyFail) _verifyFail(transaction.payment.productIdentifier);
-    };
-    [request startAsynchronous];
-}
-- (id)init {
-    if (self = [super init]) {
-        [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-    }
-    return self;
-}
-- (void)purchase:(NSString *)productIdentifier {
-    if ([SKPaymentQueue canMakePayments]) {
-        SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:productIdentifier]];
-        request.delegate = self;
-        [request start];
-    } else {
-        if (_updatedState) _updatedState(StoreStateMakePaymentsFail, productIdentifier);
-    }
-}
-- (void)restore {
-    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
-}
-
-- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
-    if ([response.invalidProductIdentifiers count] == 0) {
-        for (NSUInteger i = 0; i &lt; [response.products count]; i++) {
-            SKProduct *product = [response.products objectAtIndex:i];
-            SKPayment *payment = [SKPayment paymentWithProduct:product];
-            [[SKPaymentQueue defaultQueue] addPayment:payment];
-        }
-    } else {
-        if (_updatedState)
-            for (NSUInteger i = 0; i &lt; [response.invalidProductIdentifiers count]; i++)
-                _updatedState(StoreStateInvalidProduct, [response.invalidProductIdentifiers objectAtIndex:i]);
-    }
-}
-- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions {
-    for (SKPaymentTransaction *transaction in transactions) {
-        if (transaction.transactionState != SKPaymentTransactionStatePurchasing)
-            [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
-
-        if (_updatedState) {
-            switch (transaction.transactionState) {
-                case SKPaymentTransactionStatePurchasing:
-                    _updatedState(StoreStatePurchasing, transaction.payment.productIdentifier);
-                    break;
-                case SKPaymentTransactionStatePurchased:
-                    _updatedState(StoreStatePurchased, transaction.payment.productIdentifier);
-                    break;
-                case SKPaymentTransactionStateFailed:
-                    switch (transaction.error.code) {
-                        case SKErrorClientInvalid:
-                            _updatedState(StoreStateFailedClientInvalid, transaction.payment.productIdentifier);
-                            break;
-                        case SKErrorPaymentCancelled:
-                            _updatedState(StoreStateFailedPaymentCancelled, transaction.payment.productIdentifier);
-                            break;
-                        case SKErrorPaymentInvalid:
-                            _updatedState(StoreStateFailedPaymentInvalid, transaction.payment.productIdentifier);
-                            break;
-                        case SKErrorPaymentNotAllowed:
-                            _updatedState(StoreStateFailedPaymentNotAllowed, transaction.payment.productIdentifier);
-                            break;
-                        case SKErrorUnknown:
-                        default:
-                            _updatedState(StoreStateFailedUnknown, transaction.payment.productIdentifier);
-                            break;
-                    }
-                    break;
-                case SKPaymentTransactionStateRestored:
-                    _updatedState(StoreStateRestored, transaction.payment.productIdentifier);
-                    break;
-                case SKPaymentTransactionStateDeferred:
-                    //iOS 8 and later.
-                    _updatedState(StoreStateDeferred, transaction.payment.productIdentifier);
-                    break;
-            }
-        }
-        if (transaction.transactionState == SKPaymentTransactionStatePurchased ||
-            transaction.transactionState == SKPaymentTransactionStateRestored)
-            [self verifyReceipt:transaction];
-    }
-}
-
-@end</code></pre><p>Server code - iap.php</p>
-<pre><code>&lt;?php
-    function verify($receipt) {
-        if (empty($receipt)) {
-            $result[&quot;result&quot;] = 0;
-            return $result;
-        }
-
-        $dataToPost = json_encode(array(&quot;receipt-data&quot; =&gt; $receipt));
-        $opts = array(&apos;http&apos; =&gt;
-            array(
-                &apos;method&apos;  =&gt; &apos;POST&apos;,
-                &apos;header&apos;  =&gt; &apos;Content-type: application/x-www-form-urlencoded&apos;,
-                &apos;content&apos; =&gt; $dataToPost
-            )
-        );
-
-        $context  = stream_context_create($opts);
-
-        $verifyResult = file_get_contents(&apos;https://buy.itunes.apple.com/verifyReceipt&apos;, false, $context);
-        $verifyStatus = json_decode($verifyResult);
-
-        if ($verifyStatus-&gt;{&apos;status&apos;} == 0) {
-            $result[&quot;result&quot;] = 1;
-            return $result;
-        }
-
-        $verifyResult = file_get_contents(&apos;https://sandbox.itunes.apple.com/verifyReceipt&apos;, false, $context);
-        $verifyStatus = json_decode($verifyResult);
-
-        if ($verifyStatus-&gt;{&apos;status&apos;} == 0) {
-            $result[&quot;result&quot;] = 2;
-            return $result;
-        }
-
-        $result[&quot;result&quot;] = -2;
-        return $result;
-    }
-
-    echo json_encode(verify($_REQUEST[&quot;receipt&quot;]));
-?&gt;</code></pre><h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>購買</p>
-<pre><code>[[Store shared] purchase:@&quot;com.yuaki.No5.Remove_AD&quot;];</code></pre><p>回復購買產品動作<br>    [[Store shared] restore];</p>
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><pre><code>-(void)checkStore{
-    [Store shared].updatedState = ^(StoreState state, NSString *productIdentifier) {
-        //需要顯示購買過程時使用。
-        switch (state) {
-            case StoreStatePurchasing:
-                NSLog(@&quot;StoreStatePurchasing %@&quot;, productIdentifier);
-
-
-                break;
-            case StoreStatePurchased:
-                NSLog(@&quot;StoreStatePurchased %@&quot;, productIdentifier);
-                break;
-            case StoreStateRestored:
-                NSLog(@&quot;StoreStateRestored %@&quot;, productIdentifier);
-                [self performSelector:@selector(checkStore) withObject:nil afterDelay:5.0f];
-                break;
-            case StoreStateDeferred:
-                NSLog(@&quot;StoreStateDeferred %@&quot;, productIdentifier);
-                break;
-            case StoreStateVerifyReceipt:
-                NSLog(@&quot;StoreStateVerifyReceipt %@&quot;, productIdentifier);
-                break;
-            case StoreStateMakePaymentsFail:
-                [[[UIAlertView alloc] initWithTitle:@&quot;&quot; message:@&quot;付款失敗&quot; delegate:self cancelButtonTitle:@&quot;確定&quot; otherButtonTitles:nil] show];
-
-                NSLog(@&quot;StoreStateMakePaymentsFail %@&quot;, productIdentifier);
-                break;
-            case StoreStateInvalidProduct:
-                NSLog(@&quot;StoreStateInvalidProduct %@&quot;, productIdentifier);
-                [[[UIAlertView alloc] initWithTitle:@&quot;&quot; message:@&quot;產品id無效&quot; delegate:self cancelButtonTitle:@&quot;確定&quot; otherButtonTitles:nil] show];
-
-                break;
-            case StoreStateFailedClientInvalid:
-                NSLog(@&quot;StoreStateFailedClientInvalid %@&quot;, productIdentifier);
-                break;
-            case StoreStateFailedPaymentCancelled:
-                NSLog(@&quot;StoreStateFailedPaymentCancelled %@&quot;, productIdentifier);
-                [[[UIAlertView alloc] initWithTitle:@&quot;&quot; message:@&quot;付款取消&quot; delegate:self cancelButtonTitle:@&quot;確定&quot; otherButtonTitles:nil] show];
-
-                break;
-            case StoreStateFailedPaymentInvalid:
-                NSLog(@&quot;StoreStateFailedPaymentInvalid %@&quot;, productIdentifier);
-                [[[UIAlertView alloc] initWithTitle:@&quot;&quot; message:@&quot;付款失效&quot; delegate:self cancelButtonTitle:@&quot;確定&quot; otherButtonTitles:nil] show];
-
-                break;
-            case StoreStateFailedPaymentNotAllowed:
-                NSLog(@&quot;StoreStateFailedPaymentNotAllowed %@&quot;, productIdentifier);
-                [[[UIAlertView alloc] initWithTitle:@&quot;&quot; message:@&quot;不允許付款&quot; delegate:self cancelButtonTitle:@&quot;確定&quot; otherButtonTitles:nil] show];
-                break;
-            case StoreStateFailedUnknown:
-                [[[UIAlertView alloc] initWithTitle:@&quot;&quot; message:@&quot;付款有未知的錯誤&quot; delegate:self cancelButtonTitle:@&quot;確定&quot; otherButtonTitles:nil] show];
-                NSLog(@&quot;StoreStateFailedUnknown %@&quot;, productIdentifier);
-                break;
-        }
-    };
-
-    [Store shared].verifyPass = ^(NSString *productIdentifier) {
-        [[[UIAlertView alloc] initWithTitle:@&quot;&quot; message:@&quot;購買成功&quot; delegate:self cancelButtonTitle:@&quot;確定&quot; otherButtonTitles:nil] show];
-        //remove AD
-
-    };
-
-    [Store shared].verifyFail = ^(NSString *productIdentifier) {
-        [[[UIAlertView alloc] initWithTitle:@&quot;&quot; message:@&quot;購買失敗&quot; delegate:self cancelButtonTitle:@&quot;確定&quot; otherButtonTitles:nil] show];
-    };
-}</code></pre><h1 id="沙箱測試"><a href="#沙箱測試" class="headerlink" title="沙箱測試"></a>沙箱測試</h1><p>新增測試人員<br>[使用者和職能] - [測試人員] - [+]</p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/inapp06.png" alt="inapp06" style="width:310px">
-
-<p>該填的填一填<br><img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/inapp07.png" alt="inapp07" style="width:310px"></p>
-<p>好玩的是，不能使用既有的appid當做沙箱測試人員，只好去申請一個新的email來測試。</p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/inapp08.png" alt="inapp08" style="width:310px">
-
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/inapp09.png" alt="inapp09" style="width:310px">
-
-<p>在手機上[App Store] &gt; [精選項目] &gt; [登入] 沙箱測試人員</p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/inapp10.png" alt="inapp10" style="width:310px">
-
-
-<p>接著就可以進行購買測試了</p>
-<h4 id="打完收功"><a href="#打完收功" class="headerlink" title="打完收功"></a>打完收功</h4>
-
+    
+	  <div class="readmore">
+      <a href="/2015/05/12/inApp-Purchase-walkthrough/">Read More</a>
+    </div>
     
     
     
@@ -1231,7 +805,7 @@ PMP #1497767 ~04/15/2021<br/>
             <div class='name'>iOS@Taipei</div>
         </a></li>
     
-        <li><a class="flat-box" target="_blank" href="https://kotlin.tw">
+        <li><a class="flat-box" target="_blank" href="https://kotlin.tw?source=aki">
             <div class='name'>Lin Nick</div>
         </a></li>
     

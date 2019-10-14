@@ -12,18 +12,18 @@
   <link rel="shortcut icon" href="/">
   <link rel="alternate" href="/atom.xml" title="YU AKI's territory">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="為程式注入靈魂的小技巧 shufflefunc shuffle&amp;lt;C: MutableCollectionType where C.Index == Int&amp;gt;(var list: C) -&amp;gt; C {     let c = count(list)     for i in 0..&amp;lt;(c - 1) {         let j = Int(arc4random_uniform">
+  <meta name="description" content="為程式注入靈魂的小技巧 shuffle">
 <meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="swift shuffle">
 <meta property="og:url" content="https://yuaki.com/2015/05/27/swift-shuffle/index.html">
 <meta property="og:site_name" content="YU AKI&#39;s territory">
-<meta property="og:description" content="為程式注入靈魂的小技巧 shufflefunc shuffle&amp;lt;C: MutableCollectionType where C.Index == Int&amp;gt;(var list: C) -&amp;gt; C {     let c = count(list)     for i in 0..&amp;lt;(c - 1) {         let j = Int(arc4random_uniform">
+<meta property="og:description" content="為程式注入靈魂的小技巧 shuffle">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2019-10-13T16:46:31.650Z">
+<meta property="og:updated_time" content="2019-10-14T04:33:33.597Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="swift shuffle">
-<meta name="twitter:description" content="為程式注入靈魂的小技巧 shufflefunc shuffle&amp;lt;C: MutableCollectionType where C.Index == Int&amp;gt;(var list: C) -&amp;gt; C {     let c = count(list)     for i in 0..&amp;lt;(c - 1) {         let j = Int(arc4random_uniform">
+<meta name="twitter:description" content="為程式注入靈魂的小技巧 shuffle">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
@@ -166,7 +166,9 @@
 	
 	<section class="article typo">
   	<div class="article-entry" itemprop="articleBody">
-    	<h3 id="為程式注入靈魂的小技巧-shuffle"><a href="#為程式注入靈魂的小技巧-shuffle" class="headerlink" title="為程式注入靈魂的小技巧 shuffle"></a>為程式注入靈魂的小技巧 shuffle</h3><pre><code>func shuffle&lt;C: MutableCollectionType where C.Index == Int&gt;(var list: C) -&gt; C {
+    	<h3 id="為程式注入靈魂的小技巧-shuffle"><a href="#為程式注入靈魂的小技巧-shuffle" class="headerlink" title="為程式注入靈魂的小技巧 shuffle"></a>為程式注入靈魂的小技巧 shuffle</h3><a id="more"></a>
+
+<pre><code>func shuffle&lt;C: MutableCollectionType where C.Index == Int&gt;(var list: C) -&gt; C {
     let c = count(list)
     for i in 0..&lt;(c - 1) {
         let j = Int(arc4random_uniform(UInt32(c - i))) + i
@@ -265,7 +267,7 @@ PMP #1497767 ~04/15/2021<br/>
             <div class='name'>iOS@Taipei</div>
         </a></li>
     
-        <li><a class="flat-box" target="_blank" href="https://kotlin.tw">
+        <li><a class="flat-box" target="_blank" href="https://kotlin.tw?source=aki">
             <div class='name'>Lin Nick</div>
         </a></li>
     

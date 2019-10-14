@@ -171,112 +171,11 @@
   <section class="article typo">
 	  <p>##裡面用到了幾個技巧</p>
 <p>1。 旋轉的animation<br>2。 移動的animation<br>3。 移除不必要的UIActivityIndicator</p>
-<h3 id="bikeRegreshConrtol-h"><a href="#bikeRegreshConrtol-h" class="headerlink" title="bikeRegreshConrtol.h"></a>bikeRegreshConrtol.h</h3><pre><code>#import &lt;UIKit/UIKit.h&gt;
 
-@interface bikeRegreshConrtol : UIRefreshControl
-
-
--(void)makeAnimate;
-
-@end</code></pre><h3 id="bikeRegreshConrtol-m"><a href="#bikeRegreshConrtol-m" class="headerlink" title="bikeRegreshConrtol.m"></a>bikeRegreshConrtol.m</h3><p>#import “bikeRegreshConrtol.h”</p>
-<pre><code>@implementation bikeRegreshConrtol
-
--(instancetype)init{
-
-    self = [super init];
-    if (self) {
-
-    }
-
-
-    return  self;
-
-}
-
--(void)makeAnimate{
-
-    for (UIView *V in self.subviews) {
-        if ([[V class] isSubclassOfClass:[UIImageView class]]) {
-            NSLog(@&quot;%@&quot;,[V class]);
-        }else{
-            [V removeFromSuperview];
-        }
-    }
-
-    UIImageView *wheel1 = [[UIImageView alloc] initWithImage:
-                           [UIImage imageNamed: @&quot;wheel.png&quot;]];
-
-    [wheel1 setFrame:CGRectMake(50, self.center.y, 30, 30)];
-
-
-    UIImageView *wheel2 = [[UIImageView alloc] initWithImage:
-                           [UIImage imageNamed: @&quot;wheel.png&quot;]];
-
-    [wheel2 setFrame:CGRectMake(90, self.center.y, 30, 30)];
-
-
-    if ([wheel1.layer animationForKey:@&quot;SpinAnimation&quot;] == nil) {
-        CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@&quot;transform.rotation.z&quot;];
-        animation.fromValue = [NSNumber numberWithFloat:0.0f];
-        animation.toValue = [NSNumber numberWithFloat: 2*M_PI];
-        animation.duration = 2.4f;
-        animation.repeatCount = INFINITY;
-        [wheel1.layer addAnimation:animation forKey:@&quot;SpinAnimation&quot;];
-    }
-
-    if ([wheel2.layer animationForKey:@&quot;SpinAnimation&quot;] == nil) {
-        CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@&quot;transform.rotation.z&quot;];
-        animation.fromValue = [NSNumber numberWithFloat:0.0f];
-        animation.toValue = [NSNumber numberWithFloat: 2*M_PI];
-        animation.duration = 2.2f;
-        animation.repeatCount = INFINITY;
-        [wheel2.layer addAnimation:animation forKey:@&quot;SpinAnimation&quot;];
-    }
-
-    [self insertSubview:wheel1 atIndex:3];
-    [self insertSubview:wheel2 atIndex:2];
-
-    UIImageView *back1 = [[UIImageView alloc] initWithImage:
-                           [UIImage imageNamed: @&quot;background.png&quot;]];
-
-    [back1 setFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
-
-    [self insertSubview:back1 atIndex:1];
-
-
-
-    UIImageView *back2 = [[UIImageView alloc] initWithImage:
-                          [UIImage imageNamed: @&quot;background.png&quot;]];
-
-    [back2 setFrame:CGRectMake(320, 0, self.bounds.size.width, self.bounds.size.height)];
-
-    [self insertSubview:back2 atIndex:0];
-
-    [self bringSubviewToFront:wheel1];
-    [self bringSubviewToFront:wheel2];
-//    
-
-    [self doAnimate:back1 :back2];
-
-
-}
-
--(void)doAnimate:(UIImageView *)img :(UIImageView *)img2{
-    [UIView animateWithDuration:32.0f animations:^{
-        [img setFrame:CGRectMake(-320, 0, img.frame.size.width, img.frame.size.height)];
-        [img2 setFrame:CGRectMake(0, 0, img.frame.size.width, img.frame.size.height)];
-    } completion:^(BOOL finished) {
-        [img setFrame:CGRectMake(0, 0, img.frame.size.width, img.frame.size.height)];
-        [img2 setFrame:CGRectMake(320, 0, img.frame.size.width, img.frame.size.height)];
-        [self doAnimate:img :img2];
-    }];
-}</code></pre><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><pre><code>refreshControl = [[bikeRegreshConrtol alloc] init];
-[refreshControl addTarget:self action:@selector(refresh)
-              forControlEvents:UIControlEventValueChanged];
-[mTable addSubview:refreshControl];
-
-[refreshControl makeAnimate];</code></pre><h3 id="更新結束"><a href="#更新結束" class="headerlink" title="更新結束"></a>更新結束</h3><pre><code>[refreshControl endRefreshing];</code></pre>
-
+    
+	  <div class="readmore">
+      <a href="/2015/05/05/make-UIRefreshControll-by-your-self/">Read More</a>
+    </div>
     
     
     
@@ -336,7 +235,7 @@ PMP #1497767 ~04/15/2021<br/>
             <div class='name'>iOS@Taipei</div>
         </a></li>
     
-        <li><a class="flat-box" target="_blank" href="https://kotlin.tw">
+        <li><a class="flat-box" target="_blank" href="https://kotlin.tw?source=aki">
             <div class='name'>Lin Nick</div>
         </a></li>
     

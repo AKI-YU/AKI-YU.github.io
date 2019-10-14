@@ -12,18 +12,18 @@
   <link rel="shortcut icon" href="/">
   <link rel="alternate" href="/atom.xml" title="YU AKI's territory">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在ViewController後引用所需要的 delegate  class ViewController: ViewController,NSXMLParserDelegate  加入delegate所需要的function func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI:">
+  <meta name="description" content="在ViewController後引用所需要的 delegate  class ViewController: ViewController,NSXMLParserDelegate">
 <meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="swift-xmlParser之使用">
 <meta property="og:url" content="https://yuaki.com/2015/04/07/swift-xmlParser之使用/index.html">
 <meta property="og:site_name" content="YU AKI&#39;s territory">
-<meta property="og:description" content="在ViewController後引用所需要的 delegate  class ViewController: ViewController,NSXMLParserDelegate  加入delegate所需要的function func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI:">
+<meta property="og:description" content="在ViewController後引用所需要的 delegate  class ViewController: ViewController,NSXMLParserDelegate">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2019-10-13T16:45:48.211Z">
+<meta property="og:updated_time" content="2019-10-14T04:33:26.054Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="swift-xmlParser之使用">
-<meta name="twitter:description" content="在ViewController後引用所需要的 delegate  class ViewController: ViewController,NSXMLParserDelegate  加入delegate所需要的function func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI:">
+<meta name="twitter:description" content="在ViewController後引用所需要的 delegate  class ViewController: ViewController,NSXMLParserDelegate">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
@@ -169,7 +169,9 @@
     	<ol>
 <li>在ViewController後引用所需要的 delegate</li>
 </ol>
-<pre><code>class ViewController: ViewController,NSXMLParserDelegate </code></pre><ol start="2">
+<pre><code>class ViewController: ViewController,NSXMLParserDelegate </code></pre><a id="more"></a>
+
+<ol start="2">
 <li><p>加入delegate所需要的function</p>
 <pre><code>func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!, attributes attributeDict: [NSObject : AnyObject]!) {
 println(&quot;Element&apos;s name is \(elementName)&quot;)
@@ -277,7 +279,7 @@ PMP #1497767 ~04/15/2021<br/>
             <div class='name'>iOS@Taipei</div>
         </a></li>
     
-        <li><a class="flat-box" target="_blank" href="https://kotlin.tw">
+        <li><a class="flat-box" target="_blank" href="https://kotlin.tw?source=aki">
             <div class='name'>Lin Nick</div>
         </a></li>
     
