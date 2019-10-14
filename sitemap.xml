@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://yuaki.com/2019/09/24/LA/</loc>
+    
+    <lastmod>2019-10-14T01:55:41.878Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuaki.com/about/index.html</loc>
+    
+    <lastmod>2019-10-14T01:41:58.948Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://yuaki.com/2015/07/02/LinkedInSDKWalkThrough/</loc>
     
     <lastmod>2019-10-14T01:39:12.773Z</lastmod>
@@ -12,13 +26,6 @@
     <loc>https://yuaki.com/app/index.html</loc>
     
     <lastmod>2019-10-14T01:36:46.040Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yuaki.com/about/index.html</loc>
-    
-    <lastmod>2019-10-13T17:25:02.393Z</lastmod>
     
   </url>
   
