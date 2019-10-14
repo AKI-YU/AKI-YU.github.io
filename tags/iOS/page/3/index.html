@@ -393,6 +393,46 @@
   <section class="meta">
     
     <h2 class="title">
+      <a href="/2015/08/04/LinkedInSDKWalkThrough/">
+        LinkedInSDK Walk Through
+      </a>
+    </h2>
+    
+    <time>
+      8月 4, 2015
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/iOS/">iOS</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <p>千呼萬喚始出來，LinkedIn終於把最後的一個ios sdk給補上了，就是這次要walk through的東西，不過很可惜的是目前只有objc版本，swift根據過往objc sdk的開發進度，我在想可能要等上個好一陣子了。</p>
+
+    
+	  <div class="readmore">
+      <a href="/2015/08/04/LinkedInSDKWalkThrough/">Read More</a>
+    </div>
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/iOS/">iOS</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
       <a href="/2015/07/28/iOS 奇門遁甲指北針－CoreLocation的應用/">
         iOS 奇門遁甲指北針－CoreLocation的應用
       </a>
@@ -412,124 +452,10 @@
 	  <h3 id="準備好一個新專案，以及CoreLocation-Framework"><a href="#準備好一個新專案，以及CoreLocation-Framework" class="headerlink" title="準備好一個新專案，以及CoreLocation.Framework"></a>準備好一個新專案，以及CoreLocation.Framework</h3><br>
 <br>
 
-<h3 id="應該有的素材"><a href="#應該有的素材" class="headerlink" title="應該有的素材"></a>應該有的素材</h3><pre><code>1。奇門遁甲圓盤
-2。旋轉用的太極(裝飾用)
-3。UISegment 切換「磁北」、「真北」
-4。四個UILabel 顯示經緯度、高度、與方向角度</code></pre><h3 id="程式的撰寫"><a href="#程式的撰寫" class="headerlink" title="程式的撰寫"></a>程式的撰寫</h3><br>
-<br>
-info.plist
-
-<pre><code>NSLocationWhenInUseUsageDescription
-NSLocationAlwaysUsageDescription</code></pre><p>ViewController.h</p>
-<pre><code>#import &lt;CoreLocation/CoreLocation.h&gt;
-
-&lt;CLLocationManagerDelegate&gt;
-
-IBOutlet UIImageView *imgCompass;
-
-@property (nonatomic,retain) CLLocationManager *locationManager;
-@property (nonatomic,retain) CLHeading *currentHeading;</code></pre><p>ViewController.m</p>
-<pre><code>- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.currentHeading = [[CLHeading alloc] init];
-
-
-
-    if ([CLLocationManager locationServicesEnabled]) //處理定位
-    {
-        if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusDenied){
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;&quot; message:@&quot;請先開啟定位&quot; delegate:self cancelButtonTitle:@&quot;確認&quot; otherButtonTitles:nil];
-            alert.tag =999;
-            [self.view addSubview:alert];
-            [alert show];
-            isLocation = NO;
-            return;
-        }else{
-
-            isLocation = YES;
-            self.locationManager = [[CLLocationManager alloc] init];
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-            self.locationManager.headingFilter = 1;
-            self.locationManager.delegate = self;
-
-
-            if([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]){
-                [locationManager requestWhenInUseAuthorization];
-            }
-
-            [self.locationManager startUpdatingLocation];
-
-
-
-        }
-    }
-    else {
-
-
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;&quot; message:@&quot;請先開啟定位&quot; delegate:self cancelButtonTitle:@&quot;確認&quot; otherButtonTitles:nil];
-        alert.tag =999;
-        [self.view addSubview:alert];
-        isLocation = NO;
-        [alert show];
-        return;
-
-    }
-
-
-    [self.locationManager startUpdatingHeading];
-
-}
-
-
-
-
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
-    CLLocation* location = [locations objectAtIndex:0];
-    NSLog(@&quot;%f-%f&quot;,location.coordinate.latitude,location.coordinate.longitude);
-
-    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@&quot;%f&quot;,location.coordinate.latitude] forKey:@&quot;Lat&quot;];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@&quot;%f&quot;,location.coordinate.longitude] forKey:@&quot;Lng&quot;];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@&quot;%f&quot;,location.altitude] forKey:@&quot;Alt&quot;];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-
-
-    lblLat.text = [NSString stringWithFormat:@&quot;%f&quot;,location.coordinate.latitude];
-    lblLong.text = [NSString stringWithFormat:@&quot;%f&quot;,location.coordinate.longitude];
-    lblAlt.text = [NSString stringWithFormat:@&quot;%f&quot;,location.altitude];
-}
-
--(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
-    NSLog(@&quot;%@&quot;,error);
-}
-
-#pragma LocationManager Delegate
--(void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
-
-
-    self.currentHeading = newHeading;
-
-    if(segNorth.selectedSegmentIndex==1){
-        float heading = newHeading.magneticHeading; //in degrees
-        float headingDegrees = (heading*M_PI/180); //assuming needle points to top of iphone. convert to radians
-        imgCompass.transform = CGAffineTransformMakeRotation(headingDegrees);
-
-
-        NSLog(@&quot;heading %f&quot;,heading);
-        NSLog(@&quot;heading %f&quot;,headingDegrees);
-    }else{
-        float heading = newHeading.trueHeading; //in degrees
-        float headingDegrees = (heading*M_PI/180); //assuming needle points to top of iphone. convert to radians
-        imgCompass.transform = CGAffineTransformMakeRotation(headingDegrees);
-
-        NSLog(@&quot;heading %f&quot;,heading);
-
-        NSLog(@&quot;heading %f&quot;,headingDegrees);
-    }
-
-
-}</code></pre><p>完整專案放在 <a href="https://github.com/nobodyyu/ChimenCompass" target="_blank" rel="noopener">GitHub</a></p>
-
-
+    
+	  <div class="readmore">
+      <a href="/2015/07/28/iOS 奇門遁甲指北針－CoreLocation的應用/">Read More</a>
+    </div>
     
     
     
@@ -611,48 +537,6 @@ IBOutlet UIImageView *imgCompass;
 	  <div class="readmore">
       <a href="/2015/07/02/XCode-debug再進化/">Read More</a>
     </div>
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/iOS/">iOS</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2015/06/30/Dungeon Generator/">
-        Dungeon Generator
-      </a>
-    </h2>
-    
-    <time>
-      6月 30, 2015
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/iOS/">iOS</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <p>diablo的亂數地圖是怎麼做的？還是直接用swift來寫一次</p>
-<p>###方法：</p>
-<p>將矩形的地圖空間以「切割法」亂數切割房間，在切割的同時留一個出口，</p>
-<p>反覆的切割後  就會得到一個亂數生成的房間了</p>
-<h3 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h3><p>牆壁－寛1  出口－寛1</p>
-<p><a href="https://github.com/nobodyyu/DungeonGenerator/tree/master" target="_blank" rel="noopener">GitHub下載連結</a></p>
-
-
     
     
     
@@ -748,7 +632,7 @@ PMP #1497767 ~04/15/2021<br/>
     
         <li><a class="flat-box" href="/categories/Travel/"><div class='name'>Travel</div><div class='badget'>1</div></a></li>
     
-        <li><a class="flat-box" href="/categories/iOS/"><div class='name'>iOS</div><div class='badget'>56</div></a></li>
+        <li><a class="flat-box" href="/categories/iOS/"><div class='name'>iOS</div><div class='badget'>58</div></a></li>
     
     </ul>
     

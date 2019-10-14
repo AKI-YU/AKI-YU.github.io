@@ -153,6 +153,236 @@
   <section class="meta">
     
     <h2 class="title">
+      <a href="/2015/05/05/make-UIRefreshControll-by-your-self/">
+        make UIRefreshControll by your self
+      </a>
+    </h2>
+    
+    <time>
+      5月 5, 2015
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/iOS/">iOS</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <p>##裡面用到了幾個技巧</p>
+<p>1。 旋轉的animation<br>2。 移動的animation<br>3。 移除不必要的UIActivityIndicator</p>
+<h3 id="bikeRegreshConrtol-h"><a href="#bikeRegreshConrtol-h" class="headerlink" title="bikeRegreshConrtol.h"></a>bikeRegreshConrtol.h</h3><pre><code>#import &lt;UIKit/UIKit.h&gt;
+
+@interface bikeRegreshConrtol : UIRefreshControl
+
+
+-(void)makeAnimate;
+
+@end</code></pre><h3 id="bikeRegreshConrtol-m"><a href="#bikeRegreshConrtol-m" class="headerlink" title="bikeRegreshConrtol.m"></a>bikeRegreshConrtol.m</h3><p>#import “bikeRegreshConrtol.h”</p>
+<pre><code>@implementation bikeRegreshConrtol
+
+-(instancetype)init{
+
+    self = [super init];
+    if (self) {
+
+    }
+
+
+    return  self;
+
+}
+
+-(void)makeAnimate{
+
+    for (UIView *V in self.subviews) {
+        if ([[V class] isSubclassOfClass:[UIImageView class]]) {
+            NSLog(@&quot;%@&quot;,[V class]);
+        }else{
+            [V removeFromSuperview];
+        }
+    }
+
+    UIImageView *wheel1 = [[UIImageView alloc] initWithImage:
+                           [UIImage imageNamed: @&quot;wheel.png&quot;]];
+
+    [wheel1 setFrame:CGRectMake(50, self.center.y, 30, 30)];
+
+
+    UIImageView *wheel2 = [[UIImageView alloc] initWithImage:
+                           [UIImage imageNamed: @&quot;wheel.png&quot;]];
+
+    [wheel2 setFrame:CGRectMake(90, self.center.y, 30, 30)];
+
+
+    if ([wheel1.layer animationForKey:@&quot;SpinAnimation&quot;] == nil) {
+        CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@&quot;transform.rotation.z&quot;];
+        animation.fromValue = [NSNumber numberWithFloat:0.0f];
+        animation.toValue = [NSNumber numberWithFloat: 2*M_PI];
+        animation.duration = 2.4f;
+        animation.repeatCount = INFINITY;
+        [wheel1.layer addAnimation:animation forKey:@&quot;SpinAnimation&quot;];
+    }
+
+    if ([wheel2.layer animationForKey:@&quot;SpinAnimation&quot;] == nil) {
+        CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@&quot;transform.rotation.z&quot;];
+        animation.fromValue = [NSNumber numberWithFloat:0.0f];
+        animation.toValue = [NSNumber numberWithFloat: 2*M_PI];
+        animation.duration = 2.2f;
+        animation.repeatCount = INFINITY;
+        [wheel2.layer addAnimation:animation forKey:@&quot;SpinAnimation&quot;];
+    }
+
+    [self insertSubview:wheel1 atIndex:3];
+    [self insertSubview:wheel2 atIndex:2];
+
+    UIImageView *back1 = [[UIImageView alloc] initWithImage:
+                           [UIImage imageNamed: @&quot;background.png&quot;]];
+
+    [back1 setFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
+
+    [self insertSubview:back1 atIndex:1];
+
+
+
+    UIImageView *back2 = [[UIImageView alloc] initWithImage:
+                          [UIImage imageNamed: @&quot;background.png&quot;]];
+
+    [back2 setFrame:CGRectMake(320, 0, self.bounds.size.width, self.bounds.size.height)];
+
+    [self insertSubview:back2 atIndex:0];
+
+    [self bringSubviewToFront:wheel1];
+    [self bringSubviewToFront:wheel2];
+//    
+
+    [self doAnimate:back1 :back2];
+
+
+}
+
+-(void)doAnimate:(UIImageView *)img :(UIImageView *)img2{
+    [UIView animateWithDuration:32.0f animations:^{
+        [img setFrame:CGRectMake(-320, 0, img.frame.size.width, img.frame.size.height)];
+        [img2 setFrame:CGRectMake(0, 0, img.frame.size.width, img.frame.size.height)];
+    } completion:^(BOOL finished) {
+        [img setFrame:CGRectMake(0, 0, img.frame.size.width, img.frame.size.height)];
+        [img2 setFrame:CGRectMake(320, 0, img.frame.size.width, img.frame.size.height)];
+        [self doAnimate:img :img2];
+    }];
+}</code></pre><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><pre><code>refreshControl = [[bikeRegreshConrtol alloc] init];
+[refreshControl addTarget:self action:@selector(refresh)
+              forControlEvents:UIControlEventValueChanged];
+[mTable addSubview:refreshControl];
+
+[refreshControl makeAnimate];</code></pre><h3 id="更新結束"><a href="#更新結束" class="headerlink" title="更新結束"></a>更新結束</h3><pre><code>[refreshControl endRefreshing];</code></pre>
+
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/iOS/">iOS</a>
+      
+        <a href="/tags/UIRefreshControll/">UIRefreshControll</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
+      <a href="/2015/05/04/make-HUD-by-your-self/">
+        make HUD by your self
+      </a>
+    </h2>
+    
+    <time>
+      5月 4, 2015
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/iOS/">iOS</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <h3 id="首先，需要一個singleton來統管這個HUD，避免一次出現兩個hud以上的窘境"><a href="#首先，需要一個singleton來統管這個HUD，避免一次出現兩個hud以上的窘境" class="headerlink" title="首先，需要一個singleton來統管這個HUD，避免一次出現兩個hud以上的窘境"></a>首先，需要一個singleton來統管這個HUD，避免一次出現兩個hud以上的窘境</h3><pre><code>static LoadingView *myInstance = nil;
+
++(LoadingView *)shared
+{
+    // check to see if an instance already exists
+    if (nil == myInstance) {
+        myInstance  = [[[self class] alloc] init];
+        // initialize variables here
+    }
+    // return the instance of this class
+    return myInstance;
+}</code></pre><h3 id="接著實作兩個-instanceMethod"><a href="#接著實作兩個-instanceMethod" class="headerlink" title="接著實作兩個 instanceMethod"></a>接著實作兩個 instanceMethod</h3><pre><code>+ (void)dismiss{
+
+    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+    [[self shared] selfHide];
+}
++ (void)show
+{
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    [[self shared] selfShow];
+}</code></pre><h3 id="兩個class-method"><a href="#兩個class-method" class="headerlink" title="兩個class method"></a>兩個class method</h3><p>自window中找到hud並移除</p>
+<pre><code>-(void)selfHide{
+    [[((AppDelegate *)([UIApplication sharedApplication].delegate)).window viewWithTag:56789] removeFromSuperview];
+    [[((AppDelegate *)([UIApplication sharedApplication].delegate)).window viewWithTag:56790] removeFromSuperview];
+}</code></pre><p>將hud加到最上層的window，範例中的hud為中間一個靜置圖片，週遭再放一個不斷旋轉的圖片</p>
+<pre><code>-(void)selfShow{
+
+    UIImageView *mView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    [mView setImage:[UIImage imageNamed:@&quot;loading.png&quot;]];
+    mView.tag = 56789;
+    [mView setCenter:((AppDelegate *)([UIApplication sharedApplication].delegate)).window.center];
+
+    UIImageView *mView2 = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 100, 100)];
+    [mView2 setImage:[UIImage imageNamed:@&quot;loading2.png&quot;]];
+    mView2.tag = 56790;
+    [mView2 setCenter:mView.center];
+
+    if ([mView2.layer animationForKey:@&quot;SpinAnimation&quot;] == nil) {
+        CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@&quot;transform.rotation.z&quot;];
+        animation.fromValue = [NSNumber numberWithFloat:0.0f];
+        animation.toValue = [NSNumber numberWithFloat: 2*M_PI];
+        animation.duration = 1.0f;
+        animation.repeatCount = INFINITY;
+        [mView2.layer addAnimation:animation forKey:@&quot;SpinAnimation&quot;];
+    }
+
+    [((AppDelegate *)([UIApplication sharedApplication].delegate)).window addSubview:mView];
+    [((AppDelegate *)([UIApplication sharedApplication].delegate)).window addSubview:mView2];
+
+}</code></pre><p>接著，在其他地方引用，再呼叫 [LoadingView show]、[LoadingView dismiss] 就可以了</p>
+
+
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/iOS/">iOS</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
       <a href="/2015/04/23/取得MKMapView的Zoom-Level/">
         取得MKMapView的Zoom Level
       </a>
@@ -875,145 +1105,6 @@ id&lt;GameKitHelperProtocol&gt; delegate;
 </article>
     </div>
   
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2015/04/08/objc-增加UIButton的點擊範圍-objc-setAssociatedObject-的應用/">
-        objc-增加UIButton的點擊範圍 - objc_setAssociatedObject 的應用
-      </a>
-    </h2>
-    
-    <time>
-      4月 8, 2015
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/iOS/">iOS</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <h2 id="UIButton的進階使用"><a href="#UIButton的進階使用" class="headerlink" title="UIButton的進階使用"></a>UIButton的進階使用</h2><p>一般人比較少接觸到的runtime programming 以下為其中之一objc_setAssociatedObject 的應用</p>
-<pre><code>@interface UIButton(EnlargeTouchArea)
-
-@end
-
-@implementation UIButton(EnlargeTouchArea)
-
-static char topNameKey;
-static char rightNameKey;
-static char bottomNameKey;
-static char leftNameKey;
-
-- (void) setEnlargeEdgeWithTop:(CGFloat) top right:(CGFloat) right bottom:(CGFloat) bottom left:(CGFloat) left
-{
-    objc_setAssociatedObject(self, &amp;topNameKey, [NSNumber numberWithFloat:top], OBJC_ASSOCIATION_COPY_NONATOMIC);
-    objc_setAssociatedObject(self, &amp;rightNameKey, [NSNumber numberWithFloat:right], OBJC_ASSOCIATION_COPY_NONATOMIC);
-    objc_setAssociatedObject(self, &amp;bottomNameKey, [NSNumber numberWithFloat:bottom], OBJC_ASSOCIATION_COPY_NONATOMIC);
-    objc_setAssociatedObject(self, &amp;leftNameKey, [NSNumber numberWithFloat:left], OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
-- (CGRect) enlargedRect
-{
-    NSNumber* topEdge = objc_getAssociatedObject(self, &amp;topNameKey);
-    NSNumber* rightEdge = objc_getAssociatedObject(self, &amp;rightNameKey);
-    NSNumber* bottomEdge = objc_getAssociatedObject(self, &amp;bottomNameKey);
-    NSNumber* leftEdge = objc_getAssociatedObject(self, &amp;leftNameKey);
-    if (topEdge &amp;&amp; rightEdge &amp;&amp; bottomEdge &amp;&amp; leftEdge)
-    {
-        return CGRectMake(self.bounds.origin.x - leftEdge.floatValue,
-                          self.bounds.origin.y - topEdge.floatValue,
-                          self.bounds.size.width + leftEdge.floatValue + rightEdge.floatValue,
-                          self.bounds.size.height + topEdge.floatValue + bottomEdge.floatValue);
-    }
-    else
-    {
-        return self.bounds;
-    }
-}
-
-- (UIView*) hitTest:(CGPoint) point withEvent:(UIEvent*) event
-{
-    CGRect rect = [self enlargedRect];
-    if (CGRectEqualToRect(rect, self.bounds))
-    {
-        return [super hitTest:point withEvent:event];
-    }
-    return CGRectContainsPoint(rect, point) ? self : nil;
-}
-
-@end</code></pre>
-
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/iOS/">iOS</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
-      <article class="post reveal">
-  <section class="meta">
-    
-    <h2 class="title">
-      <a href="/2015/04/08/objc-Thread-Save-Singleton/">
-        objc-Thread-Save Singleton
-      </a>
-    </h2>
-    
-    <time>
-      4月 8, 2015
-    </time>
-		
-    
-    <div class='cats'>
-        <a href="/categories/iOS/">iOS</a>
-    </div>
-
-  </section>
-  <section class="article typo">
-	  <h2 id="Thread-Save-Singleton"><a href="#Thread-Save-Singleton" class="headerlink" title="Thread-Save Singleton"></a>Thread-Save Singleton</h2><pre><code>@implementation SingletonClass
-
-+ (id)sharedInstance
-{
-    static SingletonClass *sharedMyInstance = nil;
-
-    static dispatch_once_t onceToken;
-    dispatch_once(&amp;onceToken, ^{
-    sharedMyInstance = [[super allocWithZone:nil] init];
-    });
-
-    return sharedMyInstance;
-}
-@end
-
-+ (id)allocWithZone:(NSZone *)zone
-{
-    return [self sharedInstance];
-}</code></pre>
-
-    
-    
-    
-	  <div class="full-width auto-padding tags">
-      
-        <a href="/tags/iOS/">iOS</a>
-      
-	  </div>
-    
-  </section>
-</article>
-    </div>
-  
 </section>
 
 
@@ -1096,7 +1187,7 @@ PMP #1497767 ~04/15/2021<br/>
     
         <li><a class="flat-box" href="/categories/Travel/"><div class='name'>Travel</div><div class='badget'>1</div></a></li>
     
-        <li><a class="flat-box" href="/categories/iOS/"><div class='name'>iOS</div><div class='badget'>56</div></a></li>
+        <li><a class="flat-box" href="/categories/iOS/"><div class='name'>iOS</div><div class='badget'>58</div></a></li>
     
     </ul>
     

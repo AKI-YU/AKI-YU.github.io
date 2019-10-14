@@ -153,6 +153,145 @@
   <section class="meta">
     
     <h2 class="title">
+      <a href="/2015/04/08/objc-增加UIButton的點擊範圍-objc-setAssociatedObject-的應用/">
+        objc-增加UIButton的點擊範圍 - objc_setAssociatedObject 的應用
+      </a>
+    </h2>
+    
+    <time>
+      4月 8, 2015
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/iOS/">iOS</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <h2 id="UIButton的進階使用"><a href="#UIButton的進階使用" class="headerlink" title="UIButton的進階使用"></a>UIButton的進階使用</h2><p>一般人比較少接觸到的runtime programming 以下為其中之一objc_setAssociatedObject 的應用</p>
+<pre><code>@interface UIButton(EnlargeTouchArea)
+
+@end
+
+@implementation UIButton(EnlargeTouchArea)
+
+static char topNameKey;
+static char rightNameKey;
+static char bottomNameKey;
+static char leftNameKey;
+
+- (void) setEnlargeEdgeWithTop:(CGFloat) top right:(CGFloat) right bottom:(CGFloat) bottom left:(CGFloat) left
+{
+    objc_setAssociatedObject(self, &amp;topNameKey, [NSNumber numberWithFloat:top], OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, &amp;rightNameKey, [NSNumber numberWithFloat:right], OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, &amp;bottomNameKey, [NSNumber numberWithFloat:bottom], OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, &amp;leftNameKey, [NSNumber numberWithFloat:left], OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (CGRect) enlargedRect
+{
+    NSNumber* topEdge = objc_getAssociatedObject(self, &amp;topNameKey);
+    NSNumber* rightEdge = objc_getAssociatedObject(self, &amp;rightNameKey);
+    NSNumber* bottomEdge = objc_getAssociatedObject(self, &amp;bottomNameKey);
+    NSNumber* leftEdge = objc_getAssociatedObject(self, &amp;leftNameKey);
+    if (topEdge &amp;&amp; rightEdge &amp;&amp; bottomEdge &amp;&amp; leftEdge)
+    {
+        return CGRectMake(self.bounds.origin.x - leftEdge.floatValue,
+                          self.bounds.origin.y - topEdge.floatValue,
+                          self.bounds.size.width + leftEdge.floatValue + rightEdge.floatValue,
+                          self.bounds.size.height + topEdge.floatValue + bottomEdge.floatValue);
+    }
+    else
+    {
+        return self.bounds;
+    }
+}
+
+- (UIView*) hitTest:(CGPoint) point withEvent:(UIEvent*) event
+{
+    CGRect rect = [self enlargedRect];
+    if (CGRectEqualToRect(rect, self.bounds))
+    {
+        return [super hitTest:point withEvent:event];
+    }
+    return CGRectContainsPoint(rect, point) ? self : nil;
+}
+
+@end</code></pre>
+
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/iOS/">iOS</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
+      <a href="/2015/04/08/objc-Thread-Save-Singleton/">
+        objc-Thread-Save Singleton
+      </a>
+    </h2>
+    
+    <time>
+      4月 8, 2015
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/iOS/">iOS</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <h2 id="Thread-Save-Singleton"><a href="#Thread-Save-Singleton" class="headerlink" title="Thread-Save Singleton"></a>Thread-Save Singleton</h2><pre><code>@implementation SingletonClass
+
++ (id)sharedInstance
+{
+    static SingletonClass *sharedMyInstance = nil;
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&amp;onceToken, ^{
+    sharedMyInstance = [[super allocWithZone:nil] init];
+    });
+
+    return sharedMyInstance;
+}
+@end
+
++ (id)allocWithZone:(NSZone *)zone
+{
+    return [self sharedInstance];
+}</code></pre>
+
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/iOS/">iOS</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
       <a href="/2015/04/07/How-to-Hexo/">
         How to Hexo
       </a>
@@ -565,7 +704,7 @@ PMP #1497767 ~04/15/2021<br/>
     
         <li><a class="flat-box" href="/categories/Travel/"><div class='name'>Travel</div><div class='badget'>1</div></a></li>
     
-        <li><a class="flat-box" href="/categories/iOS/"><div class='name'>iOS</div><div class='badget'>56</div></a></li>
+        <li><a class="flat-box" href="/categories/iOS/"><div class='name'>iOS</div><div class='badget'>58</div></a></li>
     
     </ul>
     

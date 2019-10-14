@@ -309,6 +309,46 @@
   <section class="meta">
     
     <h2 class="title">
+      <a href="/2015/08/04/LinkedInSDKWalkThrough/">
+        LinkedInSDK Walk Through
+      </a>
+    </h2>
+    
+    <time>
+      8月 4, 2015
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/iOS/">iOS</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <p>千呼萬喚始出來，LinkedIn終於把最後的一個ios sdk給補上了，就是這次要walk through的東西，不過很可惜的是目前只有objc版本，swift根據過往objc sdk的開發進度，我在想可能要等上個好一陣子了。</p>
+
+    
+	  <div class="readmore">
+      <a href="/2015/08/04/LinkedInSDKWalkThrough/">Read More</a>
+    </div>
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/iOS/">iOS</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
       <a href="/2015/07/28/iOS 奇門遁甲指北針－CoreLocation的應用/">
         iOS 奇門遁甲指北針－CoreLocation的應用
       </a>
@@ -328,124 +368,10 @@
 	  <h3 id="準備好一個新專案，以及CoreLocation-Framework"><a href="#準備好一個新專案，以及CoreLocation-Framework" class="headerlink" title="準備好一個新專案，以及CoreLocation.Framework"></a>準備好一個新專案，以及CoreLocation.Framework</h3><br>
 <br>
 
-<h3 id="應該有的素材"><a href="#應該有的素材" class="headerlink" title="應該有的素材"></a>應該有的素材</h3><pre><code>1。奇門遁甲圓盤
-2。旋轉用的太極(裝飾用)
-3。UISegment 切換「磁北」、「真北」
-4。四個UILabel 顯示經緯度、高度、與方向角度</code></pre><h3 id="程式的撰寫"><a href="#程式的撰寫" class="headerlink" title="程式的撰寫"></a>程式的撰寫</h3><br>
-<br>
-info.plist
-
-<pre><code>NSLocationWhenInUseUsageDescription
-NSLocationAlwaysUsageDescription</code></pre><p>ViewController.h</p>
-<pre><code>#import &lt;CoreLocation/CoreLocation.h&gt;
-
-&lt;CLLocationManagerDelegate&gt;
-
-IBOutlet UIImageView *imgCompass;
-
-@property (nonatomic,retain) CLLocationManager *locationManager;
-@property (nonatomic,retain) CLHeading *currentHeading;</code></pre><p>ViewController.m</p>
-<pre><code>- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.currentHeading = [[CLHeading alloc] init];
-
-
-
-    if ([CLLocationManager locationServicesEnabled]) //處理定位
-    {
-        if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusDenied){
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;&quot; message:@&quot;請先開啟定位&quot; delegate:self cancelButtonTitle:@&quot;確認&quot; otherButtonTitles:nil];
-            alert.tag =999;
-            [self.view addSubview:alert];
-            [alert show];
-            isLocation = NO;
-            return;
-        }else{
-
-            isLocation = YES;
-            self.locationManager = [[CLLocationManager alloc] init];
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-            self.locationManager.headingFilter = 1;
-            self.locationManager.delegate = self;
-
-
-            if([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]){
-                [locationManager requestWhenInUseAuthorization];
-            }
-
-            [self.locationManager startUpdatingLocation];
-
-
-
-        }
-    }
-    else {
-
-
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;&quot; message:@&quot;請先開啟定位&quot; delegate:self cancelButtonTitle:@&quot;確認&quot; otherButtonTitles:nil];
-        alert.tag =999;
-        [self.view addSubview:alert];
-        isLocation = NO;
-        [alert show];
-        return;
-
-    }
-
-
-    [self.locationManager startUpdatingHeading];
-
-}
-
-
-
-
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
-    CLLocation* location = [locations objectAtIndex:0];
-    NSLog(@&quot;%f-%f&quot;,location.coordinate.latitude,location.coordinate.longitude);
-
-    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@&quot;%f&quot;,location.coordinate.latitude] forKey:@&quot;Lat&quot;];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@&quot;%f&quot;,location.coordinate.longitude] forKey:@&quot;Lng&quot;];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@&quot;%f&quot;,location.altitude] forKey:@&quot;Alt&quot;];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-
-
-    lblLat.text = [NSString stringWithFormat:@&quot;%f&quot;,location.coordinate.latitude];
-    lblLong.text = [NSString stringWithFormat:@&quot;%f&quot;,location.coordinate.longitude];
-    lblAlt.text = [NSString stringWithFormat:@&quot;%f&quot;,location.altitude];
-}
-
--(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
-    NSLog(@&quot;%@&quot;,error);
-}
-
-#pragma LocationManager Delegate
--(void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
-
-
-    self.currentHeading = newHeading;
-
-    if(segNorth.selectedSegmentIndex==1){
-        float heading = newHeading.magneticHeading; //in degrees
-        float headingDegrees = (heading*M_PI/180); //assuming needle points to top of iphone. convert to radians
-        imgCompass.transform = CGAffineTransformMakeRotation(headingDegrees);
-
-
-        NSLog(@&quot;heading %f&quot;,heading);
-        NSLog(@&quot;heading %f&quot;,headingDegrees);
-    }else{
-        float heading = newHeading.trueHeading; //in degrees
-        float headingDegrees = (heading*M_PI/180); //assuming needle points to top of iphone. convert to radians
-        imgCompass.transform = CGAffineTransformMakeRotation(headingDegrees);
-
-        NSLog(@&quot;heading %f&quot;,heading);
-
-        NSLog(@&quot;heading %f&quot;,headingDegrees);
-    }
-
-
-}</code></pre><p>完整專案放在 <a href="https://github.com/nobodyyu/ChimenCompass" target="_blank" rel="noopener">GitHub</a></p>
-
-
+    
+	  <div class="readmore">
+      <a href="/2015/07/28/iOS 奇門遁甲指北針－CoreLocation的應用/">Read More</a>
+    </div>
     
     
     
@@ -541,35 +467,6 @@ IBOutlet UIImageView *imgCompass;
     </div>
   
     <div class='post-wrapper'>
-      <article class="post revealno-title">
-  <section class="meta">
-    
-    <time>
-      7月 2, 2015
-    </time>
-		
-  </section>
-  <section class="article typo">
-	  <hr>
-<p>title: LinkedInSDK Walk Through<br>date: 2015-08-04 20:54:13<br>tags:</p>
-<ul>
-<li>iOS<br>category: iOS</li>
-</ul>
-<hr>
-<p>千呼萬喚始出來，LinkedIn終於把最後的一個ios sdk給補上了，就是這次要walk through的東西，不過很可惜的是目前只有objc版本，swift根據過往objc sdk的開發進度，我在想可能要等上個好一陣子了。</p>
-
-    
-	  <div class="readmore">
-      <a href="/2015/07/02/LinkedInSDKWalkThrough/">Read More</a>
-    </div>
-    
-    
-    
-  </section>
-</article>
-    </div>
-  
-    <div class='post-wrapper'>
       <article class="post reveal">
   <section class="meta">
     
@@ -612,50 +509,40 @@ IBOutlet UIImageView *imgCompass;
     </div>
   
     <div class='post-wrapper'>
-      <article class="post revealno-title">
+      <article class="post reveal">
   <section class="meta">
+    
+    <h2 class="title">
+      <a href="/2015/06/16/dropboxpractice2015/">
+        dropbox practice 2015
+      </a>
+    </h2>
     
     <time>
       6月 16, 2015
     </time>
 		
+    
+    <div class='cats'>
+        <a href="/categories/iOS/">iOS</a>
+    </div>
+
   </section>
   <section class="article typo">
-	  <hr>
-<p>title: dropbox practice 2015<br>date: 2015-06-16 00:25:47<br>img: <a href="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/dropbox01.png" target="_blank" rel="noopener">https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/dropbox01.png</a><br>tags: </p>
-<ul>
-<li>iOS<br>category: iOS</li>
-</ul>
-<hr>
-<p>手機也能透過sdk來讀取放在dropbox雲端空間的檔案！！<br><br>利用dropbox來打造一個可以儲存讀取雲端空間的app吧<br><br>只要跟著如下的步驟做就可以了<br><br></p>
-<h3 id="在APP-Console開一個app"><a href="#在APP-Console開一個app" class="headerlink" title="在APP Console開一個app"></a>在APP Console開一個app</h3><p><a href>https://www.dropbox.com/developers/apps</a></p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/dropbox01.png" alt="dropbox01" style="width:310px">
-
-<p>把其中的app key 和 app secret複製下來 </p>
-<h3 id="下載sdk範例程式"><a href="#下載sdk範例程式" class="headerlink" title="下載sdk範例程式"></a>下載sdk範例程式</h3><p><a href>https://www.dropbox.com/developers/core/sdks/ios</a></p>
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/dropbox02.png" alt="dropbox02" style="width:310px">
-
-
-
-<h3 id="把-app-key-與-app-secret貼到範例的delegate-m-裡"><a href="#把-app-key-與-app-secret貼到範例的delegate-m-裡" class="headerlink" title="把 app key 與 app secret貼到範例的delegate.m 裡"></a>把 app key 與 app secret貼到範例的delegate.m 裡</h3><img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/dropbox03.png" alt="dropbox03" style="width:310px">
-
-
-<p>記得要設定根目錄 </p>
-<pre><code>NSString *root = kDBRootDropbox;</code></pre><p>或</p>
-<pre><code>NSString *root = kDBRootAppFolder；</code></pre><h3 id="設定url-schema-讓-dropbox-signon-可以回得來"><a href="#設定url-schema-讓-dropbox-signon-可以回得來" class="headerlink" title="設定url schema 讓 dropbox signon 可以回得來"></a>設定url schema 讓 dropbox signon 可以回得來</h3><img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/dropbox04.png" alt="dropbox04" style="width:310px">
-
-
-<h3 id="好了的話就把程式run起來"><a href="#好了的話就把程式run起來" class="headerlink" title="好了的話就把程式run起來"></a>好了的話就把程式run起來</h3><img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/dropbox05.png" alt="dropbox05" style="width:310px">
-
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/dropbox06.png" alt="dropbox06" style="width:310px">
-
-<img class="img-shadow" src="https://raw.githubusercontent.com/nobodyyu/GraphicsBed/master/dropbox07.png" alt="dropbox07" style="width:310px">
-
-<p>拍洗  照片不給看～</p>
-
+	  <p>手機也能透過sdk來讀取放在dropbox雲端空間的檔案！！<br><br>利用dropbox來打造一個可以儲存讀取雲端空間的app吧<br><br>只要跟著如下的步驟做就可以了<br><br></p>
 
     
+	  <div class="readmore">
+      <a href="/2015/06/16/dropboxpractice2015/">Read More</a>
+    </div>
     
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/iOS/">iOS</a>
+      
+	  </div>
     
   </section>
 </article>
@@ -743,7 +630,7 @@ PMP #1497767 ~04/15/2021<br/>
     
         <li><a class="flat-box" href="/categories/Travel/"><div class='name'>Travel</div><div class='badget'>1</div></a></li>
     
-        <li><a class="flat-box" href="/categories/iOS/"><div class='name'>iOS</div><div class='badget'>56</div></a></li>
+        <li><a class="flat-box" href="/categories/iOS/"><div class='name'>iOS</div><div class='badget'>58</div></a></li>
     
     </ul>
     
