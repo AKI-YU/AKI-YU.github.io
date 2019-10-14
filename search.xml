@@ -55,35 +55,6 @@
     </entry>
     
     <entry>
-      <title>String to Date, Date to String</title>
-      <link href="/2019/05/19/DateToString/"/>
-      <url>/2019/05/19/DateToString/</url>
-      <content type="html"><![CDATA[<p>因為太常用了，所以存一份當紀念</p><a id="more"></a><pre><code>import Foundationextension DateFormatter {    convenience init (format: String) {        self.init()        dateFormat = format        locale = Locale.current    }}extension String {    func toDate (dateFormatter: DateFormatter) -&gt; Date? {        return dateFormatter.date(from: self)    }    func toDateString (dateFormatter: DateFormatter, outputFormat: String) -&gt; String? {        guard let date = toDate(dateFormatter: dateFormatter) else { return nil }        return DateFormatter(format: outputFormat).string(from: date)    }}extension Date {    func toString (dateFormatter: DateFormatter) -&gt; String? {        return dateFormatter.string(from: self)    }}</code></pre>]]></content>
-      
-      <categories>
-          
-          <category> iOS </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> iOS </tag>
-            
-            <tag> 新手村 </tag>
-            
-            <tag> swift </tag>
-            
-            <tag> OBJC </tag>
-            
-            <tag> Date </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>新增行事曆的事件</title>
       <link href="/2019/05/19/calenderEvent/"/>
       <url>/2019/05/19/calenderEvent/</url>
@@ -109,6 +80,35 @@
             <tag> Calendar </tag>
             
             <tag> EventKit </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>String to Date, Date to String</title>
+      <link href="/2019/05/19/DateToString/"/>
+      <url>/2019/05/19/DateToString/</url>
+      <content type="html"><![CDATA[<p>因為太常用了，所以存一份當紀念</p><a id="more"></a><pre><code>import Foundationextension DateFormatter {    convenience init (format: String) {        self.init()        dateFormat = format        locale = Locale.current    }}extension String {    func toDate (dateFormatter: DateFormatter) -&gt; Date? {        return dateFormatter.date(from: self)    }    func toDateString (dateFormatter: DateFormatter, outputFormat: String) -&gt; String? {        guard let date = toDate(dateFormatter: dateFormatter) else { return nil }        return DateFormatter(format: outputFormat).string(from: date)    }}extension Date {    func toString (dateFormatter: DateFormatter) -&gt; String? {        return dateFormatter.string(from: self)    }}</code></pre>]]></content>
+      
+      <categories>
+          
+          <category> iOS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> iOS </tag>
+            
+            <tag> 新手村 </tag>
+            
+            <tag> swift </tag>
+            
+            <tag> OBJC </tag>
+            
+            <tag> Date </tag>
             
         </tags>
       
@@ -430,29 +430,6 @@
     </entry>
     
     <entry>
-      <title>SpotLight 初探</title>
-      <link href="/2018/06/21/Spotlight-inspect/"/>
-      <url>/2018/06/21/Spotlight-inspect/</url>
-      <content type="html"><![CDATA[<img src="https://github.com/nobodyyu/GraphicsBed/raw/master/ios%40Taipei/spotlight01.png"><p>當使用者使用spotlight查詢時，總是有些app會列出內容出來，那又是怎麼樣的小技巧呢？</p><a id="more"></a><p>先把兩個必要的framework包進來</p><pre class="prettyprint">import CoreSpotlightimport MobileCoreServices</pre><p>接著，準備一個獨立的ID，避免與別的app衝突，通常會使用域名反解，與一個資料陣列,型別為 CSSearchableItem</p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> domainID: <span class="type">String</span> = <span class="string">"com.yuaki.informationPlus"</span></span><br><span class="line"><span class="keyword">var</span> searchableItems: [<span class="type">CSSearchableItem</span>] = []</span><br></pre></td></tr></table></figure><p>接著，</p><p>定義每筆資料的屬性設定 (item為資料物件)</p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> attributeSet = </span><br><span class="line"><span class="type">CSSearchableItemAttributeSet</span>(itemContentType: kUTTypeItem <span class="keyword">as</span> <span class="type">String</span>)</span><br><span class="line">attributeSet.title = item.title</span><br><span class="line">attributeSet.contentDescription = item.subtitle</span><br><span class="line">attributeSet.contentCreationDate = item.date</span><br></pre></td></tr></table></figure><p>接著為這個屬性設定關鍵字,以方便被搜尋</p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// define search keywords</span></span><br><span class="line"><span class="keyword">var</span> keywords = item.title.componentsSeparatedByString(<span class="string">" "</span>)</span><br><span class="line">keywords.appendContentsOf(item.subtitle.componentsSeparatedByString(<span class="string">" "</span>))</span><br><span class="line">attributeSet.keywords = keywords</span><br></pre></td></tr></table></figure><p>然後把屬性放到 CSSearchableItem裡 再加到陣列中備用</p><pre class="prettyprint">let searchItem = CSSearchableItem(uniqueIdentifier: "Parking", domainIdentifier: domainID, attributeSet: attributeSet)searchableItems.append(searchItem)</pre><p>最後加到index裡</p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">CSSearchableIndex</span>.defaultSearchableIndex().indexSearchableItems(searchableItems) &#123; (error) -&amp;gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">     <span class="keyword">if</span> error != <span class="literal">nil</span> &#123;</span><br><span class="line">         <span class="built_in">print</span>(error?.localizedDescription)</span><br><span class="line">     &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">         <span class="built_in">print</span>(<span class="string">"items indexed witch success!"</span>)</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>醬子就好了！！！</p><p>其中uniqueIdentifier可以在 continueUserActivity 的userInfo 被撈取</p><p>有沒有很方便呀</p><p>附記：index看起來沒有容量的限制，意思是…… 我可以塞爆他嗎？</p>]]></content>
-      
-      <categories>
-          
-          <category> iOS </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> iOS </tag>
-            
-            <tag> spotlight </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>XCode 搜尋小技巧</title>
       <link href="/2018/06/21/xcode-search/"/>
       <url>/2018/06/21/xcode-search/</url>
@@ -470,6 +447,29 @@
             <tag> iOS </tag>
             
             <tag> XCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>SpotLight 初探</title>
+      <link href="/2018/06/21/Spotlight-inspect/"/>
+      <url>/2018/06/21/Spotlight-inspect/</url>
+      <content type="html"><![CDATA[<img src="https://github.com/nobodyyu/GraphicsBed/raw/master/ios%40Taipei/spotlight01.png"><p>當使用者使用spotlight查詢時，總是有些app會列出內容出來，那又是怎麼樣的小技巧呢？</p><a id="more"></a><p>先把兩個必要的framework包進來</p><pre class="prettyprint">import CoreSpotlightimport MobileCoreServices</pre><p>接著，準備一個獨立的ID，避免與別的app衝突，通常會使用域名反解，與一個資料陣列,型別為 CSSearchableItem</p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> domainID: <span class="type">String</span> = <span class="string">"com.yuaki.informationPlus"</span></span><br><span class="line"><span class="keyword">var</span> searchableItems: [<span class="type">CSSearchableItem</span>] = []</span><br></pre></td></tr></table></figure><p>接著，</p><p>定義每筆資料的屬性設定 (item為資料物件)</p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> attributeSet = </span><br><span class="line"><span class="type">CSSearchableItemAttributeSet</span>(itemContentType: kUTTypeItem <span class="keyword">as</span> <span class="type">String</span>)</span><br><span class="line">attributeSet.title = item.title</span><br><span class="line">attributeSet.contentDescription = item.subtitle</span><br><span class="line">attributeSet.contentCreationDate = item.date</span><br></pre></td></tr></table></figure><p>接著為這個屬性設定關鍵字,以方便被搜尋</p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// define search keywords</span></span><br><span class="line"><span class="keyword">var</span> keywords = item.title.componentsSeparatedByString(<span class="string">" "</span>)</span><br><span class="line">keywords.appendContentsOf(item.subtitle.componentsSeparatedByString(<span class="string">" "</span>))</span><br><span class="line">attributeSet.keywords = keywords</span><br></pre></td></tr></table></figure><p>然後把屬性放到 CSSearchableItem裡 再加到陣列中備用</p><pre class="prettyprint">let searchItem = CSSearchableItem(uniqueIdentifier: "Parking", domainIdentifier: domainID, attributeSet: attributeSet)searchableItems.append(searchItem)</pre><p>最後加到index裡</p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">CSSearchableIndex</span>.defaultSearchableIndex().indexSearchableItems(searchableItems) &#123; (error) -&amp;gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">     <span class="keyword">if</span> error != <span class="literal">nil</span> &#123;</span><br><span class="line">         <span class="built_in">print</span>(error?.localizedDescription)</span><br><span class="line">     &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">         <span class="built_in">print</span>(<span class="string">"items indexed witch success!"</span>)</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>醬子就好了！！！</p><p>其中uniqueIdentifier可以在 continueUserActivity 的userInfo 被撈取</p><p>有沒有很方便呀</p><p>附記：index看起來沒有容量的限制，意思是…… 我可以塞爆他嗎？</p>]]></content>
+      
+      <categories>
+          
+          <category> iOS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> iOS </tag>
+            
+            <tag> spotlight </tag>
             
         </tags>
       
@@ -598,6 +598,33 @@
     </entry>
     
     <entry>
+      <title>如何在程式裡放入字型檔</title>
+      <link href="/2017/04/12/CustomizedFont/"/>
+      <url>/2017/04/12/CustomizedFont/</url>
+      <content type="html"><![CDATA[<p>Q: 想使用不同的字型嗎？</p><a id="more"></a><ol><li><p>將自定義字體文件以資源(resource)的形式添加到專案中</p></li><li><p>在Info.plist中增加一個key-Array，key 的名稱必須為UIAppFonts</p></li><li><p>對於每種要加入的字體，必須輸入字體文件的全名（包括副檔字）作為</p></li><li><p>記得儲存info.plist</p></li><li><p>UILabels、UITextViews或其他要使用自定義字體的地方調用[UIFont fontWithName：@“ CustomFontName” size：12] 就可以了</p></li></ol>]]></content>
+      
+      <categories>
+          
+          <category> iOS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> iOS </tag>
+            
+            <tag> 新手村 </tag>
+            
+            <tag> OBJC </tag>
+            
+            <tag> 字型 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>如何知道網路通不通？</title>
       <link href="/2017/04/12/Conectivity/"/>
       <url>/2017/04/12/Conectivity/</url>
@@ -627,10 +654,10 @@
     </entry>
     
     <entry>
-      <title>如何在程式裡放入字型檔</title>
-      <link href="/2017/04/12/CustomizedFont/"/>
-      <url>/2017/04/12/CustomizedFont/</url>
-      <content type="html"><![CDATA[<p>Q: 想使用不同的字型嗎？</p><a id="more"></a><ol><li><p>將自定義字體文件以資源(resource)的形式添加到專案中</p></li><li><p>在Info.plist中增加一個key-Array，key 的名稱必須為UIAppFonts</p></li><li><p>對於每種要加入的字體，必須輸入字體文件的全名（包括副檔字）作為</p></li><li><p>記得儲存info.plist</p></li><li><p>UILabels、UITextViews或其他要使用自定義字體的地方調用[UIFont fontWithName：@“ CustomFontName” size：12] 就可以了</p></li></ol>]]></content>
+      <title>浮水印效果</title>
+      <link href="/2017/01/26/watermark/"/>
+      <url>/2017/01/26/watermark/</url>
+      <content type="html"><![CDATA[<p>這篇在描述，如何在圖片上面加文字，做出浮水印的效果</p><a id="more"></a><pre><code>func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -&gt; UIImage {    let textColor = UIColor.white    let textFont = UIFont(name: &quot;Helvetica Bold&quot;, size: 12)!    let scale = UIScreen.main.scale    UIGraphicsBeginImageContextWithOptions(image.size, false, scale)    let textFontAttributes = [        NSAttributedStringKey.font: textFont,        NSAttributedStringKey.foregroundColor: textColor,        ] as [NSAttributedStringKey : Any]    image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))    let rect = CGRect(origin: point, size: image.size)    text.draw(in: rect, withAttributes: textFontAttributes)    let newImage = UIGraphicsGetImageFromCurrentImageContext()    UIGraphicsEndImageContext()    return newImage! }</code></pre>]]></content>
       
       <categories>
           
@@ -645,9 +672,9 @@
             
             <tag> 新手村 </tag>
             
-            <tag> OBJC </tag>
+            <tag> swift </tag>
             
-            <tag> 字型 </tag>
+            <tag> UIImage </tag>
             
         </tags>
       
@@ -673,33 +700,6 @@
             <tag> 新手村 </tag>
             
             <tag> APP Size </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>浮水印效果</title>
-      <link href="/2017/01/26/watermark/"/>
-      <url>/2017/01/26/watermark/</url>
-      <content type="html"><![CDATA[<p>這篇在描述，如何在圖片上面加文字，做出浮水印的效果</p><a id="more"></a><pre><code>func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -&gt; UIImage {    let textColor = UIColor.white    let textFont = UIFont(name: &quot;Helvetica Bold&quot;, size: 12)!    let scale = UIScreen.main.scale    UIGraphicsBeginImageContextWithOptions(image.size, false, scale)    let textFontAttributes = [        NSAttributedStringKey.font: textFont,        NSAttributedStringKey.foregroundColor: textColor,        ] as [NSAttributedStringKey : Any]    image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))    let rect = CGRect(origin: point, size: image.size)    text.draw(in: rect, withAttributes: textFontAttributes)    let newImage = UIGraphicsGetImageFromCurrentImageContext()    UIGraphicsEndImageContext()    return newImage! }</code></pre>]]></content>
-      
-      <categories>
-          
-          <category> iOS </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> iOS </tag>
-            
-            <tag> 新手村 </tag>
-            
-            <tag> swift </tag>
-            
-            <tag> UIImage </tag>
             
         </tags>
       
