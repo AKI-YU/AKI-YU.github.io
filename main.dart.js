@@ -33602,7 +33602,7 @@ s.b_(0)}}
 A.uj.prototype={
 ar(){return new A.Io(null,null,B.o)}}
 A.Io.prototype={
-M(a,b){var s=null,r=A.a2X(b,2),q=A.b8(s,60,15),p=A.c9(B.ah,3),o=A.bH(10),n=t.E
+M(a,b){var s=null,r=A.a2X(b,3),q=A.b8(s,60,15),p=A.c9(B.ah,3),o=A.bH(10),n=t.E
 return A.V8(r,A.a0(s,A.RL(A.a([q,A.lL(A.a([A.bZ(A.a0(s,A.bq(B.A,A.a([A.a0(s,A.bW(A.a([A.E("\uff0e \u85aa\u6c34\u9ad8\uff0c\u4f46\u6027\u50f9\u6bd4\u5176\u5be6\u4e0d\u9ad8",B.j,B.f,100,18),A.E("\uff0e \u67af\u71e5\u4e4f\u5473",B.j,B.f,100,18),A.E("\uff0e server sider\u8981ON CALL\u7684",B.j,B.f,100,18)],n),B.E,B.C),s,B.G,new A.b4(s,s,p,o,s,s,B.t),s,B.I,B.J,s),A.by(s,A.a0(s,A.E("\u70ba\u4ec0\u9ebc\u4e0d\u5b78\u5f8c\u7aef\u958b\u767c?",B.j,B.f,1,32),s,s,B.D,s,s,B.H,s),s,s,40,s,s,s)],n),B.y,s),s,s,s,s,s,B.F,s),4)],t.pj))],n)),s,s,B.D,s,s,B.cV,s))}}
 A.KI.prototype={
 bI(){this.cM()
@@ -33615,14 +33615,14 @@ s.b_(0)}}
 A.uo.prototype={
 ar(){return new A.It(null,null,B.o)}}
 A.It.prototype={
-M(a,b){var s,r,q=null,p=A.a2X(b,3),o=A.b8(q,60,15),n=A.kF(B.IR,B.a4,8),m=A.b8(q,60,15),l=A.c9(B.ah,3),k=A.bH(10),j=t.E
+M(a,b){var s,r,q=null,p=A.a2X(b,2),o=A.b8(q,60,15),n=A.kF(B.IR,B.a4,8),m=A.b8(q,60,15),l=A.c9(B.ah,3),k=A.bH(10),j=t.E
 k=A.bZ(A.a0(q,A.bq(B.A,A.a([A.a0(q,A.bW(A.a([A.E("\uff0e \u4f60\u8981\u5148\u8cb7\u4e00\u53f0 Mac Book Pro\uff0c\u4e8c\u624b\u53ef\uff0c\u4f46RAM CPU\u8981\u5920",B.j,B.f,100,18),A.E("\uff0e \u4f60\u8981\u4ed8 12\u842c \u65b0\u53f0\u5e63",B.j,B.f,100,18),A.E("\uff0e \u9996\u671f\u5148\u4ed84\u842c\uff0c\u4e4b\u5f8c\u53ef\u5206\u671f\u4e00\u500b\u6708\u4e00\u842c",B.j,B.f,100,18)],j),B.E,B.C),q,B.G,new A.b4(q,q,l,k,q,q,B.t),q,B.I,B.J,q),A.by(q,A.a0(q,A.E("\u4f60\u8981\u82b1\u8cbb",B.j,B.f,1,32),q,q,B.D,q,q,B.H,q),q,q,40,q,q,q)],j),B.y,q),q,q,q,q,q,B.F,q),4)
 l=A.c9(B.ah,3)
 s=A.bH(10)
 s=A.bZ(A.a0(q,A.bq(B.A,A.a([A.a0(q,A.bW(A.a([A.E("\uff0e \u786c\u6280\u80fd - Flutter \u7684\u5b8c\u6574\u958b\u767c",B.j,B.f,100,18),A.E("\uff0e \u8edf\u6280\u80fd - \u5e36\u4f60\u4e86\u89e3 scrum, kanban, PMP",B.j,B.f,100,18),A.E("\uff0e iOS / Android \u7684\u57fa\u790e\u77e5\u9053",B.j,B.f,100,18),A.E("\uff0e \u4e0a\u67b6",B.j,B.f,100,18),A.E("\uff0e Git",B.j,B.f,100,18),A.E("\uff0e \u5de5\u4f5c\u4e0a\u7684\u6280\u8853\u554f\u984c\uff0c\u5728\u7dda\u89e3\u7b54",B.j,B.f,100,18)],j),B.E,B.C),q,B.G,new A.b4(q,q,l,s,q,q,B.t),q,B.I,B.J,q),A.by(q,A.a0(q,A.E("\u4f60\u5c07\u6703\u5f97\u5230",B.j,B.f,1,32),q,q,B.D,q,q,B.H,q),q,q,40,q,q,q)],j),B.y,q),q,q,q,q,q,B.F,q),4)
 l=A.c9(B.ah,3)
 r=A.bH(10)
-return A.V8(p,A.a0(q,A.RL(A.a([o,n,m,A.lL(A.a([k,s,A.bZ(A.a0(q,A.bq(B.A,A.a([A.a0(q,A.bW(A.a([A.E("\uff0e 4 \u4eba\u958b\u73ed\uff0c\u4e0a\u8ab2 8 \u9031",B.j,B.f,100,18),A.E("\uff0e \u6298\u6263\u6216\u65b9\u6848\u7d30\u7bc0\uff0c\u8acb\u6d3d\u8a62",B.j,B.f,100,18),A.E("\uff0e \u5730\u9ede\u7686\u70ba\u958b\u653e\u7a7a\u9593\u6559\u5ba4",B.j,B.f,100,18)],j),B.E,B.C),q,B.G,new A.b4(q,q,l,r,q,q,B.t),q,B.I,B.J,q),A.by(q,A.a0(q,A.E("\u4e0a\u8ab2\u65b9\u6848",B.j,B.f,1,32),q,q,B.D,q,q,B.H,q),q,q,40,q,q,q)],j),B.y,q),q,q,q,q,q,B.F,q),4)],t.pj))],j)),q,q,B.D,q,q,B.cV,q))}}
+return A.V8(p,A.a0(q,A.RL(A.a([o,n,m,A.lL(A.a([k,s,A.bZ(A.a0(q,A.bq(B.A,A.a([A.a0(q,A.bW(A.a([A.E("\uff0e 4 \u4eba\u958b\u73ed\uff0c\u4e0a\u8ab2 8 \u9031",B.j,B.f,100,18),A.E("\uff0e \u5730\u9ede\u7686\u70ba\u958b\u653e\u7a7a\u9593\u6559\u5ba4",B.j,B.f,100,18),A.E("\uff0e \u6298\u6263\u6216\u65b9\u6848\u7d30\u7bc0\uff0c\u8acb\u6d3d\u8a62",B.j,B.f,100,18)],j),B.E,B.C),q,B.G,new A.b4(q,q,l,r,q,q,B.t),q,B.I,B.J,q),A.by(q,A.a0(q,A.E("\u4e0a\u8ab2\u65b9\u6848",B.j,B.f,1,32),q,q,B.D,q,q,B.H,q),q,q,40,q,q,q)],j),B.y,q),q,q,q,q,q,B.F,q),4)],t.pj))],j)),q,q,B.D,q,q,B.cV,q))}}
 A.KJ.prototype={
 bI(){this.cM()
 this.ce()
