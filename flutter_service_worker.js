@@ -4,11 +4,11 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "d23730a412aa79d40ba68c17f025080c",
-"index.html": "20d8e5a4bdd1c6084c373dcda3d82ee9",
-"/": "20d8e5a4bdd1c6084c373dcda3d82ee9",
-"main.dart.js": "523b6ff0efe5093f685d3fa6c7db6bc7",
+"index.html": "980cac4e4bbc3bdab82edb7ab3b730fe",
+"/": "980cac4e4bbc3bdab82edb7ab3b730fe",
+"main.dart.js": "bea4d483a96bbb237a1bebfeadf87138",
 "404.html": "779385b8e931c1ca89a7b74363e6c8df",
-"flutter.js": "eb2682e33f25cd8f1fc59011497c35f8",
+"flutter.js": "f85e6fb278b0fd20c349186fb46ae36d",
 "favicon.png": "e4b8a66bc5ece11caf190054dd9108cc",
 "_github-pages-challenge-nobodyyu": "205577103911b4d1a208439a87914fb5",
 "icons/favicon-16x16.png": "e4b8a66bc5ece11caf190054dd9108cc",
@@ -39,22 +39,44 @@ const RESOURCES = {
 "icons/favicon-32x32.png": "800efa1c31fca2e5b0ed96bfe46fa9f9",
 "icons/ms-icon-70x70.png": "ccd909cd5e24aed6919235a94d97cf55",
 "manifest.json": "6811075f68bbfdd0809559e218c3c8b2",
-"assets/AssetManifest.json": "a3b6d083598a260eb32bc97537de2c26",
-"assets/NOTICES": "30e4c4447121acdadca7204b26aceb16",
+"assets/AssetManifest.json": "267e1115823ea7e8d58de95d21659da8",
+"assets/NOTICES": "4c39a1e0f51ddeaf50b52f014dad3159",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
+"assets/shaders/ink_sparkle.frag": "f05a050255664ea20b7069ee844d5ded",
 "assets/fonts/MaterialIcons-Regular.otf": "95db9098c58fd6db106f1116bae85a0b",
+"assets/assets/images/two_swords.png": "f42073e04f5c6c93cd786f38b32acbf0",
+"assets/assets/images/mushroom.png": "a0f1099ad41f7244022a6bd298fc47fd",
 "assets/assets/images/back01.png": "769da73ff953e5533e3c9ad288e9030b",
+"assets/assets/images/magic_bubble.png": "2fd3a3a84200d455f3bd964147b986dc",
+"assets/assets/images/hero.png": "ac0a39938f1f0e4ba9c4bea970b5f043",
 "assets/assets/images/fire.png": "2b60ebf2f2fbce34ae06f00b34e8caaa",
+"assets/assets/images/magician.png": "c5acf9f5e0f66733ce2820a72ffe6537",
+"assets/assets/images/swords.png": "004e325d099c6302b3fc60a4634a7f70",
 "assets/assets/images/dragon.png": "b6a23a19a64aacd432b00d10f8decd2f",
+"assets/assets/images/bottom.png": "2d27f0c748ddeeecc9e2367c0aaffd25",
 "assets/assets/images/characters.png": "c74f22e1cb44bc3f7915540548e631b4",
+"assets/assets/images/class_back.png": "671531cd32683806a91a40d0c9732490",
+"assets/assets/images/frame4.png": "ef51e7049095ffeed658caf980bcf5c8",
+"assets/assets/images/header.png": "811df3b05656a497cc01d0ef4009dfb0",
+"assets/assets/images/hearts.png": "1da0fa0849fb5016030b0df685973619",
+"assets/assets/images/frame3.png": "d9e6f017b87ee469ef67617bd086156f",
+"assets/assets/images/frame2.png": "b6fc1d6843dae1bbda03c33bfbbf1685",
+"assets/assets/images/ground.png": "5f5f075e5af63346fe1f8be62194c1e6",
 "assets/assets/images/phone.png": "db49935e90258a5566d20532cf43e80e",
+"assets/assets/images/frame1.png": "c62e14f530a41c5e17e70c8d25dc6cb5",
+"assets/assets/images/pipe.png": "1f51c47e00e8df003a403f54ae207f69",
+"assets/assets/images/star.png": "715c783fcdd501ab1792ba60e3853542",
+"assets/assets/images/tree_back.png": "893f39461746a6158ec92a0aa4826bc6",
 "assets/assets/images/line.jpg": "634b258798e0593197ff3d0755f660a2",
+"assets/assets/images/scroll.png": "42fe759662ed3f04bda4ebb02b10628d",
+"assets/assets/images/coin.png": "c7e18233f12bc3204f7a2b2fd3d77418",
+"assets/assets/images/brick.png": "48c22c18c51ddf71b57d57506891d33d",
 "assets/assets/images/icon_ken.png": "f68f41599180fbe1e5985b3076b35c24",
-"canvaskit/canvaskit.js": "c2b4e5f3d7a3d82aed024e7249a78487",
-"canvaskit/profiling/canvaskit.js": "ae2949af4efc61d28a4a80fffa1db900",
-"canvaskit/profiling/canvaskit.wasm": "95e736ab31147d1b2c7b25f11d4c32cd",
-"canvaskit/canvaskit.wasm": "4b83d89d9fecbea8ca46f2f760c5a9ba"
+"canvaskit/canvaskit.js": "2bc454a691c631b07a9307ac4ca47797",
+"canvaskit/profiling/canvaskit.js": "38164e5a72bdad0faa4ce740c9b8e564",
+"canvaskit/profiling/canvaskit.wasm": "95a45378b69e77af5ed2bc72b2209b94",
+"canvaskit/canvaskit.wasm": "bf50631470eb967688cca13ee181af62"
 };
 
 // The application shell files that are downloaded before a service worker can
@@ -62,7 +84,6 @@ const RESOURCES = {
 const CORE = [
   "main.dart.js",
 "index.html",
-"assets/NOTICES",
 "assets/AssetManifest.json",
 "assets/FontManifest.json"];
 // During install, the TEMP cache is populated with the application shell files.
@@ -161,9 +182,11 @@ self.addEventListener("fetch", (event) => {
     .then((cache) =>  {
       return cache.match(event.request).then((response) => {
         // Either respond with the cached resource, or perform a fetch and
-        // lazily populate the cache.
+        // lazily populate the cache only if the resource was successfully fetched.
         return response || fetch(event.request).then((response) => {
-          cache.put(event.request, response.clone());
+          if (response && Boolean(response.ok)) {
+            cache.put(event.request, response.clone());
+          }
           return response;
         });
       })
