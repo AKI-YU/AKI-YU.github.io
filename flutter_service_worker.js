@@ -4,13 +4,12 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "d23730a412aa79d40ba68c17f025080c",
-"index.html": "980cac4e4bbc3bdab82edb7ab3b730fe",
-"/": "980cac4e4bbc3bdab82edb7ab3b730fe",
-"main.dart.js": "bea4d483a96bbb237a1bebfeadf87138",
+"index.html": "bcbab80e88179571d9f41fe98affd599",
+"/": "bcbab80e88179571d9f41fe98affd599",
+"main.dart.js": "42ebbb911b7582c86ae1d3af7e47e920",
 "404.html": "779385b8e931c1ca89a7b74363e6c8df",
-"flutter.js": "f85e6fb278b0fd20c349186fb46ae36d",
+"flutter.js": "a85fcf6324d3c4d3ae3be1ae4931e9c5",
 "favicon.png": "e4b8a66bc5ece11caf190054dd9108cc",
-"_github-pages-challenge-nobodyyu": "205577103911b4d1a208439a87914fb5",
 "icons/favicon-16x16.png": "e4b8a66bc5ece11caf190054dd9108cc",
 "icons/favicon.ico": "ea86c7492e5528d9329ffab0b70018c5",
 "icons/apple-icon.png": "a023d69aaf1a56562d0e6a98612db0e7",
@@ -40,11 +39,10 @@ const RESOURCES = {
 "icons/ms-icon-70x70.png": "ccd909cd5e24aed6919235a94d97cf55",
 "manifest.json": "6811075f68bbfdd0809559e218c3c8b2",
 "assets/AssetManifest.json": "267e1115823ea7e8d58de95d21659da8",
-"assets/NOTICES": "4c39a1e0f51ddeaf50b52f014dad3159",
+"assets/NOTICES": "214bf282df82bbdf62bc1662569d3aa5",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
-"assets/shaders/ink_sparkle.frag": "f05a050255664ea20b7069ee844d5ded",
-"assets/fonts/MaterialIcons-Regular.otf": "95db9098c58fd6db106f1116bae85a0b",
+"assets/fonts/MaterialIcons-Regular.otf": "e7069dfd19b331be16bed984668fe080",
 "assets/assets/images/two_swords.png": "f42073e04f5c6c93cd786f38b32acbf0",
 "assets/assets/images/mushroom.png": "a0f1099ad41f7244022a6bd298fc47fd",
 "assets/assets/images/back01.png": "769da73ff953e5533e3c9ad288e9030b",
@@ -73,10 +71,10 @@ const RESOURCES = {
 "assets/assets/images/coin.png": "c7e18233f12bc3204f7a2b2fd3d77418",
 "assets/assets/images/brick.png": "48c22c18c51ddf71b57d57506891d33d",
 "assets/assets/images/icon_ken.png": "f68f41599180fbe1e5985b3076b35c24",
-"canvaskit/canvaskit.js": "2bc454a691c631b07a9307ac4ca47797",
-"canvaskit/profiling/canvaskit.js": "38164e5a72bdad0faa4ce740c9b8e564",
-"canvaskit/profiling/canvaskit.wasm": "95a45378b69e77af5ed2bc72b2209b94",
-"canvaskit/canvaskit.wasm": "bf50631470eb967688cca13ee181af62"
+"canvaskit/canvaskit.js": "97937cb4c2c2073c968525a3e08c86a3",
+"canvaskit/profiling/canvaskit.js": "c21852696bc1cc82e8894d851c01921a",
+"canvaskit/profiling/canvaskit.wasm": "371bc4e204443b0d5e774d64a046eb99",
+"canvaskit/canvaskit.wasm": "3de12d898ec208a5f31362cc00f09b9e"
 };
 
 // The application shell files that are downloaded before a service worker can
