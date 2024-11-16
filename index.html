@@ -169,16 +169,6 @@ class="article article-type-post"
 <h3 id="動態切換維護模式"><a href="#動態切換維護模式" class="headerlink" title="動態切換維護模式"></a>動態切換維護模式</h3><p>不需要更新 APP 本身即可啟用或關閉維護頁面。</p>
 <h3 id="友好的用戶體驗"><a href="#友好的用戶體驗" class="headerlink" title="友好的用戶體驗"></a>友好的用戶體驗</h3><p>在維護期間提供清晰的維護訊息，並支持基本的離線功能（如緩存內容）。</p>
 <h3 id="高可用性"><a href="#高可用性" class="headerlink" title="高可用性"></a>高可用性</h3><p>在維護模式下仍需提供某些關鍵功能或展示訊息。</p>
-<h3 id="系統設計"><a href="#系統設計" class="headerlink" title="系統設計"></a>系統設計</h3><h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><p>狀態檢查</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">GET /status</span><br><span class="line">Response:</span><br><span class="line">&#123;</span><br><span class="line">    &quot;status&quot;: &quot;ok&quot; / &quot;maintenance&quot;,</span><br><span class="line">    &quot;message&quot;: &quot;The system is under maintenance until 2024-11-16 10:00 UTC&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;服務維護中&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;我們正在進行系統維護，預計於 2024-11-16 10:00 完成。&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;如需幫助，請聯繫 support@example.com。&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="設定後端狀態的管理工具"><a href="#設定後端狀態的管理工具" class="headerlink" title="設定後端狀態的管理工具"></a>設定後端狀態的管理工具</h4><p>提供一個後台管理界面供運維人員使用，用於：<br>啟用或關閉維護模式。<br>配置維護期間的訊息（例如：結束時間或聯繫方式）。</p>
-<h4 id="部署與監控"><a href="#部署與監控" class="headerlink" title="部署與監控"></a>部署與監控</h4><p>#####CDN：</p>
-<p>靜態維護頁面部署在 CDN，以確保即使後端完全不可用，用戶仍可看到維護信息。<br>#####負載均衡器：<br>在進入維護模式時，可以配置負載均衡器將所有流量重定向到維護頁面。</p>
-
         
     </div>
     </div>

@@ -16,7 +16,10 @@
     
     <title>以一個CTO的角度來看系統維護頁面 | YuAki</title>
 
-    <meta name="description" content="YuAki">
+    <meta name="description" content="&lt;p&gt;在手機 APP 進行 API 維護時，實現維護頁面的系統架構應考慮以下需求：&lt;/p&gt;
+&lt;h3 id=&#34;動態切換維護模式&#34;&gt;&lt;a href=&#34;#動態切換維護模式&#34; class=&#34;headerlink&#34; title=&#34;動態切換維護模式&#34;&gt;&lt;/a&gt;動態切換維護模式&lt;/h3&gt;&lt;p&gt;不需要更新 APP 本身即可啟用或關閉維護頁面。&lt;/p&gt;
+&lt;h3 id=&#34;友好的用戶體驗&#34;&gt;&lt;a href=&#34;#友好的用戶體驗&#34; class=&#34;headerlink&#34; title=&#34;友好的用戶體驗&#34;&gt;&lt;/a&gt;友好的用戶體驗&lt;/h3&gt;&lt;p&gt;在維護期間提供清晰的維護訊息，並支持基本的離線功能（如緩存內容）。&lt;/p&gt;
+&lt;h3 id=&#34;高可用性&#34;&gt;&lt;a href=&#34;#高可用性&#34; class=&#34;headerlink&#34; title=&#34;高可用性&#34;&gt;&lt;/a&gt;高可用性&lt;/h3&gt;&lt;p&gt;在維護模式下仍需提供某些關鍵功能或展示訊息。&lt;/p&gt;">
     <meta name="keywords" content="">
 
     
@@ -24,17 +27,29 @@
     <meta property="og:locale" content="zh-tw" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content= "以一個CTO的角度來看系統維護頁面 | YuAki"  />
-    <meta property="og:description" content= "YuAki" />
+    <meta property="og:description" content= "&lt;p&gt;在手機 APP 進行 API 維護時，實現維護頁面的系統架構應考慮以下需求：&lt;/p&gt;
+&lt;h3 id=&#34;動態切換維護模式&#34;&gt;&lt;a href=&#34;#動態切換維護模式&#34; class=&#34;headerlink&#34; title=&#34;動態切換維護模式&#34;&gt;&lt;/a&gt;動態切換維護模式&lt;/h3&gt;&lt;p&gt;不需要更新 APP 本身即可啟用或關閉維護頁面。&lt;/p&gt;
+&lt;h3 id=&#34;友好的用戶體驗&#34;&gt;&lt;a href=&#34;#友好的用戶體驗&#34; class=&#34;headerlink&#34; title=&#34;友好的用戶體驗&#34;&gt;&lt;/a&gt;友好的用戶體驗&lt;/h3&gt;&lt;p&gt;在維護期間提供清晰的維護訊息，並支持基本的離線功能（如緩存內容）。&lt;/p&gt;
+&lt;h3 id=&#34;高可用性&#34;&gt;&lt;a href=&#34;#高可用性&#34; class=&#34;headerlink&#34; title=&#34;高可用性&#34;&gt;&lt;/a&gt;高可用性&lt;/h3&gt;&lt;p&gt;在維護模式下仍需提供某些關鍵功能或展示訊息。&lt;/p&gt;" />
     <meta property="og:url" content="https://yuaki.com/2024/11/16/maintenance/index.html" />
     <meta property="og:site_name" content="" />
     <meta property="article:author" content="aki yu" />
     <meta property="article:publisher" content="" />
-    <meta property="og:description" content="YuAki" />
+    <meta property="og:description" content="&lt;p&gt;在手機 APP 進行 API 維護時，實現維護頁面的系統架構應考慮以下需求：&lt;/p&gt;
+&lt;h3 id=&#34;動態切換維護模式&#34;&gt;&lt;a href=&#34;#動態切換維護模式&#34; class=&#34;headerlink&#34; title=&#34;動態切換維護模式&#34;&gt;&lt;/a&gt;動態切換維護模式&lt;/h3&gt;&lt;p&gt;不需要更新 APP 本身即可啟用或關閉維護頁面。&lt;/p&gt;
+&lt;h3 id=&#34;友好的用戶體驗&#34;&gt;&lt;a href=&#34;#友好的用戶體驗&#34; class=&#34;headerlink&#34; title=&#34;友好的用戶體驗&#34;&gt;&lt;/a&gt;友好的用戶體驗&lt;/h3&gt;&lt;p&gt;在維護期間提供清晰的維護訊息，並支持基本的離線功能（如緩存內容）。&lt;/p&gt;
+&lt;h3 id=&#34;高可用性&#34;&gt;&lt;a href=&#34;#高可用性&#34; class=&#34;headerlink&#34; title=&#34;高可用性&#34;&gt;&lt;/a&gt;高可用性&lt;/h3&gt;&lt;p&gt;在維護模式下仍需提供某些關鍵功能或展示訊息。&lt;/p&gt;" />
     <meta name="twitter:title" content="以一個CTO的角度來看系統維護頁面 | YuAki"/>
-    <meta name="twitter:description" content="YuAki"/>
+    <meta name="twitter:description" content="&lt;p&gt;在手機 APP 進行 API 維護時，實現維護頁面的系統架構應考慮以下需求：&lt;/p&gt;
+&lt;h3 id=&#34;動態切換維護模式&#34;&gt;&lt;a href=&#34;#動態切換維護模式&#34; class=&#34;headerlink&#34; title=&#34;動態切換維護模式&#34;&gt;&lt;/a&gt;動態切換維護模式&lt;/h3&gt;&lt;p&gt;不需要更新 APP 本身即可啟用或關閉維護頁面。&lt;/p&gt;
+&lt;h3 id=&#34;友好的用戶體驗&#34;&gt;&lt;a href=&#34;#友好的用戶體驗&#34; class=&#34;headerlink&#34; title=&#34;友好的用戶體驗&#34;&gt;&lt;/a&gt;友好的用戶體驗&lt;/h3&gt;&lt;p&gt;在維護期間提供清晰的維護訊息，並支持基本的離線功能（如緩存內容）。&lt;/p&gt;
+&lt;h3 id=&#34;高可用性&#34;&gt;&lt;a href=&#34;#高可用性&#34; class=&#34;headerlink&#34; title=&#34;高可用性&#34;&gt;&lt;/a&gt;高可用性&lt;/h3&gt;&lt;p&gt;在維護模式下仍需提供某些關鍵功能或展示訊息。&lt;/p&gt;"/>
     <script type="application/ld+json">
         {
-            "description": "YuAki",
+            "description": "&lt;p&gt;在手機 APP 進行 API 維護時，實現維護頁面的系統架構應考慮以下需求：&lt;/p&gt;
+&lt;h3 id=&#34;動態切換維護模式&#34;&gt;&lt;a href=&#34;#動態切換維護模式&#34; class=&#34;headerlink&#34; title=&#34;動態切換維護模式&#34;&gt;&lt;/a&gt;動態切換維護模式&lt;/h3&gt;&lt;p&gt;不需要更新 APP 本身即可啟用或關閉維護頁面。&lt;/p&gt;
+&lt;h3 id=&#34;友好的用戶體驗&#34;&gt;&lt;a href=&#34;#友好的用戶體驗&#34; class=&#34;headerlink&#34; title=&#34;友好的用戶體驗&#34;&gt;&lt;/a&gt;友好的用戶體驗&lt;/h3&gt;&lt;p&gt;在維護期間提供清晰的維護訊息，並支持基本的離線功能（如緩存內容）。&lt;/p&gt;
+&lt;h3 id=&#34;高可用性&#34;&gt;&lt;a href=&#34;#高可用性&#34; class=&#34;headerlink&#34; title=&#34;高可用性&#34;&gt;&lt;/a&gt;高可用性&lt;/h3&gt;&lt;p&gt;在維護模式下仍需提供某些關鍵功能或展示訊息。&lt;/p&gt;",
             "author": { "@type": "Person", "name": "aki yu" },
             "@type": "BlogPosting",
             "url": "https://yuaki.com/2024/11/16/maintenance/index.html",
@@ -200,7 +215,7 @@
 
             
             <div class="article-busuanzi">
-                <span id="busuanzi_value_page_pv">N</span> 人看过
+                <span id="busuanzi_value_page_pv">N</span> views
             </div>
             
 
@@ -211,6 +226,8 @@
 <h3 id="動態切換維護模式"><a href="#動態切換維護模式" class="headerlink" title="動態切換維護模式"></a>動態切換維護模式</h3><p>不需要更新 APP 本身即可啟用或關閉維護頁面。</p>
 <h3 id="友好的用戶體驗"><a href="#友好的用戶體驗" class="headerlink" title="友好的用戶體驗"></a>友好的用戶體驗</h3><p>在維護期間提供清晰的維護訊息，並支持基本的離線功能（如緩存內容）。</p>
 <h3 id="高可用性"><a href="#高可用性" class="headerlink" title="高可用性"></a>高可用性</h3><p>在維護模式下仍需提供某些關鍵功能或展示訊息。</p>
+<span id="more"></span>
+
 <h3 id="系統設計"><a href="#系統設計" class="headerlink" title="系統設計"></a>系統設計</h3><h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><p>狀態檢查</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">GET /status</span><br><span class="line">Response:</span><br><span class="line">&#123;</span><br><span class="line">    &quot;status&quot;: &quot;ok&quot; / &quot;maintenance&quot;,</span><br><span class="line">    &quot;message&quot;: &quot;The system is under maintenance until 2024-11-16 10:00 UTC&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -240,7 +257,7 @@
   
   
     <a href="/2024/11/11/business_continuity/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-caption">前の記事</div>
       <div class="article-nav-title">以一個CTO的角度來看商業連續性</div>
     </a>
   
@@ -248,7 +265,7 @@
 
 
     <section class="share">
-        <div class="share-title">分享</div>
+        <div class="share-title">シェア</div>
         <a class="share-item" target="_blank"
             href="https://twitter.com/share?text=以一個CTO的角度來看系統維護頁面 - YuAki&url=https%3A%2F%2Fyuaki.com%2F2024%2F11%2F16%2Fmaintenance%2F">
             <ion-icon name="logo-twitter"></ion-icon>
