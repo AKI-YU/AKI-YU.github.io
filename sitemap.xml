@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://yuaki.com/marketing/index.html</loc>
+    
+    <lastmod>2024-11-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuaki.com/2024/11/11/business_continuity/</loc>
+    
+    <lastmod>2024-11-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuaki.com/2024/11/16/real_time_api/</loc>
+    
+    <lastmod>2024-11-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://yuaki.com/2024/11/16/maintenance/</loc>
     
     <lastmod>2024-11-16</lastmod>
@@ -20,27 +47,9 @@
   </url>
   
   <url>
-    <loc>https://yuaki.com/2024/11/11/business_continuity/</loc>
-    
-    <lastmod>2024-11-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://yuaki.com/2024/11/04/tiktok_overseas_2/</loc>
     
     <lastmod>2024-11-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://yuaki.com/marketing/index.html</loc>
-    
-    <lastmod>2024-11-09</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -67,7 +76,7 @@
 
   <url>
     <loc>https://yuaki.com/</loc>
-    <lastmod>2024-11-16</lastmod>
+    <lastmod>2024-11-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -75,98 +84,98 @@
   
   <url>
     <loc>https://yuaki.com/tags/aqive/</loc>
-    <lastmod>2024-11-16</lastmod>
+    <lastmod>2024-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yuaki.com/tags/%E6%92%93%E5%A0%B4/</loc>
-    <lastmod>2024-11-16</lastmod>
+    <lastmod>2024-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yuaki.com/tags/%E5%BF%83%E9%9D%88/</loc>
-    <lastmod>2024-11-16</lastmod>
+    <lastmod>2024-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yuaki.com/tags/%E9%9B%BB%E5%95%86/</loc>
-    <lastmod>2024-11-16</lastmod>
+    <lastmod>2024-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yuaki.com/tags/%E6%B5%B7%E5%A4%96/</loc>
-    <lastmod>2024-11-16</lastmod>
+    <lastmod>2024-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yuaki.com/tags/%E9%9B%BB%E8%A9%B1/</loc>
-    <lastmod>2024-11-16</lastmod>
+    <lastmod>2024-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yuaki.com/tags/tiktok/</loc>
-    <lastmod>2024-11-16</lastmod>
+    <lastmod>2024-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yuaki.com/tags/%E6%A8%A1%E6%93%AC%E5%AE%9A%E4%BD%8D/</loc>
-    <lastmod>2024-11-16</lastmod>
+    <lastmod>2024-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yuaki.com/tags/Google%E5%B8%B3%E8%99%9F%E7%94%B3%E8%AB%8B/</loc>
-    <lastmod>2024-11-16</lastmod>
+    <lastmod>2024-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yuaki.com/tags/CTO/</loc>
-    <lastmod>2024-11-16</lastmod>
+    <lastmod>2024-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yuaki.com/tags/DR/</loc>
-    <lastmod>2024-11-16</lastmod>
+    <lastmod>2024-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yuaki.com/tags/Tech-Management/</loc>
-    <lastmod>2024-11-16</lastmod>
+    <lastmod>2024-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yuaki.com/tags/app/</loc>
-    <lastmod>2024-11-16</lastmod>
+    <lastmod>2024-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yuaki.com/tags/system-design/</loc>
-    <lastmod>2024-11-16</lastmod>
+    <lastmod>2024-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
